@@ -106,6 +106,7 @@ def _load_modifiers(path: Path) -> Mapping[str, Mapping[str, _ModifierEntry]]:
         raise ValueError("invalid modifiers")
 
     lookups: dict[str, Mapping[str, _ModifierEntry]] = {}
+    seen_surfaces: set[str] = set()
     for group in ("negations", "emphasizers"):
         raw_entries = raw_modifiers[group]
         if not isinstance(raw_entries, list):
@@ -134,9 +135,10 @@ def _load_modifiers(path: Path) -> Mapping[str, Mapping[str, _ModifierEntry]]:
                 raise ValueError("invalid modifier")
             entry = _ModifierEntry(term, multiplier)
             for surface in (term, *variants):
-                if surface in surfaces:
+                if surface in seen_surfaces:
                     raise ValueError("duplicate modifier term")
                 surfaces[surface] = entry
+                seen_surfaces.add(surface)
         lookups[group] = MappingProxyType(surfaces)
     return MappingProxyType(lookups)
 
@@ -144,7 +146,7 @@ def _load_modifiers(path: Path) -> Mapping[str, Mapping[str, _ModifierEntry]]:
 def _tokenize(text: str) -> list[_Token]:
     """Return words and supported punctuation while retaining source offsets."""
     return [
-        _Token(match.group(), match.start(), match.end(), match.group() in ".!?")
+        _Token(match.group(), match.start(), match.end(), match.group() in ".!?,;:")
         for match in _TOKEN_PATTERN.finditer(text)
     ]
 

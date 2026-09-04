@@ -50,7 +50,7 @@ def test_committed_lexicon_has_required_inventory_and_schema() -> None:
     assert len({entry["term"] for entry in entries}) >= 200
     assert sum(entry.get("domain") == "customer_support" for entry in entries) >= 30
     assert all(
-        isinstance(entry["score"], int) and entry["score"] in {-3, -2, -1, 1, 2, 3}
+        type(entry["score"]) is int and entry["score"] in {-3, -2, -1, 1, 2, 3}
         for entry in entries
     )
     assert all(
@@ -86,6 +86,15 @@ def test_lexicon_rejects_zero_score(tmp_path: Path) -> None:
     """Neutral scores would make a sentiment entry meaningless."""
     entries = _valid_entries()
     entries[0]["score"] = 0
+
+    with pytest.raises(ValueError, match="invalid sentiment score"):
+        _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
+
+
+def test_lexicon_rejects_boolean_score(tmp_path: Path) -> None:
+    """A boolean is not a valid integer sentiment score."""
+    entries = _valid_entries()
+    entries[0]["score"] = True
 
     with pytest.raises(ValueError, match="invalid sentiment score"):
         _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
@@ -132,6 +141,15 @@ def test_modifiers_reject_duplicate_terms_and_variants(
         _load_modifiers(_write_json(tmp_path / "modifiers.json", modifiers))
 
 
+def test_modifiers_reject_surface_reused_across_groups(tmp_path: Path) -> None:
+    """A negation and an emphasis modifier cannot claim the same surface."""
+    modifiers = _valid_modifiers()
+    modifiers["emphasizers"][0]["variants"] = ["않다"]
+
+    with pytest.raises(ValueError, match="duplicate modifier term"):
+        _load_modifiers(_write_json(tmp_path / "modifiers.json", modifiers))
+
+
 def test_committed_modifiers_load_with_valid_emphasis_ranges() -> None:
     """The shipped modifier resource satisfies loader validation."""
     modifiers = _load_modifiers(MODIFIERS_PATH)
@@ -150,6 +168,16 @@ def test_tokenize_keeps_korean_words_and_sentence_boundaries() -> None:
         "배송이", "정말", "빠르다", "!", "응대는", "좋지", "않다", "."
     ]
     assert [token.is_boundary for token in tokens] == [False, False, False, True, False, False, False, True]
+    source = "배송이 정말 빠르다! 응대는 좋지 않다."
+    assert all(source[token.start : token.end] == token.raw for token in tokens)
+
+
+def test_tokenize_marks_every_supported_punctuation_as_boundary() -> None:
+    """Treating comma-like punctuation as words could join independent contexts."""
+    tokens = _tokenize("가,나;다:라")
+
+    assert [token.text for token in tokens] == ["가", ",", "나", ";", "다", ":", "라"]
+    assert [token.is_boundary for token in tokens] == [False, True, False, True, False, True, False]
 
 
 def test_longest_sentiment_expression_claims_overlapping_span() -> None:
@@ -161,6 +189,8 @@ def test_longest_sentiment_expression_claims_overlapping_span() -> None:
         }
     )
 
-    matches = _find_sentiment_matches(_tokenize("이 디자인은 마음에 들다."), lexicon)
+    text = "이 디자인은 마음에 들다."
+    matches = _find_sentiment_matches(_tokenize(text), lexicon)
 
     assert [(match.entry.term, match.raw) for match in matches] == [("마음에 들다", "마음에 들다")]
+    assert all(text[match.start : match.end] == match.raw for match in matches)
