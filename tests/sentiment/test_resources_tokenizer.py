@@ -194,3 +194,17 @@ def test_longest_sentiment_expression_claims_overlapping_span() -> None:
 
     assert [(match.entry.term, match.raw) for match in matches] == [("마음에 들다", "마음에 들다")]
     assert all(text[match.start : match.end] == match.raw for match in matches)
+
+
+def test_sentiment_match_preserves_source_whitespace() -> None:
+    """Normalizing separators in a match would break its source span contract."""
+    lexicon = MappingProxyType(
+        {"마음에 들다": _LexiconEntry("마음에 들다", 3, None)}
+    )
+
+    text = "이 디자인은 마음에  \t\n들다."
+    matches = _find_sentiment_matches(_tokenize(text), lexicon)
+
+    assert len(matches) == 1
+    assert matches[0].raw == "마음에  \t\n들다"
+    assert text[matches[0].start : matches[0].end] == matches[0].raw

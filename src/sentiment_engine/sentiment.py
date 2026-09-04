@@ -38,6 +38,7 @@ class _Token:
     start: int
     end: int
     is_boundary: bool
+    source: str | None = None
 
     @property
     def text(self) -> str:
@@ -146,7 +147,7 @@ def _load_modifiers(path: Path) -> Mapping[str, Mapping[str, _ModifierEntry]]:
 def _tokenize(text: str) -> list[_Token]:
     """Return words and supported punctuation while retaining source offsets."""
     return [
-        _Token(match.group(), match.start(), match.end(), match.group() in ".!?,;:")
+        _Token(match.group(), match.start(), match.end(), match.group() in ".!?,;:", text)
         for match in _TOKEN_PATTERN.finditer(text)
     ]
 
@@ -174,10 +175,14 @@ def _find_sentiment_matches(
             if entry is None:
                 continue
             span = tokens[index : index + length]
+            source = span[0].source
+            raw = (
+                source[span[0].start : span[-1].end]
+                if source is not None and all(token.source is source for token in span)
+                else " ".join(token.text for token in span)
+            )
             matches.append(
-                _SentimentTokenMatch(
-                    entry, " ".join(token.text for token in span), span[0].start, span[-1].end
-                )
+                _SentimentTokenMatch(entry, raw, span[0].start, span[-1].end)
             )
             index += length
             break
