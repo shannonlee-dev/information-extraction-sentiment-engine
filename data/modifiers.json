@@ -1,0 +1,15 @@
+{
+  "negations": [
+    {"term": "않다", "variants": ["않아", "않은", "않았어요", "않았다", "않지"]},
+    {"term": "아니다", "variants": ["아니", "아니에요", "아닌", "아니었다"]},
+    {"term": "못", "variants": ["못하다", "못했다", "못해요"]},
+    {"term": "없다", "variants": ["없는", "없어요", "없었다"]}
+  ],
+  "emphasizers": [
+    {"term": "매우", "variants": [], "multiplier": 1.5},
+    {"term": "정말", "variants": [], "multiplier": 1.5},
+    {"term": "아주", "variants": [], "multiplier": 1.5},
+    {"term": "너무", "variants": [], "multiplier": 1.5},
+    {"term": "굉장히", "variants": [], "multiplier": 1.7}
+  ]
+}
