@@ -277,7 +277,7 @@ def extract_information(text: str) -> ExtractionResult:
     diagnostics = [diagnostic for _, extracted_diagnostics in extracted for diagnostic in extracted_diagnostics]
     unique_items = {(item.type, item.start, item.end): item for item in items}
     unique_diagnostics = {
-        (diagnostic.type, diagnostic.start, diagnostic.end, diagnostic.reason): diagnostic
+        (diagnostic.type, diagnostic.start, diagnostic.end): diagnostic
         for diagnostic in diagnostics
     }
     return ExtractionResult(

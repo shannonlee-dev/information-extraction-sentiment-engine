@@ -2,7 +2,7 @@ import pytest
 
 from sentiment_engine import extract_information
 from sentiment_engine.extraction import _extract_urls
-from sentiment_engine.models import ExtractionItem, MoneyValue
+from sentiment_engine.models import Diagnostic, ExtractionItem, MoneyValue
 
 
 URL_CASES = [
@@ -98,6 +98,18 @@ def test_extract_information_deduplicates_identical_candidates(monkeypatch):
     result = extract_information("a@b.co")
 
     assert result.items == [duplicate]
+
+
+def test_extract_information_deduplicates_diagnostics_by_type_and_range(monkeypatch):
+    first = Diagnostic("email", "a@b", 0, 3, "first_reason")
+    second = Diagnostic("email", "a@b", 0, 3, "second_reason")
+    monkeypatch.setattr(
+        "sentiment_engine.extraction._extract_emails", lambda text: ([], [first, second])
+    )
+
+    result = extract_information("a@b")
+
+    assert result.diagnostics == [second]
 
 
 @pytest.mark.parametrize("text", [None, 1, []])
