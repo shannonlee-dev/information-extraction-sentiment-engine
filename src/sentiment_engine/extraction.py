@@ -1,6 +1,7 @@
 import re
+from datetime import date
 
-from sentiment_engine.models import Diagnostic, ExtractionItem
+from sentiment_engine.models import Diagnostic, ExtractionItem, MoneyValue
 
 
 EMAIL_CANDIDATE_PATTERN = re.compile(
@@ -42,6 +43,27 @@ AREA_CODES = (
     "051", "052", "053", "054", "055", "061", "062", "063", "064",
 )
 
+DATE_CANDIDATE_PATTERNS = (
+    re.compile(r"(?<!\d)(?P<year>\d{4})년\s*(?P<month>\d{1,2})월\s*(?P<day>\d{1,2})일(?!\d)"),
+    re.compile(r"(?<!\d)(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})(?!\d)"),
+    re.compile(r"(?<!\d)(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})(?!\d)"),
+)
+
+USD_CANDIDATE_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9_])\$(?P<number>\d[\d,]*(?:\.\d[\d,]*)?)(?![\d,]|\.\d)"
+)
+KRW_CANDIDATE_PATTERN = re.compile(
+    r"(?<![\d,])(?P<body>\d[\d,]*(?:\s*(?:억|천만|만|천)\s*\d[\d,]*)*(?:\s*(?:억|천만|만|천)\s*)?)원(?![A-Za-z0-9_])"
+)
+MONEY_TOKEN_PATTERN = re.compile(r"(?P<number>\d[\d,]*)(?:\s*(?P<unit>억|천만|만|천))?\s*")
+INTEGER_PATTERN = re.compile(r"(?:\d+|\d{1,3}(?:,\d{3})+)")
+UNIT_VALUES = {
+    "억": 100_000_000,
+    "천만": 10_000_000,
+    "만": 10_000,
+    "천": 1_000,
+}
+
 
 def _extract_emails(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
     items: list[ExtractionItem] = []
@@ -79,6 +101,80 @@ def _invalid_email_reason(local: str, domain: str) -> str | None:
     ):
         return "invalid_email_domain"
     return None
+
+
+def _extract_dates(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
+    items: list[ExtractionItem] = []
+    diagnostics: list[Diagnostic] = []
+    for pattern in DATE_CANDIDATE_PATTERNS:
+        for match in pattern.finditer(text):
+            raw = match.group()
+            try:
+                normalized = date(
+                    int(match["year"]), int(match["month"]), int(match["day"])
+                ).isoformat()
+            except ValueError:
+                diagnostics.append(
+                    Diagnostic("date", raw, match.start(), match.end(), "invalid_calendar_date")
+                )
+                continue
+            items.append(ExtractionItem("date", raw, normalized, match.start(), match.end()))
+    items.sort(key=lambda item: item.start)
+    diagnostics.sort(key=lambda diagnostic: diagnostic.start)
+    return items, diagnostics
+
+
+def _extract_money(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
+    items: list[ExtractionItem] = []
+    diagnostics: list[Diagnostic] = []
+    for match in USD_CANDIDATE_PATTERN.finditer(text):
+        raw = match.group()
+        number = match["number"]
+        if not INTEGER_PATTERN.fullmatch(number):
+            diagnostics.append(
+                Diagnostic("money", raw, match.start(), match.end(), "invalid_money_number")
+            )
+            continue
+        items.append(
+            ExtractionItem("money", raw, MoneyValue(int(number.replace(",", "")), "USD"), match.start(), match.end())
+        )
+    for match in KRW_CANDIDATE_PATTERN.finditer(text):
+        raw = match.group()
+        value, reason = _parse_krw_amount(match["body"])
+        if reason:
+            diagnostics.append(Diagnostic("money", raw, match.start(), match.end(), reason))
+            continue
+        items.append(ExtractionItem("money", raw, MoneyValue(value, "KRW"), match.start(), match.end()))
+    items.sort(key=lambda item: item.start)
+    diagnostics.sort(key=lambda diagnostic: diagnostic.start)
+    return items, diagnostics
+
+
+def _parse_krw_amount(body: str) -> tuple[int, str | None]:
+    total = 0
+    previous_multiplier = float("inf")
+    position = 0
+    while position < len(body):
+        match = MONEY_TOKEN_PATTERN.match(body, position)
+        if not match:
+            return 0, "invalid_money_number"
+        number = match["number"]
+        unit = match["unit"]
+        if not INTEGER_PATTERN.fullmatch(number):
+            return 0, "invalid_money_number"
+        coefficient = int(number.replace(",", ""))
+        if unit is None:
+            if body[match.end() :].strip():
+                return 0, "invalid_money_number"
+            total += coefficient
+        else:
+            multiplier = UNIT_VALUES[unit]
+            if multiplier >= previous_multiplier:
+                return 0, "invalid_money_unit_order"
+            total += coefficient * multiplier
+            previous_multiplier = multiplier
+        position = match.end()
+    return total, None
 
 
 def _extract_phones(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
