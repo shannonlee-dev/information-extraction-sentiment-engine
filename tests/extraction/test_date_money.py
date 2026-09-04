@@ -57,6 +57,14 @@ def test_extract_dates_ignores_incomplete_korean_date():
     assert diagnostics == []
 
 
+@pytest.mark.parametrize("text", ["2024-02-29-30", "2024/01/15/16"])
+def test_extract_dates_does_not_match_a_prefix_of_a_continued_date_sequence(text):
+    items, diagnostics = _extract_dates(text)
+
+    assert items == []
+    assert diagnostics == []
+
+
 @pytest.mark.parametrize(("raw", "normalized"), MONEY_CASES)
 def test_extract_money_normalizes_values_and_preserves_offsets(raw, normalized):
     text = f"amount: {raw}."
@@ -75,6 +83,7 @@ def test_extract_money_normalizes_values_and_preserves_offsets(raw, normalized):
 @pytest.mark.parametrize(("raw", "reason"), [
     ("1,00원", "invalid_money_number"),
     ("2만 1억원", "invalid_money_unit_order"),
+    ("1억 2억 원", "invalid_money_unit_order"),
     ("$10.50", "invalid_money_number"),
 ])
 def test_extract_money_reports_invalid_candidates(raw, reason):
