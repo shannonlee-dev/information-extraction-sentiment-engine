@@ -38,6 +38,8 @@ def test_extract_emails_normalizes_domain_and_preserves_offsets(raw, normalized)
     [
         ("user@localhost", "invalid_email_domain"),
         ("user..name@example.com", "invalid_email_local"),
+        ("user@example.com..invalid", "invalid_email_domain"),
+        ("user@example.com.-invalid", "invalid_email_domain"),
     ],
 )
 def test_extract_emails_rejects_invalid_candidates(raw, reason):
@@ -96,3 +98,13 @@ def test_extract_phones_rejects_digits_embedded_in_a_longer_sequence():
 
     assert items == []
     assert diagnostics == []
+
+
+def test_extract_phones_prefers_two_digit_area_code_without_separator():
+    items, diagnostics = _extract_phones("call 021234567 now")
+
+    assert diagnostics == []
+    assert len(items) == 1
+    item = items[0]
+    assert item.raw == "021234567"
+    assert item.normalized == "02-123-4567"

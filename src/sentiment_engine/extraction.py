@@ -5,6 +5,7 @@ from sentiment_engine.models import Diagnostic, ExtractionItem
 
 EMAIL_CANDIDATE_PATTERN = re.compile(
     r"""
+    # The left lookbehind prevents matching from the middle of a larger email-like token.
     (?<![A-Za-z0-9.!#$%&'*+/=?^_`{|}~-])
     (?P<local>
         # The local part permits common RFC-style atom characters; semantic checks reject bad dots.
@@ -12,10 +13,11 @@ EMAIL_CANDIDATE_PATTERN = re.compile(
     )
     @
     (?P<domain>
-        # Repeated dotted domain labels are captured broadly for semantic label validation.
-        [A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*
+        # Repeated dotted domain labels include empty labels so semantic validation can reject them.
+        [A-Za-z0-9-]+(?:\.[A-Za-z0-9-]*)*
     )
     # The terminal domain must be a 2--63 character alphabetic label during validation.
+    # The right lookahead prevents matching only a prefix of an alphanumeric or hyphenated label.
     (?![A-Za-z0-9-])
     """,
     re.VERBOSE,
@@ -23,6 +25,7 @@ EMAIL_CANDIDATE_PATTERN = re.compile(
 
 PHONE_CANDIDATE_PATTERN = re.compile(
     r"""
+    # These digit lookarounds prevent matching a phone number inside a longer digit sequence.
     (?<!\d)
     (?P<area>0\d{1,2})
     (?P<first_separator>[- ]?)
@@ -47,13 +50,18 @@ def _extract_emails(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
         local = match["local"]
         domain = match["domain"]
         raw = match.group()
+        end = match.end()
+        if domain.endswith(".") and not domain.endswith(".."):
+            domain = domain[:-1]
+            raw = raw[:-1]
+            end -= 1
         reason = _invalid_email_reason(local, domain)
         if reason:
-            diagnostics.append(Diagnostic("email", raw, match.start(), match.end(), reason))
+            diagnostics.append(Diagnostic("email", raw, match.start(), end, reason))
             continue
         items.append(
             ExtractionItem(
-                "email", raw, f"{local}@{domain.lower()}", match.start(), match.end()
+                "email", raw, f"{local}@{domain.lower()}", match.start(), end
             )
         )
     return items, diagnostics
@@ -83,6 +91,10 @@ def _extract_phones(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
         first_separator = match["first_separator"]
         second_separator = match["second_separator"]
         raw = match.group()
+        if not first_separator and not second_separator:
+            area = next((code for code in AREA_CODES if raw.startswith(code)), area)
+            exchange = raw[len(area) : -4]
+            subscriber = raw[-4:]
         if area not in AREA_CODES:
             reason = "invalid_phone_prefix"
         elif len(exchange) not in (3, 4) or first_separator != second_separator:
