@@ -5,9 +5,12 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from types import MappingProxyType
 from typing import Mapping
+
+from sentiment_engine.models import SentimentMatch, SentimentResult
 
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -189,3 +192,41 @@ def _find_sentiment_matches(
         else:
             index += 1
     return matches
+
+
+@lru_cache(maxsize=1)
+def _get_lexicon() -> Mapping[str, _LexiconEntry]:
+    """Load the default lexicon on first use and reuse its immutable lookup."""
+    return _load_lexicon(DEFAULT_LEXICON_PATH)
+
+
+def analyze_sentiment(text: str, apply_modifiers: bool = True) -> SentimentResult:
+    """Analyze text using base lexicon scores."""
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+    if not text.strip():
+        raise ValueError("text must not be empty")
+
+    tokens = _tokenize(text)
+    token_matches = _find_sentiment_matches(tokens, _get_lexicon())
+    matches = [
+        SentimentMatch(
+            term=match.entry.term,
+            raw=match.raw,
+            base_score=match.entry.score,
+            emphasis_multiplier=1.0,
+            negation_count=0,
+            contribution=float(match.entry.score),
+            start=match.start,
+            end=match.end,
+        )
+        for match in token_matches
+    ]
+    score = round(sum(match.contribution for match in matches), 6)
+    label = "positive" if score > 0 else "negative" if score < 0 else "neutral"
+    mixed = (
+        any(match.contribution > 0 for match in matches)
+        and any(match.contribution < 0 for match in matches)
+    )
+
+    return SentimentResult(score, label, mixed, [token.raw for token in tokens], matches)
