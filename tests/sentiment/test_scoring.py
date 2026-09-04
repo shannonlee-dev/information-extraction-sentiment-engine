@@ -81,8 +81,8 @@ def test_disabled_modifiers_do_not_load_modifier_data(monkeypatch: pytest.Monkey
     assert result.score == 2.0
 
 
-def test_enabled_modifiers_preserve_base_scoring_until_modifier_support() -> None:
+def test_enabled_modifiers_apply_final_emphasis_behavior() -> None:
     result = analyze_sentiment("매우 좋다")
 
-    assert result.score == 2.0
-    assert result.matches[0].emphasis_multiplier == 1.0
+    assert result.score == 3.0
+    assert result.matches[0].emphasis_multiplier == 1.5

@@ -54,6 +54,15 @@ class _SentimentTokenMatch:
     raw: str
     start: int
     end: int
+    token_start: int
+    token_end: int
+
+
+@dataclass(frozen=True, slots=True)
+class _ModifierTokenMatch:
+    entry: _ModifierEntry
+    token_start: int
+    token_end: int
 
 
 def _load_lexicon(path: Path) -> Mapping[str, _LexiconEntry]:
@@ -185,7 +194,14 @@ def _find_sentiment_matches(
                 else " ".join(token.text for token in span)
             )
             matches.append(
-                _SentimentTokenMatch(entry, raw, span[0].start, span[-1].end)
+                _SentimentTokenMatch(
+                    entry,
+                    raw,
+                    span[0].start,
+                    span[-1].end,
+                    index,
+                    index + length,
+                )
             )
             index += length
             break
@@ -200,8 +216,109 @@ def _get_lexicon() -> Mapping[str, _LexiconEntry]:
     return _load_lexicon(DEFAULT_LEXICON_PATH)
 
 
+@lru_cache(maxsize=1)
+def _get_modifiers() -> Mapping[str, Mapping[str, _ModifierEntry]]:
+    """Load the default modifiers only when modifier scoring is requested."""
+    return _load_modifiers(DEFAULT_MODIFIERS_PATH)
+
+
+def _find_modifier_matches(
+    tokens: list[_Token], lookup: Mapping[str, _ModifierEntry]
+) -> list[_ModifierTokenMatch]:
+    """Find non-overlapping modifier surfaces, preferring longer phrases."""
+    phrases: dict[tuple[str, ...], _ModifierEntry] = {}
+    for surface, entry in lookup.items():
+        phrase = tuple(token.text for token in _tokenize(surface))
+        if phrase:
+            phrases[phrase] = entry
+    max_length = max((len(phrase) for phrase in phrases), default=0)
+
+    matches: list[_ModifierTokenMatch] = []
+    index = 0
+    while index < len(tokens):
+        if tokens[index].is_boundary:
+            index += 1
+            continue
+        for length in range(min(max_length, len(tokens) - index), 0, -1):
+            entry = phrases.get(tuple(token.text for token in tokens[index : index + length]))
+            if entry is None:
+                continue
+            matches.append(_ModifierTokenMatch(entry, index, index + length))
+            index += length
+            break
+        else:
+            index += 1
+    return matches
+
+
+def _segment_ids(tokens: list[_Token]) -> list[int]:
+    """Identify punctuation-delimited token segments."""
+    segment = 0
+    result: list[int] = []
+    for token in tokens:
+        result.append(segment)
+        if token.is_boundary:
+            segment += 1
+    return result
+
+
+def _intervening_word_count(
+    tokens: list[_Token], modifier: _ModifierTokenMatch, sentiment: _SentimentTokenMatch
+) -> int:
+    """Count word tokens strictly between a modifier and sentiment expression."""
+    if modifier.token_end <= sentiment.token_start:
+        between = tokens[modifier.token_end : sentiment.token_start]
+    else:
+        between = tokens[sentiment.token_end : modifier.token_start]
+    return sum(not token.is_boundary for token in between)
+
+
+def _modifier_values(
+    tokens: list[_Token],
+    sentiments: list[_SentimentTokenMatch],
+    modifiers: Mapping[str, Mapping[str, _ModifierEntry]],
+) -> tuple[list[float], list[int]]:
+    """Associate each bounded modifier with one eligible sentiment expression."""
+    segment_ids = _segment_ids(tokens)
+    emphasis_values: list[list[float]] = [[] for _ in sentiments]
+    negation_counts = [0 for _ in sentiments]
+
+    for emphasis in _find_modifier_matches(tokens, modifiers["emphasizers"]):
+        for index, sentiment in enumerate(sentiments):
+            if sentiment.token_start < emphasis.token_end:
+                continue
+            if segment_ids[emphasis.token_start] != segment_ids[sentiment.token_start]:
+                continue
+            if _intervening_word_count(tokens, emphasis, sentiment) <= 2:
+                multiplier = emphasis.entry.multiplier
+                if multiplier is not None:
+                    emphasis_values[index].append(multiplier)
+                break
+
+    for negation in _find_modifier_matches(tokens, modifiers["negations"]):
+        eligible: list[tuple[int, int, int]] = []
+        for index, sentiment in enumerate(sentiments):
+            if segment_ids[negation.token_start] != segment_ids[sentiment.token_start]:
+                continue
+            distance = _intervening_word_count(tokens, negation, sentiment)
+            if distance > 2:
+                continue
+            follows = sentiment.token_start >= negation.token_end
+            eligible.append((distance, 0 if follows else 1, index))
+        if eligible:
+            negation_counts[min(eligible)[2]] += 1
+
+    multipliers: list[float] = []
+    for values in emphasis_values:
+        product = 1.0
+        for value in values:
+            product *= value
+        multipliers.append(min(product, 2.0))
+    return multipliers, negation_counts
+
+
 def analyze_sentiment(text: str, apply_modifiers: bool = True) -> SentimentResult:
-    """Analyze text using base lexicon scores."""
+    """Analyze text using lexicon scores and bounded modifier rules."""
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     if not text.strip():
@@ -209,18 +326,29 @@ def analyze_sentiment(text: str, apply_modifiers: bool = True) -> SentimentResul
 
     tokens = _tokenize(text)
     token_matches = _find_sentiment_matches(tokens, _get_lexicon())
+    if apply_modifiers:
+        multipliers, negation_counts = _modifier_values(
+            tokens, token_matches, _get_modifiers()
+        )
+    else:
+        multipliers = [1.0 for _ in token_matches]
+        negation_counts = [0 for _ in token_matches]
     matches = [
         SentimentMatch(
             term=match.entry.term,
             raw=match.raw,
             base_score=match.entry.score,
-            emphasis_multiplier=1.0,
-            negation_count=0,
-            contribution=float(match.entry.score),
+            emphasis_multiplier=multipliers[index],
+            negation_count=negation_counts[index],
+            contribution=float(
+                match.entry.score
+                * multipliers[index]
+                * (-1) ** negation_counts[index]
+            ),
             start=match.start,
             end=match.end,
         )
-        for match in token_matches
+        for index, match in enumerate(token_matches)
     ]
     score = round(sum(match.contribution for match in matches), 6)
     label = "positive" if score > 0 else "negative" if score < 0 else "neutral"
