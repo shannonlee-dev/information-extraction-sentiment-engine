@@ -74,7 +74,7 @@ def test_disabled_modifiers_do_not_load_modifier_data(monkeypatch: pytest.Monkey
     def fail_if_called(*args: object, **kwargs: object) -> None:
         raise AssertionError("modifier data was loaded")
 
-    monkeypatch.setattr("sentiment_engine.sentiment._load_modifiers", fail_if_called)
+    monkeypatch.setattr("sentiment_engine.sentiment._get_modifiers", fail_if_called)
 
     result = analyze_sentiment("좋다", apply_modifiers=False)
 
