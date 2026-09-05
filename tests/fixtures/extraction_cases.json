@@ -1,0 +1,937 @@
+{
+  "metadata": {
+    "provenance": "Project-authored fixed gold examples, manually labeled from the documented syntax and Korean meaning; never copied from analyzer output.",
+    "offsets": "Python Unicode code point offsets; start inclusive, end exclusive. Offsets calculated from literal raw text.",
+    "challenge_policy": "Unsupported natural entities remain gold positives. Scheme-free www URLs use an explicitly chosen HTTPS default; this is an annotation convention, not inferred network behavior."
+  },
+  "cases": [
+    {
+      "id": "email-001",
+      "text": "확인: alice@example.com 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "alice@example.com",
+          "normalized": "alice@example.com",
+          "start": 4,
+          "end": 21
+        }
+      ]
+    },
+    {
+      "id": "email-002",
+      "text": "확인: help@company.org 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "help@company.org",
+          "normalized": "help@company.org",
+          "start": 4,
+          "end": 20
+        }
+      ]
+    },
+    {
+      "id": "email-003",
+      "text": "확인: team@service.net 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "team@service.net",
+          "normalized": "team@service.net",
+          "start": 4,
+          "end": 20
+        }
+      ]
+    },
+    {
+      "id": "email-004",
+      "text": "확인: orders@shop.co.kr 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "orders@shop.co.kr",
+          "normalized": "orders@shop.co.kr",
+          "start": 4,
+          "end": 21
+        }
+      ]
+    },
+    {
+      "id": "email-005",
+      "text": "확인: Alice@EXAMPLE.COM 입니다.",
+      "variant": "mixed-case",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "Alice@EXAMPLE.COM",
+          "normalized": "Alice@example.com",
+          "start": 4,
+          "end": 21
+        }
+      ]
+    },
+    {
+      "id": "email-006",
+      "text": "확인: Team.Name@Sub.Company.CO.KR 입니다.",
+      "variant": "mixed-case",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "Team.Name@Sub.Company.CO.KR",
+          "normalized": "Team.Name@sub.company.co.kr",
+          "start": 4,
+          "end": 31
+        }
+      ]
+    },
+    {
+      "id": "email-007",
+      "text": "확인: SUPPORT@Help.ORG 입니다.",
+      "variant": "mixed-case",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "SUPPORT@Help.ORG",
+          "normalized": "SUPPORT@help.org",
+          "start": 4,
+          "end": 20
+        }
+      ]
+    },
+    {
+      "id": "email-008",
+      "text": "확인: alice+news@example.com 입니다.",
+      "variant": "tagged",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "alice+news@example.com",
+          "normalized": "alice+news@example.com",
+          "start": 4,
+          "end": 26
+        }
+      ]
+    },
+    {
+      "id": "email-009",
+      "text": "확인: orders+2024@shop.co.kr 입니다.",
+      "variant": "tagged",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "orders+2024@shop.co.kr",
+          "normalized": "orders+2024@shop.co.kr",
+          "start": 4,
+          "end": 26
+        }
+      ]
+    },
+    {
+      "id": "email-010",
+      "text": "확인: first.last+tag@sub.example.net 입니다.",
+      "variant": "tagged",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "first.last+tag@sub.example.net",
+          "normalized": "first.last+tag@sub.example.net",
+          "start": 4,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "id": "phone-001",
+      "text": "확인: 010-2468-1357 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "010-2468-1357",
+          "normalized": "010-2468-1357",
+          "start": 4,
+          "end": 17
+        }
+      ]
+    },
+    {
+      "id": "phone-002",
+      "text": "확인: 02-345-6789 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "02-345-6789",
+          "normalized": "02-345-6789",
+          "start": 4,
+          "end": 15
+        }
+      ]
+    },
+    {
+      "id": "phone-003",
+      "text": "확인: 031-2345-6789 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "031-2345-6789",
+          "normalized": "031-2345-6789",
+          "start": 4,
+          "end": 17
+        }
+      ]
+    },
+    {
+      "id": "phone-004",
+      "text": "확인: 051-345-6789 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "051-345-6789",
+          "normalized": "051-345-6789",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "phone-005",
+      "text": "확인: 010 1357 2468 입니다.",
+      "variant": "spaced",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "010 1357 2468",
+          "normalized": "010-1357-2468",
+          "start": 4,
+          "end": 17
+        }
+      ]
+    },
+    {
+      "id": "phone-006",
+      "text": "확인: 02 2345 6789 입니다.",
+      "variant": "spaced",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "02 2345 6789",
+          "normalized": "02-2345-6789",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "phone-007",
+      "text": "확인: 032 456 7890 입니다.",
+      "variant": "spaced",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "032 456 7890",
+          "normalized": "032-456-7890",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "phone-008",
+      "text": "확인: 01098765432 입니다.",
+      "variant": "compact",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "01098765432",
+          "normalized": "010-9876-5432",
+          "start": 4,
+          "end": 15
+        }
+      ]
+    },
+    {
+      "id": "phone-009",
+      "text": "확인: 021234567 입니다.",
+      "variant": "compact",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "021234567",
+          "normalized": "02-123-4567",
+          "start": 4,
+          "end": 13
+        }
+      ]
+    },
+    {
+      "id": "phone-010",
+      "text": "확인: 0421234567 입니다.",
+      "variant": "compact",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "0421234567",
+          "normalized": "042-123-4567",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-001",
+      "text": "확인: 2024년 1월 15일 입니다.",
+      "variant": "korean",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2024년 1월 15일",
+          "normalized": "2024-01-15",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "date-002",
+      "text": "확인: 2024년 2월 29일 입니다.",
+      "variant": "korean",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2024년 2월 29일",
+          "normalized": "2024-02-29",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "date-003",
+      "text": "확인: 2025년 12월 31일 입니다.",
+      "variant": "korean",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2025년 12월 31일",
+          "normalized": "2025-12-31",
+          "start": 4,
+          "end": 17
+        }
+      ]
+    },
+    {
+      "id": "date-004",
+      "text": "확인: 2000년 2월 29일 입니다.",
+      "variant": "korean",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2000년 2월 29일",
+          "normalized": "2000-02-29",
+          "start": 4,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "date-005",
+      "text": "확인: 2024/03/01 입니다.",
+      "variant": "slash",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2024/03/01",
+          "normalized": "2024-03-01",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-006",
+      "text": "확인: 2025/06/30 입니다.",
+      "variant": "slash",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2025/06/30",
+          "normalized": "2025-06-30",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-007",
+      "text": "확인: 2026/09/05 입니다.",
+      "variant": "slash",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2026/09/05",
+          "normalized": "2026-09-05",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-008",
+      "text": "확인: 2024-04-30 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2024-04-30",
+          "normalized": "2024-04-30",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-009",
+      "text": "확인: 2025-01-01 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2025-01-01",
+          "normalized": "2025-01-01",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "date-010",
+      "text": "확인: 2026-11-30 입니다.",
+      "variant": "hyphenated",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2026-11-30",
+          "normalized": "2026-11-30",
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "money-001",
+      "text": "확인: 10,000원 입니다.",
+      "variant": "won-digits",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "10,000원",
+          "normalized": {
+            "amount": 10000,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "id": "money-002",
+      "text": "확인: 12000원 입니다.",
+      "variant": "won-digits",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "12000원",
+          "normalized": {
+            "amount": 12000,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 10
+        }
+      ]
+    },
+    {
+      "id": "money-003",
+      "text": "확인: 0원 입니다.",
+      "variant": "won-digits",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "0원",
+          "normalized": {
+            "amount": 0,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "id": "money-004",
+      "text": "확인: 1,234,567원 입니다.",
+      "variant": "won-digits",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "1,234,567원",
+          "normalized": {
+            "amount": 1234567,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "money-005",
+      "text": "확인: 1억 2천만원 입니다.",
+      "variant": "korean-units",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "1억 2천만원",
+          "normalized": {
+            "amount": 120000000,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "id": "money-006",
+      "text": "확인: 3억 5천만 2만원 입니다.",
+      "variant": "korean-units",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "3억 5천만 2만원",
+          "normalized": {
+            "amount": 350020000,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "id": "money-007",
+      "text": "확인: 5만원 입니다.",
+      "variant": "korean-units",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "5만원",
+          "normalized": {
+            "amount": 50000,
+            "currency": "KRW"
+          },
+          "start": 4,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "id": "money-008",
+      "text": "확인: $100 입니다.",
+      "variant": "dollar",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "$100",
+          "normalized": {
+            "amount": 100,
+            "currency": "USD"
+          },
+          "start": 4,
+          "end": 8
+        }
+      ]
+    },
+    {
+      "id": "money-009",
+      "text": "확인: $1,000 입니다.",
+      "variant": "dollar",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "$1,000",
+          "normalized": {
+            "amount": 1000,
+            "currency": "USD"
+          },
+          "start": 4,
+          "end": 10
+        }
+      ]
+    },
+    {
+      "id": "money-010",
+      "text": "확인: $0 입니다.",
+      "variant": "dollar",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "$0",
+          "normalized": {
+            "amount": 0,
+            "currency": "USD"
+          },
+          "start": 4,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "id": "url-001",
+      "text": "확인: https://example.com 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.com",
+          "normalized": "https://example.com",
+          "start": 4,
+          "end": 23
+        }
+      ]
+    },
+    {
+      "id": "url-002",
+      "text": "확인: http://shop.co.kr/help 입니다.",
+      "variant": "plain",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "http://shop.co.kr/help",
+          "normalized": "http://shop.co.kr/help",
+          "start": 4,
+          "end": 26
+        }
+      ]
+    },
+    {
+      "id": "url-003",
+      "text": "확인: HTTPS://Example.COM/Help 입니다.",
+      "variant": "mixed-case",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "HTTPS://Example.COM/Help",
+          "normalized": "https://example.com/Help",
+          "start": 4,
+          "end": 28
+        }
+      ]
+    },
+    {
+      "id": "url-004",
+      "text": "확인: HTTP://Sub.Example.ORG/a 입니다.",
+      "variant": "mixed-case",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "HTTP://Sub.Example.ORG/a",
+          "normalized": "http://sub.example.org/a",
+          "start": 4,
+          "end": 28
+        }
+      ]
+    },
+    {
+      "id": "url-005",
+      "text": "확인: https://example.com/search?q=book#top 입니다.",
+      "variant": "query-fragment",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.com/search?q=book#top",
+          "normalized": "https://example.com/search?q=book#top",
+          "start": 4,
+          "end": 41
+        }
+      ]
+    },
+    {
+      "id": "url-006",
+      "text": "확인: https://shop.example.com/?a=one,two&b=ok 입니다.",
+      "variant": "query-fragment",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://shop.example.com/?a=one,two&b=ok",
+          "normalized": "https://shop.example.com/?a=one,two&b=ok",
+          "start": 4,
+          "end": 44
+        }
+      ]
+    },
+    {
+      "id": "url-007",
+      "text": "확인: https://example.net/a?x=1&y=2 입니다.",
+      "variant": "query-fragment",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.net/a?x=1&y=2",
+          "normalized": "https://example.net/a?x=1&y=2",
+          "start": 4,
+          "end": 33
+        }
+      ]
+    },
+    {
+      "id": "url-008",
+      "text": "링크: (https://example.com/docs).",
+      "variant": "punctuation",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.com/docs",
+          "normalized": "https://example.com/docs",
+          "start": 5,
+          "end": 29
+        }
+      ]
+    },
+    {
+      "id": "url-009",
+      "text": "참고 <https://example.org/a> 입니다.",
+      "variant": "punctuation",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.org/a",
+          "normalized": "https://example.org/a",
+          "start": 4,
+          "end": 25
+        }
+      ]
+    },
+    {
+      "id": "url-010",
+      "text": "이동 https://example.net/path.,!?",
+      "variant": "punctuation",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "https://example.net/path",
+          "normalized": "https://example.net/path",
+          "start": 3,
+          "end": 27
+        }
+      ]
+    },
+    {
+      "id": "negative-001",
+      "text": "잘못된 날짜 2023-02-29 및 2024년 2월 30일",
+      "variant": "invalid-calendar",
+      "expected": []
+    },
+    {
+      "id": "negative-002",
+      "text": "예약일 2024/13/01",
+      "variant": "invalid-calendar",
+      "expected": []
+    },
+    {
+      "id": "negative-003",
+      "text": "연락 070-1234-5678",
+      "variant": "unsupported-prefix",
+      "expected": []
+    },
+    {
+      "id": "negative-004",
+      "text": "메일 user@localhost 또는 user@example..com",
+      "variant": "malformed-domain",
+      "expected": []
+    },
+    {
+      "id": "negative-005",
+      "text": "주문번호 12345, 수량 100",
+      "variant": "unmarked-number",
+      "expected": []
+    },
+    {
+      "id": "negative-006",
+      "text": "가격 1,00원 또는 $10.50",
+      "variant": "invalid-money",
+      "expected": []
+    },
+    {
+      "id": "negative-007",
+      "text": "주소 ftp://example.com",
+      "variant": "unsupported-scheme",
+      "expected": []
+    },
+    {
+      "id": "multiple-001",
+      "text": "one@example.com / two@example.org",
+      "variant": "multiple",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "one@example.com",
+          "normalized": "one@example.com",
+          "start": 0,
+          "end": 15
+        },
+        {
+          "type": "email",
+          "raw": "two@example.org",
+          "normalized": "two@example.org",
+          "start": 18,
+          "end": 33
+        }
+      ]
+    },
+    {
+      "id": "multiple-002",
+      "text": "help@company.com / 02-1234-5678 / 2024-03-15 / 50,000원 / https://Example.COM/help",
+      "variant": "mixed-types",
+      "expected": [
+        {
+          "type": "email",
+          "raw": "help@company.com",
+          "normalized": "help@company.com",
+          "start": 0,
+          "end": 16
+        },
+        {
+          "type": "phone",
+          "raw": "02-1234-5678",
+          "normalized": "02-1234-5678",
+          "start": 19,
+          "end": 31
+        },
+        {
+          "type": "date",
+          "raw": "2024-03-15",
+          "normalized": "2024-03-15",
+          "start": 34,
+          "end": 44
+        },
+        {
+          "type": "money",
+          "raw": "50,000원",
+          "normalized": {
+            "amount": 50000,
+            "currency": "KRW"
+          },
+          "start": 47,
+          "end": 54
+        },
+        {
+          "type": "url",
+          "raw": "https://Example.COM/help",
+          "normalized": "https://example.com/help",
+          "start": 57,
+          "end": 81
+        }
+      ]
+    },
+    {
+      "id": "phone-011",
+      "text": "+82-10-1234-5678",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "+82-10-1234-5678",
+          "normalized": "010-1234-5678",
+          "start": 0,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "id": "phone-012",
+      "text": "공일공-일이삼사-오육칠팔",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "phone",
+          "raw": "공일공-일이삼사-오육칠팔",
+          "normalized": "010-1234-5678",
+          "start": 0,
+          "end": 13
+        }
+      ]
+    },
+    {
+      "id": "date-011",
+      "text": "2024.01.15",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "date",
+          "raw": "2024.01.15",
+          "normalized": "2024-01-15",
+          "start": 0,
+          "end": 10
+        }
+      ]
+    },
+    {
+      "id": "money-011",
+      "text": "백만원",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "백만원",
+          "normalized": {
+            "amount": 1000000,
+            "currency": "KRW"
+          },
+          "start": 0,
+          "end": 3
+        }
+      ]
+    },
+    {
+      "id": "money-012",
+      "text": "USD 100",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "money",
+          "raw": "USD 100",
+          "normalized": {
+            "amount": 100,
+            "currency": "USD"
+          },
+          "start": 0,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "id": "url-011",
+      "text": "www.example.com/path",
+      "variant": "challenge-unsupported",
+      "expected": [
+        {
+          "type": "url",
+          "raw": "www.example.com/path",
+          "normalized": "https://www.example.com/path",
+          "start": 0,
+          "end": 20
+        }
+      ]
+    }
+  ]
+}

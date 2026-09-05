@@ -103,12 +103,36 @@ def test_invalid_cli_invocations_report_errors(arguments: tuple[str, ...]) -> No
     assert "Traceback" not in completed.stderr
 
 
-def test_evaluation_mode_reports_the_task_9_placeholder() -> None:
-    completed = _run_cli("--evaluate", "all")
+@pytest.mark.parametrize("mode", ["extraction", "sentiment", "all"])
+@pytest.mark.parametrize("output_format", ["text", "json"])
+def test_evaluation_cli_modes_work_from_independent_cwd(tmp_path, mode, output_format):
+    completed = _run_cli("--evaluate", mode, "--format", output_format, cwd=tmp_path)
+    assert completed.returncode == 0
+    assert completed.stderr == ""
+    if output_format == "json":
+        result = json.loads(completed.stdout)
+        if mode in ("extraction", "all"):
+            extraction = result["extraction"] if mode == "all" else result
+            assert "per_type" in extraction and "micro" in extraction
+        if mode in ("sentiment", "all"):
+            sentiment = result["sentiment"] if mode == "all" else result
+            assert set(sentiment) == {"without_modifiers", "with_modifiers", "delta"}
+    else:
+        assert "precision" in completed.stdout
+        assert "f1" in completed.stdout
 
-    assert completed.returncode == 2
-    assert "evaluation support is not installed" in completed.stderr
-    assert "Traceback" not in completed.stderr
+
+@pytest.mark.parametrize("failure", [FileNotFoundError("missing fixtures"), ValueError("bad fixtures"),
+    UnicodeDecodeError("utf-8", b"\xff", 0, 1, "bad encoding")])
+def test_evaluation_cli_reports_fixture_errors(monkeypatch, capsys, failure):
+    from sentiment_engine import cli
+    def fail():
+        raise failure
+    monkeypatch.setattr(cli, "load_extraction_cases", fail)
+    assert cli.main(["--evaluate", "extraction"]) == 2
+    captured = capsys.readouterr()
+    assert "evaluation configuration error" in captured.err
+    assert captured.out == ""
 
 
 @pytest.mark.parametrize(
