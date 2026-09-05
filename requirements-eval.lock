@@ -1,0 +1,6 @@
+# Generated evaluation environment requirements.
+# Install with: python3 -m pip install --require-hashes -r requirements-eval.lock
+# Hashes are intentionally populated only by the release environment after
+# resolving wheels for its exact Python/platform pair.
+numpy==1.26.4
+datasketch==1.6.5

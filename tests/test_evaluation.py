@@ -241,4 +241,28 @@ def test_fixed_datasets_have_required_coverage_and_honest_challenges():
     for feature, minimum in {"emphasis": 15, "single-negation": 15, "double-negation": 10, "mixed-polarity": 10, "challenge": 10}.items():
         assert feature_counts[feature] >= minimum
     assert len(evaluation.evaluate_extraction(extraction)["errors"]) >= 5
-    assert len(evaluation.evaluate_sentiment(sentiment)["errors"]) >= 10
+    # Error analysis must not impose a minimum number of intentional mistakes.
+    assert evaluation.evaluate_sentiment(sentiment)["accuracy"] >= 0.8
+
+
+@pytest.mark.parametrize("filename", ["sentiment_cases.json", "sentiment_validation_cases.json"])
+def test_sentiment_quality_floor_and_modifier_gain(filename):
+    cases = evaluation.load_sentiment_cases(evaluation.DEFAULT_SENTIMENT_CASES_PATH.with_name(filename))
+    result = evaluation.compare_sentiment(cases)
+    assert result["with_modifiers"]["accuracy"] >= 0.8
+    assert result["with_modifiers"]["macro_f1"] >= 0.8
+    assert result["delta"]["accuracy"] >= 0.1
+
+
+def test_sentiment_reports_majority_baseline_and_neutral_abstentions():
+    cases = [
+        {"id": "a", "text": "좋다", "label": "positive"},
+        {"id": "b", "text": "오늘은 수요일이다", "label": "positive"},
+        {"id": "c", "text": "나쁘다", "label": "negative"},
+    ]
+    result = evaluation.evaluate_sentiment(cases)
+    assert result["majority_baseline_accuracy"] == 0.666667
+    assert result["neutral_predictions"] == 1
+    empty = evaluation.evaluate_sentiment([])
+    assert empty["majority_baseline_accuracy"] == 0.0
+    assert empty["neutral_predictions"] == 0

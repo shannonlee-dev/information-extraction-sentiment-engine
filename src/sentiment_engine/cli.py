@@ -30,6 +30,7 @@ def _parser() -> argparse.ArgumentParser:
         help="run extraction and/or sentiment evaluation",
     )
     parser.add_argument("--format", choices=("text", "json"), default="text")
+    parser.add_argument("--sentiment-cases", help="alternate labeled sentiment JSON for evaluation")
     return parser
 
 
@@ -58,13 +59,13 @@ def _print_metrics(label: str, metrics: dict[str, Any]) -> None:
     )
 
 
-def _run_evaluation(mode: str, output_format: str) -> int:
+def _run_evaluation(mode: str, output_format: str, sentiment_cases: str | None = None) -> int:
     results = {}
     try:
         if mode in ("extraction", "all"):
             results["extraction"] = evaluate_extraction(load_extraction_cases())
         if mode in ("sentiment", "all"):
-            results["sentiment"] = compare_sentiment(load_sentiment_cases())
+            results["sentiment"] = compare_sentiment(load_sentiment_cases(sentiment_cases))
     except (OSError, UnicodeError, ValueError) as error:
         print(f"evaluation configuration error: {error}", file=sys.stderr)
         return 2
@@ -88,6 +89,8 @@ def _run_evaluation(mode: str, output_format: str) -> int:
             print(f"{setting}:")
             print(f"- accuracy={metrics['accuracy']:.6f}, macro_f1={metrics['macro_f1']:.6f}, "
                   f"positive_f1={metrics['positive_f1']:.6f}")
+            print(f"- majority_baseline_accuracy={metrics['majority_baseline_accuracy']:.6f}, "
+                  f"neutral_predictions={metrics['neutral_predictions']}")
             for label, values in metrics["per_class"].items():
                 _print_metrics(label, values)
             print(f"- misclassified cases: {len(metrics['errors'])}")
@@ -97,9 +100,12 @@ def _run_evaluation(mode: str, output_format: str) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI and return its process exit code."""
-    arguments = _parser().parse_args(argv)
+    parser = _parser()
+    arguments = parser.parse_args(argv)
+    if arguments.sentiment_cases is not None and arguments.evaluate not in ("sentiment", "all"):
+        parser.error("--sentiment-cases requires --evaluate sentiment or all")
     if arguments.evaluate is not None:
-        return _run_evaluation(arguments.evaluate, arguments.format)
+        return _run_evaluation(arguments.evaluate, arguments.format, arguments.sentiment_cases)
     if not arguments.text.strip():
         print("error: text must not be blank", file=sys.stderr)
         return 2

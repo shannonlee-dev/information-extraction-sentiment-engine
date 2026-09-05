@@ -122,6 +122,32 @@ def test_evaluation_cli_modes_work_from_independent_cwd(tmp_path, mode, output_f
         assert "f1" in completed.stdout
 
 
+def test_cli_can_evaluate_a_separate_sentiment_dataset(tmp_path):
+    from sentiment_engine.evaluation import DEFAULT_SENTIMENT_CASES_PATH
+    path = DEFAULT_SENTIMENT_CASES_PATH.with_name("sentiment_validation_cases.json")
+    completed = _run_cli("--evaluate", "sentiment", "--sentiment-cases", str(path),
+                         "--format", "json", cwd=tmp_path)
+    assert completed.returncode == 0
+    result = json.loads(completed.stdout)["with_modifiers"]
+    assert result["accuracy"] >= 0.8
+    assert result["majority_baseline_accuracy"] == 0.5
+    assert all(e["case_id"].startswith("validation-") for e in result["errors"])
+
+
+def test_cli_reports_missing_custom_sentiment_data(tmp_path):
+    completed = _run_cli("--evaluate", "sentiment", "--sentiment-cases", str(tmp_path / "missing.json"))
+    assert completed.returncode == 2
+    assert "evaluation configuration error" in completed.stderr
+    assert "Traceback" not in completed.stderr
+
+
+@pytest.mark.parametrize("arguments", [("--text", "좋다"), ("--evaluate", "extraction")])
+def test_custom_sentiment_dataset_is_not_silently_ignored(arguments):
+    completed = _run_cli(*arguments, "--sentiment-cases", "unused.json")
+    assert completed.returncode == 2
+    assert "requires --evaluate sentiment or all" in completed.stderr
+
+
 @pytest.mark.parametrize("failure", [FileNotFoundError("missing fixtures"), ValueError("bad fixtures"),
     UnicodeDecodeError("utf-8", b"\xff", 0, 1, "bad encoding")])
 def test_evaluation_cli_reports_fixture_errors(monkeypatch, capsys, failure):

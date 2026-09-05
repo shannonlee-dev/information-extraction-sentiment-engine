@@ -174,13 +174,14 @@
   {"term":"품질좋다","variants":["품질 좋아","품질 좋아요"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"포장꼼꼼","variants":["포장 꼼꼼"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"해결되다","variants":["해결돼","해결됐어요"],"score":2,"domain":"customer_support","source":"project"},
+  {"term":"문제가 해결되다","variants":["문제가 해결돼","문제가 해결되었다","문제가 해결되었습니다"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"안내명확","variants":["안내 명확"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"배송정확","variants":["배송 정확"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"상담만족","variants":["상담 만족"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"처리빠르다","variants":["처리 빨라","처리 빨라요"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"대기짧다","variants":["대기 짧아","대기 짧아요"],"score":2,"domain":"customer_support","source":"project"},
   {"term":"만족","variants":["만족해요","만족했다"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"실망","variants":["실망해요","실망했다"],"score":-2,"domain":"customer_support","source":"project"},
+  {"term":"실망","variants":["실망해요","실망했다","실망하다"],"score":-2,"domain":"customer_support","source":"project"},
   {"term":"배송지연","variants":["배송 지연"],"score":-2,"domain":"customer_support","source":"project"},
   {"term":"응답느림","variants":["응답 느려","응답 느려요"],"score":-2,"domain":"customer_support","source":"project"},
   {"term":"환불지연","variants":["환불 지연"],"score":-2,"domain":"customer_support","source":"project"},
@@ -199,5 +200,11 @@
   {"term":"활기차다","variants":["활기차","활기차요"],"score":2,"source":"project"},
   {"term":"기분전환","variants":["기분 전환"],"score":2,"source":"project"},
   {"term":"답답해하다","variants":["답답해해","답답해해요"],"score":-2,"source":"project"},
-  {"term":"피해없다","variants":["피해 없어"],"score":-1,"source":"project"}
+  {"term":"피해없다","variants":["피해 없어"],"score":1,"source":"project"},
+  {"term":"예쁘다","variants":["예뻐","예뻐요"],"score":2,"source":"project"},
+  {"term":"간편하다","variants":["간편해","간편해요"],"score":2,"source":"project"},
+  {"term":"성실하다","variants":["성실해","성실해요"],"score":2,"source":"project"},
+  {"term":"도움","variants":[],"score":2,"source":"project"},
+  {"term":"믿음","variants":[],"score":2,"source":"project"},
+  {"term":"불만족스럽다","variants":["불만족스러워","불만족스러워요"],"score":-2,"source":"project"}
 ]

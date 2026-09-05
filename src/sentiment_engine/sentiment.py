@@ -11,6 +11,7 @@ from types import MappingProxyType
 from typing import Mapping
 
 from sentiment_engine.models import SentimentMatch, SentimentResult
+from sentiment_engine.korean import word_forms
 
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -22,6 +23,9 @@ _TOKEN_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+|[.!?,;:]")
 # The same word character class distinguishes words from boundary punctuation.
 _WORD_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+")
 _VALID_SCORES = frozenset({-3, -2, -1, 1, 2, 3})
+_CLAUSE_CONNECTORS = frozenset({"하지만", "그러나", "그런데", "그래도", "반면", "그리고"})
+# Nominalization/modal bridges license an auxiliary chain, not arbitrary distance.
+_NEGATION_BRIDGE = re.compile(r"(?:것[은이는도]?|이유[가는]?|수[가는]?|할 수[가는]?)?")
 
 
 @dataclass(frozen=True, slots=True)
@@ -171,11 +175,7 @@ def _find_sentiment_matches(
     tokens: list[_Token], lexicon: Mapping[str, _LexiconEntry]
 ) -> list[_SentimentTokenMatch]:
     """Find non-overlapping sentiment entries, preferring the longest token span."""
-    phrases: dict[tuple[str, ...], _LexiconEntry] = {}
-    for surface, entry in lexicon.items():
-        phrase = tuple(token.text for token in _tokenize(surface))
-        if phrase:
-            phrases[phrase] = entry
+    phrases = _sentiment_phrases(tuple(lexicon.items()))
     max_length = max((len(phrase) for phrase in phrases), default=0)
 
     matches: list[_SentimentTokenMatch] = []
@@ -213,6 +213,27 @@ def _find_sentiment_matches(
     return matches
 
 
+@lru_cache(maxsize=8)
+def _sentiment_phrases(
+    items: tuple[tuple[str, _LexiconEntry], ...],
+) -> Mapping[tuple[str, ...], _LexiconEntry]:
+    """Compile once; exact entries override generated forms, ambiguity abstains."""
+    exact = {tuple(t.text for t in _tokenize(surface)): entry for surface, entry in items}
+    generated: dict[tuple[str, ...], _LexiconEntry] = {}
+    ambiguous = set()
+    for phrase, entry in exact.items():
+        if not phrase:
+            continue
+        is_variant = phrase != tuple(t.text for t in _tokenize(entry.term))
+        for form in word_forms(phrase[-1], conversational=is_variant):
+            key = (*phrase[:-1], form)
+            previous = generated.get(key)
+            if previous is not None and previous.score != entry.score:
+                ambiguous.add(key)
+            generated.setdefault(key, entry)
+    return MappingProxyType({**{k: v for k, v in generated.items() if k not in ambiguous}, **exact})
+
+
 @lru_cache(maxsize=1)
 def _get_lexicon() -> Mapping[str, _LexiconEntry]:
     """Load the default lexicon on first use and reuse its immutable lookup."""
@@ -229,11 +250,7 @@ def _find_modifier_matches(
     tokens: list[_Token], lookup: Mapping[str, _ModifierEntry]
 ) -> list[_ModifierTokenMatch]:
     """Find non-overlapping modifier surfaces, preferring longer phrases."""
-    phrases: dict[tuple[str, ...], _ModifierEntry] = {}
-    for surface, entry in lookup.items():
-        phrase = tuple(token.text for token in _tokenize(surface))
-        if phrase:
-            phrases[phrase] = entry
+    phrases = _modifier_phrases(tuple(lookup.items()))
     max_length = max((len(phrase) for phrase in phrases), default=0)
 
     matches: list[_ModifierTokenMatch] = []
@@ -254,13 +271,32 @@ def _find_modifier_matches(
     return matches
 
 
+@lru_cache(maxsize=8)
+def _modifier_phrases(
+    items: tuple[tuple[str, _ModifierEntry], ...],
+) -> Mapping[tuple[str, ...], _ModifierEntry]:
+    phrases = {}
+    for surface, entry in items:
+        phrase = tuple(t.text for t in _tokenize(surface))
+        if not phrase:
+            continue
+        forms = (
+            word_forms(phrase[-1], conversational=surface != entry.term)
+            if entry.term in {"않다", "아니다", "없다", "못"} and len(surface) > 1
+            else {phrase[-1]}
+        )
+        for form in forms:
+            phrases[(*phrase[:-1], form)] = entry
+    return MappingProxyType(phrases)
+
+
 def _segment_ids(tokens: list[_Token]) -> list[int]:
-    """Identify punctuation-delimited token segments."""
+    """Bound modifier scope at punctuation and explicit clause transitions."""
     segment = 0
     result: list[int] = []
     for token in tokens:
         result.append(segment)
-        if token.is_boundary:
+        if token.is_boundary or token.text in _CLAUSE_CONNECTORS or token.text.endswith(("지만", "는데", "은데")):
             segment += 1
     return result
 
@@ -298,7 +334,27 @@ def _modifier_values(
                     emphasis_values[index].append(multiplier)
                 break
 
+    previous_negation: tuple[_ModifierTokenMatch, int] | None = None
     for negation in _find_modifier_matches(tokens, modifiers["negations"]):
+        # 못 is preverbal; 못하다/못해요 are postverbal auxiliaries.
+        postposed_inability = (
+            negation.entry.term == "못" and tokens[negation.token_start].text != "못"
+        )
+        # A lexical phrase already owns its internal negation (해결 안 됨).
+        if any(s.token_start < negation.token_end and negation.token_start < s.token_end for s in sentiments):
+            continue
+        # A linked auxiliary chain can extend through a small grammatical bridge.
+        # Full-match alternatives restrict this to nominalization/modal constructions.
+        if previous_negation is not None:
+            previous, owner = previous_negation
+            bridge = " ".join(t.text for t in tokens[previous.token_end:negation.token_start])
+            if (segment_ids[previous.token_start] == segment_ids[negation.token_start]
+                    and negation.entry.term in {"않다", "아니다", "없다"}
+                    and _NEGATION_BRIDGE.fullmatch(bridge)
+                    and not any(previous.token_end <= s.token_start < negation.token_start for s in sentiments)):
+                negation_counts[owner] += 1
+                previous_negation = (negation, owner)
+                continue
         eligible: list[tuple[int, int, int]] = []
         for index, sentiment in enumerate(sentiments):
             if segment_ids[negation.token_start] != segment_ids[sentiment.token_start]:
@@ -307,9 +363,27 @@ def _modifier_values(
             if distance > 2:
                 continue
             follows = sentiment.token_start >= negation.token_end
+            # 안/못 precede their predicate. 않다/없다 follow the expression.
+            # 아니다 keeps nearest-expression fallback for bare copular fragments.
+            if (negation.entry.term in {"않다", "없다"} or postposed_inability) and follows:
+                continue
+            if negation.entry.term in {"안", "못"} and not postposed_inability and not follows:
+                # Nominal light verbs: 도움이 안 된다 / 만족 안 해요.
+                after = tokens[negation.token_end:negation.token_end + 1]
+                nominal = (after and (
+                    (after[0].text in word_forms("되다") and sentiment.raw.endswith(("이", "가")))
+                    or (after[0].text in word_forms("하다") and not sentiment.entry.term.endswith("다"))
+                ))
+                reported = (negation.entry.term == "못" and after
+                            and after[0].text in {"하다", "해요", "하겠습니다"}
+                            and sentiment.raw.endswith("다고"))
+                if not (nominal or reported):
+                    continue
             eligible.append((distance, 0 if follows else 1, index))
         if eligible:
-            negation_counts[min(eligible)[2]] += 1
+            owner = min(eligible)[2]
+            negation_counts[owner] += 1
+            previous_negation = (negation, owner)
 
     multipliers: list[float] = []
     for values in emphasis_values:

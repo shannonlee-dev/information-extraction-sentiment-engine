@@ -204,7 +204,10 @@ def evaluate_sentiment(
         if support:
             gold_f1.append(_scores(tp, fp, fn)["f1"])
     correct = sum(confusion[label][label] for label in _LABELS)
+    majority = max((sum(row.values()) for row in confusion.values()), default=0)
     return {"accuracy": round(correct / len(cases), 6) if cases else 0.0,
+            "majority_baseline_accuracy": round(majority / len(cases), 6) if cases else 0.0,
+            "neutral_predictions": sum(row["neutral"] for row in confusion.values()),
             "per_class": per_class,
             "macro_f1": round(sum(gold_f1) / len(gold_f1), 6) if gold_f1 else 0.0,
             "positive_f1": per_class["positive"]["f1"],
