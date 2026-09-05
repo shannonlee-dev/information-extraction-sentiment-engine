@@ -123,9 +123,17 @@ def paired_intervals(
     for _ in range(repeats):
         sampled = rng.integers(0, len(group_ids), size=len(group_ids))
         indexes = [row_index for sampled_index in sampled for row_index in groups[group_ids[int(sampled_index)]]]
-        sampled_gold = [gold[index] for index in indexes]
-        sampled_a = [by_a[gold[index]["id"]] for index in indexes]
-        sampled_b = [by_b[gold[index]["id"]] for index in indexes]
+        # A bootstrap resample intentionally repeats observations. Give each
+        # occurrence a local ID so the public unique-ID contract still applies
+        # while the sampled rows retain their original labels and group IDs.
+        sampled_gold = []
+        sampled_a = []
+        sampled_b = []
+        for occurrence, index in enumerate(indexes):
+            sampled_id = f"bootstrap:{occurrence}"
+            sampled_gold.append({**gold[index], "id": sampled_id})
+            sampled_a.append({**by_a[gold[index]["id"]], "id": sampled_id})
+            sampled_b.append({**by_b[gold[index]["id"]], "id": sampled_id})
         result_a = metrics(sampled_gold, sampled_a)
         result_b = metrics(sampled_gold, sampled_b)
         accuracy_a.append(result_a["accuracy"])
