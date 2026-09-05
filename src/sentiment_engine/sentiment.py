@@ -16,7 +16,10 @@ from sentiment_engine.models import SentimentMatch, SentimentResult
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_LEXICON_PATH = _REPOSITORY_ROOT / "data" / "sentiment_lexicon.json"
 DEFAULT_MODIFIERS_PATH = _REPOSITORY_ROOT / "data" / "modifiers.json"
+# A maximal (+) Korean/Latin/digit run forms a word token; supported punctuation
+# is kept as one-character alternatives so modifier scope stops at sentence boundaries.
 _TOKEN_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+|[.!?,;:]")
+# The same word character class distinguishes words from boundary punctuation.
 _WORD_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+")
 _VALID_SCORES = frozenset({-3, -2, -1, 1, 2, 3})
 

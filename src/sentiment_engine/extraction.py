@@ -44,19 +44,30 @@ AREA_CODES = (
     "051", "052", "053", "054", "055", "061", "062", "063", "064",
 )
 
+# Dates support Korean markers, slash-separated, and hyphen-separated forms.
+# Named year/month/day groups use digit classes with exact or bounded quantifiers;
+# digit lookarounds stop matches inside longer numbers, while date() validates the calendar.
 DATE_CANDIDATE_PATTERNS = (
     re.compile(r"(?<!\d)(?P<year>\d{4})년\s*(?P<month>\d{1,2})월\s*(?P<day>\d{1,2})일(?!\d)"),
     re.compile(r"(?<!\d)(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})(?!\d|/\d)"),
     re.compile(r"(?<!\d)(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})(?!\d|-\d)"),
 )
 
+# USD candidates require a literal dollar sign and capture a digit/comma number;
+# the optional decimal group is intentionally captured for later rejection, and the
+# lookarounds keep the candidate out of identifiers or longer numeric fragments.
 USD_CANDIDATE_PATTERN = re.compile(
     r"(?<![A-Za-z0-9_])\$(?P<number>\d[\d,]*(?:\.\d[\d,]*)?)(?![\d,]|\.\d)"
 )
+# KRW candidates capture a numeric body followed by won. Repeated optional unit
+# groups accept 억/천만/만/천 compositions; boundary lookarounds avoid adjacent tokens.
 KRW_CANDIDATE_PATTERN = re.compile(
     r"(?<![\d,])(?P<body>\d[\d,]*(?:\s*(?:억|천만|만|천)\s*\d[\d,]*)*(?:\s*(?:억|천만|만|천)\s*)?)원(?![A-Za-z0-9_])"
 )
+# Each KRW component exposes number and optional unit named groups. Character
+# classes admit digits/commas and quantifiers admit surrounding whitespace.
 MONEY_TOKEN_PATTERN = re.compile(r"(?P<number>\d[\d,]*)(?:\s*(?P<unit>억|천만|만|천))?\s*")
+# Integers are either plain digits or comma-separated three-digit groups.
 INTEGER_PATTERN = re.compile(r"(?:\d+|\d{1,3}(?:,\d{3})+)")
 UNIT_VALUES = {
     "억": 100_000_000,
@@ -65,6 +76,8 @@ UNIT_VALUES = {
     "천": 1_000,
 }
 
+# URLs require an HTTP(S) scheme: s? makes s optional and \S+ consumes the
+# non-whitespace candidate. Delimiter trimming and host validation happen afterward.
 URL_CANDIDATE_PATTERN = re.compile(r"https?://\S+", re.IGNORECASE)
 
 
