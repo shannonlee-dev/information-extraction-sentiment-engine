@@ -37,4 +37,3 @@ def test_sentiment_and_analysis_results_construct_and_serialize() -> None:
     analysis = AnalysisResult("great!", [], sentiment, [])
     assert analysis == AnalysisResult("great!", [], sentiment, [])
     assert asdict(analysis)["sentiment"]["matches"][0]["contribution"] == 3.0
-
