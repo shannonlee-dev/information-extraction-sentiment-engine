@@ -1,24 +1,121 @@
-# External sentiment benchmark results
+# 외부 쇼핑 후기 감성 평가 결과
 
-The v1 benchmark runner and evaluation contracts are implemented, but no
-external source bytes or final score are committed yet. A result is valid only
-after the source SHA-256, protocol hash, exposure register, split hashes, and
-candidate release manifest are frozen.
+2026-09-05, Python 3.12.3 / Ubuntu에서 실행 완료.
+기존 사전·규칙을 동결한 baseline의 최종 Accuracy는 **36.20%**,
+binary Macro F1은 **0.48596**다. 사전 등록한 성능 목표는 모두 미달이다.
+평가 시스템을 구축하고 실제 채점까지 완료했으며, 엔진 재설계(플랜 2)는 실행하지 않았다.
 
-Prepare a source snapshot with:
+## 데이터와 동결
 
-```bash
-python3 -m scripts.prepare_sentiment_benchmark \
-  --source artifacts/benchmark/v1/raw/naver_shopping.txt \
-  --source-manifest artifacts/benchmark/v1/source.json \
-  --protocol docs/evaluation/sentiment-protocol.md \
-  --exposures docs/evaluation/exposure-register.jsonl \
-  --output artifacts/benchmark/v1 --seed 20260905
-```
+- 원본: bab2min/corpus, commit 62f3097b6c6974cecda5571f2cd2b64aa3b7f01e.
+- 원본 파일: 20,623,547 bytes, 200,000행.
+- SHA-256: dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0.
+- 원문은 그대로 유지했고 1·2점은 negative, 4·5점은 positive로 매핑했다.
+- 동일 극성 정확 중복 82행, 극성 충돌 정확 중복 20행을 제외하여 199,898행을 남겼다.
+- 노출 목록 448개: 기존 감성 fixture 200문장 전부와 테스트·문서 예문,
+  공식 README 미리보기 등을 포함한다. 누락된 fixture는 0개다.
+- 노출 연결 그룹 11개는 개발 분할에 배치했다.
+- 전체 중복 그룹 199,866개, 최대 그룹 크기 3행.
+- seed 20260905, 그룹 단위 분할 및 별점 비율 기반 결정적 배치.
 
-Create and verify a candidate snapshot before running development, selection,
-or final evaluation. Final evaluation must use `--release-manifest`; candidate
-and modifier overrides are rejected in that mode.
+| 분할 | 행 | 긍정 | 부정 | 그룹 | 용도 |
+|---|---:|---:|---:|---:|---|
+| development | 4,000 | 2,000 | 2,000 | 4,000 | 기존 엔진 켬/끔 평가 |
+| selection | 2,000 | 1,000 | 1,000 | 2,000 | 후보가 하나여서 선택 평가 생략 |
+| final | 2,000 | 1,000 | 1,000 | 2,000 | 동결 후보 켬/끔 한 차례 평가 |
+| reserve | 191,898 | — | — | — | 예비, 개별 원문 미열람 |
 
-No Accuracy, Macro F1, confidence interval, or pass/fail claim is made until
-the final split has been executed and its ID, group, and manifest checks pass.
+데이터 준비와 무결성 검증 프로그램은 원본·분할을 읽지만 개발자에게 최종 원문이나
+개별 예측을 출력하지 않았다. 최종 aggregate 결과와 판정을 저장한 뒤 아래 오답을 열람했다.
+선택 분할은 무결성 검사만 했고 후보 선택 점수나 개별 원문은 열람하지 않았다.
+
+MinHash 후보 검색 후 선택된 세 분할과 노출 목록에 독립적인 정확 prefix/Jaccard
+교차 감사를 수행했다. 첫 감사에서 교차 누출은 0건이었다. 정확 감사는 reserve 전체를
+포함하지 않는다. 문자열 기준 외의 의미적 유사성·사용자·상품 상관을 배제하는 검사는 아니다.
+선택된 표본의 그룹은 모두 1행이므로 이번 그룹 bootstrap은 행 bootstrap과 같다.
+크기순 그룹 배치 및 별점 층화 표본이며 전체 원본의 단순 무작위 행 표본이라고 주장하지 않는다.
+
+코드·사전 snapshot, evaluator, protocol, exposure 목록, split, 환경을 release 해시로 고정했다.
+NumPy 1.26.4, datasketch 1.6.5, SciPy 1.17.1이며 기존 requirements-eval.lock을 보존해 사용했다.
+테스트와 실제 실행은 Python 3.12.3에서 검증했다. Python 3.10에서 이번 평가 환경을 실행하지는 않았다.
+
+## 측정값
+
+| 자료 / 조건 | Accuracy | Macro F1 |
+|---|---:|---:|
+| 개발 / 수정어 끔 | 35.850% | 0.48501 |
+| 개발 / 수정어 켬 | 36.275% | 0.49152 |
+| 최종 / 수정어 끔 | 35.900% | 0.48167 |
+| 최종 / 수정어 켬 (등록 후보) | **36.200%** | **0.48596** |
+| 최종 / 긍정만 또는 부정만 예측 | 50.000% | 0.33333 |
+
+최종 후보는 2,000개 중 724개를 맞혔다. Accuracy는 고정 클래스 기준선보다 낮지만
+Macro F1은 높다. 서로 다른 지표이므로 이 차이를 숨기거나 하나로 대체하지 않는다.
+
+| 실제 별점 극성 | 예측 긍정 | 예측 부정 | 예측 중립 | 분석 오류 |
+|---|---:|---:|---:|---:|
+| positive | 541 | 16 | 443 | 0 |
+| negative | 82 | 183 | 735 | 0 |
+
+| 클래스 | Precision | Recall | F1 |
+|---|---:|---:|---:|
+| positive | 0.86838 | 0.54100 | 0.66667 |
+| negative | 0.91960 | 0.18300 | 0.30525 |
+
+중립 1,178건 중 **1,169건은 감성 표현 매칭 자체가 없고**, 9건은 점수 상쇄다.
+중립과 오류를 분모에서 제외하지 않았다. 전체 오답 1,276건 가운데 미매칭이 약 91.6%다.
+이는 관측된 실패 경로이며, 사전 미등록과 활용형 처리 실패의 각각의 비중까지 증명한 것은 아니다.
+
+Wilson Accuracy 95% 구간: 34.122–38.331%.
+그룹 bootstrap 95% 구간: Accuracy 34.000–38.251%, Macro F1 0.46332–0.50717.
+bootstrap은 PCG64 seed 20260906, 2,000회, percentile 방식이다.
+
+수정어 켬의 Accuracy 차이는 끔 대비 +0.30%p이며 paired 95% 구간은
+−0.15–+0.75%p다. 0을 포함하므로 개선이 확실하다고 주장하지 않는다.
+후보와 baseline은 동일하므로 baseline 대비 차이는 0, 차이 구간도 [0, 0]이다.
+
+| 사전 등록 목표 | 측정 | 판정 |
+|---|---:|---|
+| Accuracy ≥ 0.80 | 0.36200 | 미달 |
+| Macro F1 ≥ 0.80 | 0.48596 | 미달 |
+| positive Recall ≥ 0.75 | 0.54100 | 미달 |
+| negative Recall ≥ 0.75 | 0.18300 | 미달 |
+| Accuracy 그룹 CI 하한 ≥ 0.75 | 0.34000 | 미달 |
+
+## 결과 확정 후 오분류 10건 분석
+
+미매칭 4건·긍정 오판 3건·부정 오판 1건·상쇄 2건을 각 유형 내 ID 문자열 순으로
+골랐다. 무작위 표본이 아니며 유형 발생률을 추정하는 표가 아니다. AI 보조 분석이고
+독립적인 사람 검수가 아니다. 식별자는 원본 해시와 아래 행 번호로 복원할 수 있다.
+원문 일부를 발췌했고 원래 별점 레이블은 변경하지 않았다.
+
+| 원본 행 | 발췌 | 정답→예측 | 실제 매칭과 해석 |
+|---|---|---|---|
+| 100039 | 착용감과 입었을때 모양이 맘에 들어요 | 긍정→중립 | 매칭 0. 구어형 만족 표현을 포착하지 못함 |
+| 100178 | 보습지속 타오일에 비해 짧아요 | 부정→중립 | 전체 문장 매칭 0. 도메인 속성의 부정 평가 누락 |
+| 100296 | 얇고 가볍고 안입은듯 시원 | 긍정→중립 | 매칭 0. 짧은 후기의 평가 표현 누락 |
+| 100349 | 맛이 없었구 배송기간이 오래 걸렸습니다 | 부정→중립 | 매칭 0. 상태·시간 관련 불만 표현 누락 |
+| 101397 | 여러 개 시키면 좋을 듯합니다 | 부정→긍정 | 좋을 +2만 매칭. 실제 구매 후회와 조건부 제안 구분 실패 |
+| 103174 | 좋다고 생각했는데 바느질이 안되어있어서인지 | 부정→긍정 | 좋다고 +2만 매칭. 과거 기대 뒤 결함을 포착하지 못함 |
+| 103602 | 만족합니다 괨찮아요 | 부정→긍정 | 만족합니다 +2. 문면과 별점 극성의 불일치 가능성. 레이블 잡음으로 단정하거나 수정하지 않음 |
+| 104761 | 모기 걱정 뚝 | 긍정→부정 | 걱정 −1만 매칭. 걱정 해소와 뒤의 긍정 표현 누락 |
+| 132137 | 무서웠는데 … 모두 가라앉았어요 | 긍정→중립 | 좋다고 +2, 무서웠는데 −2 상쇄. 상태 변화와 최종 만족 누락 |
+| 142705 | 제품은 좋은데 배송 엄청 느립니다 | 부정→중립 | 좋은데 +2, 느립니다 −2 상쇄. 혼합 감성과 강조어 연결의 한계 |
+
+플랜 2를 진행한다면 먼저 개발 분할에서 미매칭·활용형·구어체·도메인 어휘 문제를
+구분해 개선해야 한다. 이 표의 문장 자체를 사전에 추가하는 작업은 하지 않았다.
+이번 final은 이미 결과와 오류를 열람했으므로 다음 엔진의 새로운 독립 합격 판정에
+재사용할 수 없다. 새 평가 표본의 중복 그룹·노출 검사는 다시 필요하다.
+
+## 검증과 재현
+
+전체 pytest **272 passed**, skip 0. 대규모 준비 및 baseline 실제 평가도 완료했다.
+원래 20만 건 전체 쌍 비교 병목을 제거했으며, LSH 누락을 탐지하는 정확 감사,
+개발셋 노출 허용, 실제 행 수 기록, 스냅샷 보존, 해시 검증, final 중복 실행 방지를 검증했다.
+평가 원본·manifest·개별 예측은 artifacts/benchmark/v1 아래에 있고 Git에서는 제외한다.
+
+실행 방법은 [benchmark-guide.md](benchmark-guide.md)에 있다.
+완료된 상태에서 자동 실행 명령은 동결본을 검증한 뒤 저장된 보고서를 가리킨다.
+결과 파일: runs/development-baseline/report.json, runs/final/report.json.
+이번 표본은 2020년 수집 쇼핑 후기의 별점 극성과의 일치도를 측정한다.
+현재 고객 문의의 감정 정확도, 다른 플랫폼·시점의 운영 성능을 뜻하지 않는다.

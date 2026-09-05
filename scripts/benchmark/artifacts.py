@@ -7,6 +7,7 @@ import json
 import shutil
 import sys
 import sysconfig
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -31,7 +32,7 @@ def _relative_files(root: Path) -> list[Path]:
         path = root / name
         if path.is_file():
             files.append(path)
-    files.extend(sorted(root.glob("requirements-*.txt")))
+    files.extend(path for path in sorted(root.glob("requirements-*")) if path.is_file())
     return sorted(set(files), key=lambda path: str(path.relative_to(root)))
 
 
@@ -43,6 +44,8 @@ def snapshot(root: Path, destination: Path) -> dict[str, Any]:
         raise ValueError("snapshot root does not exist")
     if destination == root:
         raise ValueError("snapshot destination must differ from source root")
+    if destination.exists() or destination.with_suffix(".json").exists():
+        raise ValueError("snapshot destination already exists")
     destination.mkdir(parents=True, exist_ok=True)
     files: list[dict[str, Any]] = []
     for source in _relative_files(root):
@@ -61,7 +64,12 @@ def snapshot(root: Path, destination: Path) -> dict[str, Any]:
             "version": ".".join(str(part) for part in sys.version_info[:3]),
             "stdlib": sysconfig.get_paths().get("stdlib"),
         },
-        "source": {"root": str(root), "git_diff": None},
+        "source": {
+            "root": str(root),
+            "head": subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip(),
+            "git_diff": subprocess.run(["git", "-C", str(root), "diff", "--binary", "HEAD"], capture_output=True, text=True).stdout,
+            "git_status": subprocess.run(["git", "-C", str(root), "status", "--short"], capture_output=True, text=True).stdout,
+        },
     }
     manifest_path = destination.with_suffix(".json")
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

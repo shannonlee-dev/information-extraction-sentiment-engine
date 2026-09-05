@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 import unicodedata
 from collections import Counter
 from fractions import Fraction
@@ -101,21 +102,41 @@ def _candidate_pairs(texts: list[str]) -> Iterable[tuple[int, int]]:
         yield from combinations(eligible, 2)
         return
     lsh = MinHashLSH(threshold=0.85, num_perm=256, params=(32, 8))
-    hashes: dict[int, Any] = {}
-    for index in eligible:
-        minhash = MinHash(num_perm=256, seed=20260905)
-        for shingle in sorted(_shingles(texts[index])):
-            minhash.update(shingle.encode("utf-8"))
-        lsh.insert(str(index), minhash)
-        hashes[index] = minhash
-    yielded: set[tuple[int, int]] = set()
-    for index in eligible:
-        for candidate in lsh.query(hashes[index]):
+    template = MinHash(num_perm=256, seed=20260905)
+    for number, index in enumerate(eligible, 1):
+        minhash = template.copy()
+        minhash.update_batch([shingle.encode("utf-8") for shingle in sorted(_shingles(texts[index]))])
+        for candidate in sorted(lsh.query(minhash), key=int):
             other = int(candidate)
-            pair = tuple(sorted((index, other)))
-            if pair[0] != pair[1] and pair not in yielded:
-                yielded.add(pair)
-                yield pair
+            yield other, index
+        lsh.insert(str(index), minhash)
+        if number % 20000 == 0:
+            print(f"near-duplicate indexing: {number}/{len(eligible)}", file=sys.stderr, flush=True)
+
+
+def _exact_candidate_pairs(texts: list[str]) -> Iterable[tuple[int, int]]:
+    """Lossless Jaccard prefix filter; unlike LSH, this does not sample pairs.
+
+    In one global token order a set of m shingles needs a prefix of
+    m - ceil(0.85*m) + 1. Similar sets must share a prefix token: otherwise
+    the first common token occurs too late in one set to reach the required
+    overlap. Length filtering and the final integer Jaccard check are exact.
+    """
+    shingles = {i: _shingles(text) for i, text in enumerate(texts) if len(text) >= 20}
+    frequencies = Counter(s for values in shingles.values() for s in values)
+    postings: dict[str, list[int]] = {}
+    for index in sorted(shingles, key=lambda i: (len(shingles[i]), i)):
+        values = shingles[index]
+        size = len(values)
+        prefix = sorted(values, key=lambda s: (frequencies[s], s))[:size - (17 * size + 19) // 20 + 1]
+        candidates: set[int] = set()
+        for shingle in prefix:
+            candidates.update(other for other in postings.get(shingle, [])
+                              if 20 * len(shingles[other]) >= 17 * size)
+        for other in sorted(candidates):
+            yield min(other, index), max(other, index)
+        for shingle in prefix:
+            postings.setdefault(shingle, []).append(index)
 
 
 class _UnionFind:
@@ -171,7 +192,7 @@ def group_rows(rows: list[dict[str, Any]], exposures: list[str]) -> list[dict[st
             union.union(index, previous)
         else:
             keys[key] = index
-    texts = [node["text"] for node in nodes]
+    texts = [_duplicate_key(node["text"]) for node in nodes]
     for left, right in _candidate_pairs(texts):
         if _jaccard_at_least(_shingles(texts[left]), _shingles(texts[right])):
             union.union(left, right)
@@ -214,11 +235,14 @@ def allocate_groups(groups: list[dict[str, Any]], seed: int) -> dict[str, list[d
 
     def cost(split: str, group: dict[str, Any]) -> Fraction:
         vector = _rating_vector(group)
-        before = sum((Fraction(counts[split][rating]) - rating_targets[split][rating]) ** 2 for rating in RATINGS)
-        after = sum((Fraction(counts[split][rating] + vector[rating]) - rating_targets[split][rating]) ** 2 for rating in RATINGS)
-        return after - before
+        return sum(
+            (2 * (counts[split][rating] - rating_targets[split][rating]) * vector[rating]
+             + vector[rating] ** 2) / max(rating_targets[split][rating], 1)
+            for rating in RATINGS if vector[rating]
+        )
 
     ordered = sorted(groups, key=lambda group: (-len(group["rows"]), stable_hash([seed, group["group_id"]])))
+    ordered = [g for g in ordered if g.get("exposed")] + [g for g in ordered if not g.get("exposed")]
     for group in ordered:
         split_options = ["development"] if group.get("exposed") else list(SPLITS)
         chosen = min(split_options, key=lambda split: (cost(split, group), stable_hash([seed, group["group_id"], split])))
@@ -232,20 +256,44 @@ def allocate_groups(groups: list[dict[str, Any]], seed: int) -> dict[str, list[d
 
 
 def cross_split_pairs(splits: dict[str, list[dict[str, Any]]], exposures: list[str]) -> list[tuple[str, str]]:
-    """Return exact/near duplicate IDs crossing split boundaries or touching exposure."""
-    rows = [(split, row["id"], row["text"]) for split, values in splits.items() for row in values]
+    """Return indexed exact/near leaks across splits or holdouts touching exposure."""
+    nodes = [
+        {"split": split, "id": row["id"], "text": row["text"], "exposure": False}
+        for split, values in splits.items()
+        for row in values
+    ]
+    nodes.extend({
+        "split": "exposure",
+        "id": f"exposure:{_sha256_bytes(text.encode('utf-8'))}",
+        "text": text,
+        "exposure": True,
+    } for text in exposures)
     pairs: set[tuple[str, str]] = set()
-    for left, right in combinations(rows, 2):
-        if left[0] == right[0]:
+
+    def reportable(left: dict[str, Any], right: dict[str, Any]) -> bool:
+        if left["exposure"] and right["exposure"]:
+            return False
+        if left["exposure"] or right["exposure"]:
+            row = right if left["exposure"] else left
+            return row["split"] != "development"
+        return left["split"] != right["split"]
+
+    exact_indexes: dict[str, list[int]] = {}
+    keys: list[str] = []
+    for index, node in enumerate(nodes):
+        key = _duplicate_key(node["text"])
+        keys.append(key)
+        for other in exact_indexes.get(key, []):
+            if reportable(nodes[other], node):
+                pairs.add(tuple(sorted((nodes[other]["id"], node["id"]))))
+        exact_indexes.setdefault(key, []).append(index)
+
+    texts = keys
+    shingles = {i: _shingles(text) for i, text in enumerate(texts) if len(text) >= 20}
+    for left_index, right_index in _exact_candidate_pairs(texts):
+        left, right = nodes[left_index], nodes[right_index]
+        if not reportable(left, right) or keys[left_index] == keys[right_index]:
             continue
-        same = _duplicate_key(left[2]) == _duplicate_key(right[2])
-        near = len(left[2]) >= 20 and len(right[2]) >= 20 and _jaccard_at_least(_shingles(left[2]), _shingles(right[2]))
-        if same or near:
-            pairs.add(tuple(sorted((left[1], right[1]))))
-    for split, row_id, text in rows:
-        for exposure in exposures:
-            if _duplicate_key(text) == _duplicate_key(exposure) or (
-                len(text) >= 20 and len(exposure) >= 20 and _jaccard_at_least(_shingles(text), _shingles(exposure))
-            ):
-                pairs.add(tuple(sorted((row_id, f"exposure:{_sha256_bytes(exposure.encode('utf-8'))}"))))
+        if _jaccard_at_least(shingles[left_index], shingles[right_index]):
+            pairs.add(tuple(sorted((left["id"], right["id"]))))
     return sorted(pairs)

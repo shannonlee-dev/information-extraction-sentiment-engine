@@ -244,9 +244,15 @@ python main.py --evaluate sentiment --sentiment-cases tests/fixtures/sentiment_v
 
 운영 개선 순서는 실제 익명 오류 표본 수집, 오류 유형별 빈도 측정, 작은 규칙 또는 사전 변경, 보류 데이터 재평가가 적절하다. 현재 fixture는 AI 도움을 받아 만든 합성 자료이므로 독립 검수와 실제 분포 기반 평가가 우선 과제다.
 
-변경할 때는 `extraction.py`의 해당 패턴·검증·정규화 또는 `data/`의 감성어·수정어를 수정하고, 정상·오류·경계 사례를 `tests/`에 추가한다. `python -m pytest`로 전체 회귀를 검증한 뒤 `python main.py --evaluate all`로 전후 지표를 비교한다. 테스트는 추출 변형·오탐·정규화, 사전 구성 오류, 수정어 거리·문장부호·이중부정, API/CLI 일치와 오류 종료, 평가 공식·정답 스키마를 포함한다. 현재 전체 회귀는 260개 테스트가 통과하고 1개는 선택적 NumPy 환경에서 건너뛴다. 신규 검증에는 활용형·부분 문자열 오탐·복합 표현 중복 반전·절 경계·성능 하한·별도 평가 CLI가 포함된다. 사전은 프로세스 안에서 캐시되므로 JSON을 바꾼 뒤 새 프로세스로 평가한다.
+변경할 때는 `extraction.py`의 해당 패턴·검증·정규화 또는 `data/`의 감성어·수정어를 수정하고, 정상·오류·경계 사례를 `tests/`에 추가한다. `python -m pytest`로 전체 회귀를 검증한 뒤 `python main.py --evaluate all`로 전후 지표를 비교한다. 테스트는 추출 변형·오탐·정규화, 사전 구성 오류, 수정어 거리·문장부호·이중부정, API/CLI 일치와 오류 종료, 평가 공식·정답 스키마를 포함한다. 평가용 가상환경에서 전체 272개 테스트가 통과했고 건너뛴 테스트는 없다. 신규 검증에는 활용형·부분 문자열 오탐·복합 표현 중복 반전·절 경계·성능 하한·별도 평가 CLI와 외부 benchmark의 정확 감사·동결 검증·중복 실행 방지가 포함된다. 사전은 프로세스 안에서 캐시되므로 JSON을 바꾼 뒤 새 프로세스로 평가한다.
 
 ## 외부 감성 최종 benchmark
+
+실제 외부 평가를 완료했다. 20만 건에서 개발 4,000개·선택 2,000개·최종 2,000개를
+구성했고, 기존 엔진의 최종 Accuracy는 **36.20%**, Macro F1은 **0.48596**으로
+목표에 미달했다. 미매칭 중립 출력이 주요 실패 경로다.
+자세한 결과와 한계는 [평가 결과](docs/evaluation/sentiment-results.md),
+한 번에 실행하는 방법은 [실행 가이드](docs/evaluation/benchmark-guide.md)를 참고한다.
 
 외부 쇼핑 후기의 원문·별점·분할·중복 감사와 엔진 실행을 분리한 평가
 인프라는 `scripts/benchmark/`와 `scripts/prepare_sentiment_benchmark.py`에
@@ -256,8 +262,8 @@ paired bootstrap을 manifest와 함께 고정한다.
 
 프로토콜은 [`docs/evaluation/sentiment-protocol.md`](docs/evaluation/sentiment-protocol.md),
 결과 상태와 실행 명령은 [`docs/evaluation/sentiment-results.md`](docs/evaluation/sentiment-results.md)에
-있다. 외부 원본을 내려받고 실제 최종 점수를 공개하기 전에는 결과를
-주장하지 않는다. 기존 `tests/fixtures/` 평가는 회귀용 합성 자료이며
+있다. 공개 점수는 실제 실행 산출물에 근거한다.
+기존 `tests/fixtures/` 평가는 회귀용 합성 자료이며
 외부 최종 benchmark와 섞지 않는다.
 
 ## 규칙 기반 방식과 머신러닝 방식 비교

@@ -9,6 +9,8 @@ from typing import Any
 
 from scripts.benchmark.metrics import metrics, paired_intervals, wilson
 from scripts.benchmark.runner import run_predictions
+from scripts.benchmark.release import verify_benchmark, verify_release
+from scripts.benchmark.artifacts import _sha256
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -26,8 +28,14 @@ def _evaluate_one(benchmark: Path, split: str, manifest: Path, modifiers: bool, 
     run_predictions(inputs, manifest, prediction_path, modifiers=modifiers)
     predictions = _read_jsonl(prediction_path)
     report = metrics(gold, predictions)
-    correct = sum(row["gold"] == row["predicted"] for row in ({"gold": g["label"], "predicted": p["predicted"]} for g, p in zip(gold, predictions)))
+    correct = sum(report["confusion_matrix"][label][label] for label in ("positive", "negative"))
     report["wilson_accuracy"] = wilson(correct, len(gold))
+    report["neutral_reasons"] = {reason: sum(p.get("neutral_reason") == reason for p in predictions)
+                                 for reason in ("no_match", "cancellation", "other_zero")}
+    report["constant_baselines"] = {
+        label: metrics(gold, [{"id": g["id"], "predicted": label} for g in gold])
+        for label in ("positive", "negative")
+    }
     return report, predictions
 
 
@@ -51,14 +59,29 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", required=True, type=Path)
     arguments = parser.parse_args(argv)
     try:
+        if arguments.split == "final" and arguments.release_manifest is None:
+            raise ValueError("final requires frozen release manifest")
+        if arguments.selection_manifest is not None and arguments.split != "selection":
+            raise ValueError("selection manifest requires selection split")
+        verify_benchmark(arguments.benchmark)
+        if (arguments.output / "report.json").exists():
+            raise ValueError("report already exists; do not overwrite evaluations")
         if arguments.release_manifest is not None:
             if arguments.split != "final" or arguments.candidate_manifest is not None or arguments.selection_manifest is not None or arguments.modifiers is not None:
                 raise ValueError("release evaluation rejects candidate/modifier overrides")
-            release = json.loads(arguments.release_manifest.read_text(encoding="utf-8"))
+            release = verify_release(arguments.release_manifest, arguments.benchmark)
+            attempt_path = arguments.benchmark / "final-attempt.json"
+            with attempt_path.open("x", encoding="utf-8") as attempt:
+                attempt.write(json.dumps({"release_sha256": _sha256(arguments.release_manifest),
+                                          "output": str(arguments.output.resolve())}) + "\n")
             candidate = Path(release["candidate_manifest"])
             modifiers = bool(release["candidate_modifiers"])
             report, predictions = _evaluate_one(arguments.benchmark, "final", candidate, modifiers, arguments.output / "candidate")
             payload = {"candidate": report, "release": release}
+            off_report, off_predictions = _evaluate_one(arguments.benchmark, "final", candidate, False, arguments.output / "candidate")
+            payload["without_modifiers"] = off_report
+            gold = _read_jsonl(arguments.benchmark / "final.gold.jsonl")
+            payload["modifier_intervals"] = paired_intervals(gold, off_predictions, predictions, seed=20260906)
             baseline_value = release.get("baseline_manifest")
             if baseline_value and Path(baseline_value).resolve() != candidate.resolve():
                 baseline = Path(baseline_value)
@@ -70,6 +93,19 @@ def main(argv: list[str] | None = None) -> int:
                 baseline_rows = _read_jsonl(arguments.output / "baseline" / "modifiers-on.jsonl")
                 payload["baseline"] = baseline_report
                 payload["paired_intervals"] = paired_intervals(gold, baseline_rows, candidate_rows, seed=20260906)
+            else:
+                payload["baseline"] = report
+                payload["paired_intervals"] = paired_intervals(gold, predictions, predictions, seed=20260906)
+                payload["baseline_comparison"] = "identical frozen baseline; no improvement claim"
+            lower = payload["paired_intervals"]["b"]["accuracy"][0]
+            payload["target_checks"] = {
+                "accuracy_at_least_080": report["accuracy"] >= 0.8,
+                "macro_f1_at_least_080": report["macro_f1"] >= 0.8,
+                "positive_recall_at_least_075": report["per_class"]["positive"]["recall"] >= 0.75,
+                "negative_recall_at_least_075": report["per_class"]["negative"]["recall"] >= 0.75,
+                "accuracy_group_ci_lower_at_least_075": lower >= 0.75,
+            }
+            payload["target_passed"] = all(payload["target_checks"].values())
         elif arguments.selection_manifest is not None:
             if arguments.candidate_manifest is not None:
                 raise ValueError("selection and candidate manifests are mutually exclusive")
@@ -116,7 +152,8 @@ def main(argv: list[str] | None = None) -> int:
         (arguments.output / "report.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError, RuntimeError) as error:
         parser.error(str(error))
-    print(json.dumps(payload, ensure_ascii=False, indent=2))
+    visible = {key: value for key, value in payload.items() if key != "release"}
+    print(json.dumps(visible, ensure_ascii=False, indent=2))
     return 0
 
 
