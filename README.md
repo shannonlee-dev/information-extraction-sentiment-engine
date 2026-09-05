@@ -8,6 +8,10 @@
 
 지원 결과는 원문 범위 `start`(포함)와 `end`(미포함), 원문 `raw`, 정규화 값과 계산 근거를 함께 제공한다. 공개 API는 `extract_information`, `analyze_sentiment`, 두 결과를 합치는 `analyze`다.
 
+외부 쇼핑 후기 2,000건의 최종 감성 정확도는 **36.20%**로 목표에 미달했다.
+현재 상태와 정리 내역은 [프로젝트 진단](docs/project-audit.md), 측정 근거는
+[외부 평가 결과](docs/evaluation/sentiment-results.md)에 정리했다.
+
 ## 핵심 특징
 
 - 5종 정보 추출과 정규화, 원문 범위·오류 진단 제공

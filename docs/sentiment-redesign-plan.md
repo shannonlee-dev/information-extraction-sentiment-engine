@@ -1,6 +1,6 @@
 # 미션 범위 감성 엔진 개선 Implementation Plan
 
-> **For agentic workers:** 후속 실행 지시가 있고 A 계획의 외부 development 진단을 마친 뒤 `superpowers:executing-plans`로 수행한다. 현재는 조사·계획 작성 단계다. 체크박스는 실제 검증 후 표시한다.
+> **상태: 미실행 후속 제안.** 기존 엔진의 외부 평가는 완료됐고 목표에 미달했다. 이 문서는 재설계 실행 지시가 있을 때 개발 분할 진단부터 진행하기 위한 계획이다. 체크박스는 실제 검증 후 표시한다. 이미 열람한 v1 final은 새 엔진의 독립 최종 평가에 재사용할 수 없다.
 
 **Goal:** 개발 자료에서 확인된 활용형·품사·부정 범위 오류를 공통 언어 규칙으로 개선하되, 미션의 사전 기반 점수와 공개 API를 유지한다.
 
@@ -8,7 +8,9 @@
 
 **Tech Stack:** Python 3.10 이상, 내장 re, KoNLPy 0.6.0, 그 배포물의 KOMORAN jar/model, 실제 호환성을 검증한 JPype/JDK, pytest. JDK 17은 우선 검증할 후보이며 동작 확인 사실이 아니다.
 
-**상위 계획:** `docs/superpowers/plans/2026-09-05-sentiment-final-benchmark-plan.md`(A1~A7). 이 문서는 기존 `2026-09-05-sentiment-generalization.md`의 재설계 절을 대체하는 제안이며 이전 문서를 덮어쓰지 않는다.
+**평가 기준:** [동결 프로토콜](evaluation/sentiment-protocol.md), [실행 가이드](evaluation/benchmark-guide.md), [확정 결과](evaluation/sentiment-results.md). 완료된 상위 계획과 대체된 초기 제안은 Git 커밋 `db765d9`에 보존돼 있다.
+
+이하 A1~A7은 기준선 보존 → 데이터 준비 → 평가기 → 개발 진단 → 후보 선택·동결 → 최종 평가 → 문서화를 뜻한다. v1은 단일 baseline 평가까지 완료했으며, 복수 후보 선택은 [프로젝트 진단](project-audit.md)에 기록한 release 형식 호환 문제를 해결한 뒤 새 평가 버전에서 사용해야 한다.
 
 ## 1. 범위·전제·분기
 
