@@ -175,7 +175,12 @@ def find_events(tokens: tuple[MorphToken,...], entries: tuple[LexicalEntry,...] 
                 continue
             if i and tokens[i-1].eojeol_index==first.eojeol_index and (
                     tokens[i-1].pos.startswith(('NN','XR','XP'))):
-                continue
+                # Missing whitespace can join a noun to an independent
+                # predicate (including an audited noun + copula key).
+                # Retain the predicate's original morphology and
+                # offsets, but still reject noun fragments and bound prefixes.
+                if not (tokens[i-1].pos.startswith('NN') and span[-1].pos in {'VA','VV','XSA','XSV','VCP'}):
+                    continue
             last=span[-1]
             if end<len(tokens) and tokens[end].eojeol_index==last.eojeol_index:
                 following=tokens[end].pos

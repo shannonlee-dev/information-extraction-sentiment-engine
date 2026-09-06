@@ -102,7 +102,10 @@ def compile_lexicon(source: Path, annotations: Path, *, minimum_entries=200, min
                 raise ValueError(f'invalid contextual alias: {term}')
             key = _key(alias.get('key'))
             actual = tuple((t.morph, t.pos) for t in analyze_morphology(alias['context']))
-            if actual[:len(key)] != key:
+            start = alias.get('token_start', 0)
+            if type(start) is not int or start < 0:
+                raise ValueError(f'invalid contextual alias token_start: {term}')
+            if actual[start:start + len(key)] != key:
                 raise ValueError(f'contextual alias no longer matches analyzer: {term}')
             keys.add(key)
         records[term] = dict(row, atomic=review['atomic'], priority=review['priority'], keys=keys)

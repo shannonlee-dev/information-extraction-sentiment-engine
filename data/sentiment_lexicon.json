@@ -5,7 +5,17 @@
       "좋아",
       "좋아요",
       "좋지만",
-      "좋지"
+      "좋지",
+      "좋아서",
+      "좋아용",
+      "좋아여",
+      "좋네용",
+      "좋아욤",
+      "좋아욧",
+      "좋아유",
+      "조아요",
+      "조아용",
+      "조아여"
     ],
     "score": 2,
     "source": "project"
@@ -23,7 +33,8 @@
     "term": "행복",
     "variants": [
       "행복해",
-      "행복하다"
+      "행복하다",
+      "행복입니다"
     ],
     "score": 3,
     "source": "project"
@@ -59,7 +70,8 @@
     "term": "최고",
     "variants": [
       "최고예요",
-      "최고다"
+      "최고다",
+      "최고네요"
     ],
     "score": 3,
     "source": "project"
@@ -145,7 +157,10 @@
     "term": "감사",
     "variants": [
       "감사해요",
-      "감사합니다"
+      "감사합니다",
+      "감사입니다",
+      "감사예요",
+      "감사합니당"
     ],
     "score": 2,
     "source": "project"
@@ -225,7 +240,8 @@
     "term": "믿음직하다",
     "variants": [
       "믿음직해",
-      "믿음직해요"
+      "믿음직해요",
+      "믿음직함"
     ],
     "score": 2,
     "source": "project"
@@ -305,7 +321,13 @@
     "term": "맛있다",
     "variants": [
       "맛있어",
-      "맛있어요"
+      "맛있어요",
+      "맛있음",
+      "맛잇어요",
+      "맛잇다",
+      "맛나요",
+      "맛이 있다",
+      "맛나게"
     ],
     "score": 3,
     "source": "project"
@@ -374,14 +396,17 @@
   },
   {
     "term": "만족감",
-    "variants": [],
+    "variants": [
+      "만족감입니다"
+    ],
     "score": 2,
     "source": "project"
   },
   {
     "term": "감탄",
     "variants": [
-      "감탄스럽다"
+      "감탄스럽다",
+      "감탄입니다"
     ],
     "score": 3,
     "source": "project"
@@ -390,7 +415,10 @@
     "term": "추천하다",
     "variants": [
       "추천해",
-      "추천해요"
+      "추천해요",
+      "추천",
+      "추천합니다",
+      "추천합니당"
     ],
     "score": 2,
     "source": "project"
@@ -609,7 +637,8 @@
   {
     "term": "감격",
     "variants": [
-      "감격스럽다"
+      "감격스럽다",
+      "감격입니다"
     ],
     "score": 3,
     "source": "project"
@@ -617,7 +646,8 @@
   {
     "term": "칭찬",
     "variants": [
-      "칭찬하다"
+      "칭찬하다",
+      "칭찬입니다"
     ],
     "score": 2,
     "source": "project"
@@ -723,7 +753,8 @@
   {
     "term": "최악",
     "variants": [
-      "최악이다"
+      "최악이다",
+      "최악이예요"
     ],
     "score": -3,
     "source": "project"
@@ -740,7 +771,10 @@
     "term": "불편하다",
     "variants": [
       "불편해",
-      "불편해요"
+      "불편해요",
+      "불편해요ㅠㅠ",
+      "불편하네",
+      "불편하네여"
     ],
     "score": -2,
     "source": "project"
@@ -767,7 +801,8 @@
     "term": "지루하다",
     "variants": [
       "지루해",
-      "지루해요"
+      "지루해요",
+      "지루함"
     ],
     "score": -1,
     "source": "project"
@@ -811,7 +846,9 @@
   {
     "term": "걱정",
     "variants": [
-      "걱정된다"
+      "걱정된다",
+      "걱정입니다",
+      "걱정하다"
     ],
     "score": -1,
     "source": "project"
@@ -819,7 +856,9 @@
   {
     "term": "불안",
     "variants": [
-      "불안하다"
+      "불안하다",
+      "불안도",
+      "불안입니다"
     ],
     "score": -2,
     "source": "project"
@@ -828,7 +867,10 @@
     "term": "아쉽다",
     "variants": [
       "아쉬워",
-      "아쉬워요"
+      "아쉬워요",
+      "아쉬움",
+      "아쉽",
+      "아쉽네요ㅠ"
     ],
     "score": -1,
     "source": "project"
@@ -836,7 +878,11 @@
   {
     "term": "후회",
     "variants": [
-      "후회하다"
+      "후회하다",
+      "후회를",
+      "후회입니다",
+      "후회예요",
+      "후회중"
     ],
     "score": -2,
     "source": "project"
@@ -845,7 +891,8 @@
     "term": "싫다",
     "variants": [
       "싫어",
-      "싫어요"
+      "싫어요",
+      "싫어하다"
     ],
     "score": -2,
     "source": "project"
@@ -853,7 +900,9 @@
   {
     "term": "혐오",
     "variants": [
-      "혐오스럽다"
+      "혐오스럽다",
+      "혐오입니다",
+      "혐오예요"
     ],
     "score": -3,
     "source": "project"
@@ -879,7 +928,8 @@
   {
     "term": "엉망",
     "variants": [
-      "엉망이다"
+      "엉망이다",
+      "엉망이예요"
     ],
     "score": -3,
     "source": "project"
@@ -887,7 +937,10 @@
   {
     "term": "문제",
     "variants": [
-      "문제다"
+      "문제다",
+      "문제입니다",
+      "문제예요",
+      "문제네요"
     ],
     "score": -2,
     "source": "project"
@@ -895,7 +948,10 @@
   {
     "term": "오류",
     "variants": [
-      "오류가나다"
+      "오류가나다",
+      "오류를",
+      "오류입니다",
+      "오류예요"
     ],
     "score": -2,
     "source": "project"
@@ -903,7 +959,10 @@
   {
     "term": "고장",
     "variants": [
-      "고장나다"
+      "고장나다",
+      "고장을",
+      "고장입니다",
+      "고장남"
     ],
     "score": -2,
     "source": "project"
@@ -911,7 +970,9 @@
   {
     "term": "불량",
     "variants": [
-      "불량하다"
+      "불량하다",
+      "불량입니다",
+      "불량이예요"
     ],
     "score": -3,
     "source": "project"
@@ -928,7 +989,9 @@
   {
     "term": "낭비",
     "variants": [
-      "낭비하다"
+      "낭비하다",
+      "낭비입니다",
+      "낭비예요"
     ],
     "score": -2,
     "source": "project"
@@ -1113,7 +1176,8 @@
   {
     "term": "불신",
     "variants": [
-      "불신하다"
+      "불신하다",
+      "불신입니다"
     ],
     "score": -2,
     "source": "project"
@@ -1212,7 +1276,9 @@
     "term": "불공정하다",
     "variants": [
       "불공정해",
-      "불공정해요"
+      "불공정해요",
+      "불공정합니다",
+      "불공정한"
     ],
     "score": -2,
     "source": "project"
@@ -1226,7 +1292,9 @@
   {
     "term": "손해",
     "variants": [
-      "손해보다"
+      "손해보다",
+      "손해입니다",
+      "손해예요"
     ],
     "score": -2,
     "source": "project"
@@ -1234,7 +1302,9 @@
   {
     "term": "피해",
     "variants": [
-      "피해보다"
+      "피해보다",
+      "피해입니다",
+      "피해예요"
     ],
     "score": -2,
     "source": "project"
@@ -1259,14 +1329,18 @@
   },
   {
     "term": "괴로움",
-    "variants": [],
+    "variants": [
+      "괴로움입니다"
+    ],
     "score": -2,
     "source": "project"
   },
   {
     "term": "실수",
     "variants": [
-      "실수하다"
+      "실수하다",
+      "실수입니다",
+      "실수예요"
     ],
     "score": -2,
     "source": "project"
@@ -1309,7 +1383,18 @@
     "term": "별로다",
     "variants": [
       "별로야",
-      "별로예요"
+      "별로예요",
+      "별루",
+      "별루다",
+      "별로",
+      "별루네요",
+      "별로에요",
+      "별로고요",
+      "별로라",
+      "별로에요ㅠㅠ",
+      "별루예요ㅠ",
+      "별롭니다",
+      "별론데"
     ],
     "score": -1,
     "source": "project"
@@ -1333,14 +1418,17 @@
   },
   {
     "term": "불쾌감",
-    "variants": [],
+    "variants": [
+      "불쾌감입니다"
+    ],
     "score": -2,
     "source": "project"
   },
   {
     "term": "낙담",
     "variants": [
-      "낙담하다"
+      "낙담하다",
+      "낙담입니다"
     ],
     "score": -2,
     "source": "project"
@@ -1348,7 +1436,8 @@
   {
     "term": "절망",
     "variants": [
-      "절망하다"
+      "절망하다",
+      "절망입니다"
     ],
     "score": -3,
     "source": "project"
@@ -1373,14 +1462,19 @@
   {
     "term": "스트레스",
     "variants": [
-      "스트레스받다"
+      "스트레스받다",
+      "스트레스가",
+      "스트레스입니다",
+      "스트레스예요"
     ],
     "score": -2,
     "source": "project"
   },
   {
     "term": "압박감",
-    "variants": [],
+    "variants": [
+      "압박감입니다"
+    ],
     "score": -1,
     "source": "project"
   },
@@ -1578,7 +1672,9 @@
     "term": "만족",
     "variants": [
       "만족해요",
-      "만족했다"
+      "만족했다",
+      "만족입니다",
+      "만족합니당"
     ],
     "score": 2,
     "domain": "customer_support",
@@ -1589,7 +1685,9 @@
     "variants": [
       "실망해요",
       "실망했다",
-      "실망하다"
+      "실망하다",
+      "실망입니다",
+      "실망이예요"
     ],
     "score": -2,
     "domain": "customer_support",
@@ -1770,7 +1868,18 @@
     "term": "예쁘다",
     "variants": [
       "예뻐",
-      "예뻐요"
+      "예뻐요",
+      "이쁘다",
+      "이뻐요",
+      "이뻐",
+      "이뻐서",
+      "이쁩니다",
+      "이쁜",
+      "이뿌다",
+      "이뻐용",
+      "이뻐여",
+      "이뻤어요",
+      "예뻐용"
     ],
     "score": 2,
     "source": "project"
@@ -1796,13 +1905,18 @@
   },
   {
     "term": "도움",
-    "variants": [],
+    "variants": [
+      "도움입니다"
+    ],
     "score": 2,
     "source": "project"
   },
   {
     "term": "믿음",
-    "variants": [],
+    "variants": [
+      "믿음이",
+      "믿음입니다"
+    ],
     "score": 2,
     "source": "project"
   },
@@ -1817,7 +1931,13 @@
   },
   {
     "term": "괜찮다",
-    "variants": [],
+    "variants": [
+      "괜찮음",
+      "괜찬아요",
+      "괜찮아용",
+      "괜찮아여",
+      "괜찮아"
+    ],
     "score": 2,
     "source": "project"
   },
@@ -1901,7 +2021,9 @@
   },
   {
     "term": "고요하다",
-    "variants": [],
+    "variants": [
+      "고요한"
+    ],
     "score": 2,
     "source": "project"
   },
@@ -1949,7 +2071,10 @@
   },
   {
     "term": "훤하다",
-    "variants": [],
+    "variants": [
+      "훤해요",
+      "훤해서"
+    ],
     "score": 2,
     "source": "project"
   },
@@ -2027,7 +2152,10 @@
   },
   {
     "term": "악취",
-    "variants": [],
+    "variants": [
+      "악취입니다",
+      "악취예요"
+    ],
     "score": -2,
     "source": "project"
   },
@@ -2075,7 +2203,9 @@
   },
   {
     "term": "허접하다",
-    "variants": [],
+    "variants": [
+      "허접합니다"
+    ],
     "score": -2,
     "source": "project"
   },
@@ -2112,7 +2242,9 @@
   },
   {
     "term": "정중하다",
-    "variants": [],
+    "variants": [
+      "정중한"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
@@ -2133,21 +2265,28 @@
   },
   {
     "term": "배려",
-    "variants": [],
+    "variants": [
+      "배려입니다",
+      "배려예요"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "존중",
-    "variants": [],
+    "variants": [
+      "존중입니다"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "경청",
-    "variants": [],
+    "variants": [
+      "경청입니다"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
@@ -2203,14 +2342,20 @@
   },
   {
     "term": "책임감",
-    "variants": [],
+    "variants": [
+      "책임감입니다"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "성의",
-    "variants": [],
+    "variants": [
+      "성의를",
+      "성의입니다",
+      "성의예요"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
@@ -2224,7 +2369,9 @@
   },
   {
     "term": "신용",
-    "variants": [],
+    "variants": [
+      "신용입니다"
+    ],
     "score": 2,
     "source": "project",
     "domain": "customer_support"
@@ -2245,7 +2392,11 @@
   },
   {
     "term": "불성의",
-    "variants": [],
+    "variants": [
+      "불성의도",
+      "불성의입니다",
+      "불성의예요"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
@@ -2301,84 +2452,112 @@
   },
   {
     "term": "파손",
-    "variants": [],
+    "variants": [
+      "파손입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "훼손",
-    "variants": [],
+    "variants": [
+      "훼손입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "분실",
-    "variants": [],
+    "variants": [
+      "분실입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "누락",
-    "variants": [],
+    "variants": [
+      "누락입니다",
+      "누락되다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "지연",
-    "variants": [],
+    "variants": [
+      "지연입니다",
+      "지연되다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "거절",
-    "variants": [],
+    "variants": [
+      "거절입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "지체",
-    "variants": [],
+    "variants": [
+      "지체입니다",
+      "지체예요"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "착오",
-    "variants": [],
+    "variants": [
+      "착오입니다",
+      "착오예요"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "불통",
-    "variants": [],
+    "variants": [
+      "불통입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "오작동",
-    "variants": [],
+    "variants": [
+      "오작동입니다"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "번거롭다",
-    "variants": [],
+    "variants": [
+      "번거러워"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
   },
   {
     "term": "불명확하다",
-    "variants": [],
+    "variants": [
+      "불명확한"
+    ],
     "score": -2,
     "source": "project",
     "domain": "customer_support"
@@ -2386,9 +2565,2523 @@
   {
     "term": "마음에 들다",
     "variants": [
-      "맘에 들다"
+      "맘에 들다",
+      "맘에들다",
+      "맘에 들어요",
+      "맘에들어요",
+      "맘에듭니다",
+      "맘에 들어용",
+      "마음에 들어용"
     ],
     "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "굿",
+    "variants": [
+      "굿굿",
+      "굿굿굿",
+      "굿입니다",
+      "굿이에요"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "강추",
+    "variants": [
+      "강추합니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비추",
+    "variants": [
+      "비추입니다",
+      "비추예요",
+      "비추하다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비추천",
+    "variants": [
+      "비추천하다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "재구매",
+    "variants": [
+      "재구매하다"
+    ],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "재주문",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "가성비",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "귀찮다",
+    "variants": [
+      "귀찮음"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "아프다",
+    "variants": [
+      "아픔"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "이상하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "맛없다",
+    "variants": [
+      "맛이 없다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "못쓰다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓸모없다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓸모있다",
+    "variants": [
+      "쓸모있어요"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓸만하다",
+    "variants": [
+      "쓸만해요",
+      "쓸만해서"
+    ],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "무난하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "적당하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "적절하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "알맞다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어울리다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "착하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "싱싱하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "촉촉하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "푹신하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "폭신하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "포근하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "아늑하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쾌활",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사랑하다",
+    "variants": [
+      "사랑합니다",
+      "사랑해요"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "감사드리다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "번창하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "보들보들하다",
+    "variants": [
+      "보들보들"
+    ],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "보드랍다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "야무지다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "실용적",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "경제적",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "대만족",
+    "variants": [
+      "대만족입니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "강력추천",
+    "variants": [],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "짱",
+    "variants": [
+      "짱짱"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "대박",
+    "variants": [
+      "대박입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "최상",
+    "variants": [],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "고퀄리티",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "가뿐하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "편리성",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "안락하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "향기롭다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "담백하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "탱탱하다",
+    "variants": [
+      "탱탱해요",
+      "탱탱한",
+      "탱탱함",
+      "탱탱합니다",
+      "탱탱하네요",
+      "탱탱해서"
+    ],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쫀득하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쫄깃하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "바삭하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부러지다",
+    "variants": [],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "찌그러지다",
+    "variants": [],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "고장나다",
+    "variants": [
+      "고장났어요ㅜㅜ"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "망하다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찢기다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불량품",
+    "variants": [
+      "불량품입니다"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "불량하다",
+    "variants": [],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "하자",
+    "variants": [],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "하자품",
+    "variants": [],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "오염",
+    "variants": [
+      "오염이",
+      "오염입니다"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "흠집",
+    "variants": [
+      "흠집입니다"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "기스",
+    "variants": [
+      "기스가",
+      "기스는",
+      "기스도"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "스크래치",
+    "variants": [
+      "스크래치입니다",
+      "스크래치예요"
+    ],
+    "score": -1,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "부패",
+    "variants": [
+      "부패입니다",
+      "부패예요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "누수",
+    "variants": [
+      "누수입니다",
+      "누수예요"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "누전",
+    "variants": [],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "감전",
+    "variants": [
+      "감전입니다"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "과열",
+    "variants": [
+      "과열입니다"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "실패",
+    "variants": [
+      "실패입니다",
+      "실패예요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "짜증",
+    "variants": [
+      "짜증남",
+      "짜증을",
+      "짜증입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "속상하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "속다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "황당하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어이없다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어처구니없다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "당황스럽다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헐겁다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "뻑뻑하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "빡빡하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "무용지물",
+    "variants": [
+      "무용지물입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부실하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "허접스럽다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "조악하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "저질",
+    "variants": [
+      "저질입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "싸구려",
+    "variants": [
+      "싸구려입니다",
+      "싸구려예요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "촌티",
+    "variants": [
+      "촌티입니다",
+      "촌티예요"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "싼티",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "실망하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "후회하다",
+    "variants": [
+      "후회합니다",
+      "후회되다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찝찝하다",
+    "variants": [
+      "찝찝해요",
+      "찝찝한",
+      "찝찝함",
+      "찝찝합니다",
+      "찝찝하네요",
+      "찝찝해서"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "꺼림칙하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찜찜하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불쌍하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불만이다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불편",
+    "variants": [
+      "불편입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불편스럽다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "지독하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "역겹다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "끔찍스럽다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "후지다",
+    "variants": [
+      "후져요",
+      "후진",
+      "후짐",
+      "후지네요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "구리다",
+    "variants": [
+      "구려요",
+      "구린"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "구질구질하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "너덜너덜하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불량스럽다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비리다",
+    "variants": [
+      "비려요",
+      "비린",
+      "비리고"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "텁텁하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "푸석하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "푸석푸석하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "뻣뻣하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "뻐근하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "따갑다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "가렵다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓰리다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "안되다",
+    "variants": [
+      "안 되다",
+      "안되네요ㅠㅠ"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잘되다",
+    "variants": [
+      "잘 되다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잘하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "그저 그렇다",
+    "variants": [
+      "그저그래요",
+      "그저 그래요"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "그냥 그렇다",
+    "variants": [
+      "그냥그래요",
+      "그냥 그래요"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쉽다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "간단하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "양호하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "안심",
+    "variants": [
+      "안심이",
+      "안심입니다",
+      "안심하다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "유연하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "든든",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "안전하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "안전성",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "튼실하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "충실하다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "충분하다",
+    "variants": [],
+    "score": 1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "넉넉",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "멋있다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "멋스럽다",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "이상적",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "우수성",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "우월성",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "최적",
+    "variants": [
+      "최적입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "최선",
+    "variants": [
+      "최선이",
+      "최선입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "만점",
+    "variants": [
+      "만점입니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "일품",
+    "variants": [
+      "일품입니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "명작",
+    "variants": [
+      "명작입니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "친절",
+    "variants": [
+      "친절입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "친절함",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "상냥",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "고급",
+    "variants": [
+      "고급입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "깔끔",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "튼튼",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "꼼꼼",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "저렴",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "신속",
+    "variants": [
+      "신속도",
+      "신속입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "정확",
+    "variants": [],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "완벽",
+    "variants": [
+      "완벽이",
+      "완벽입니다"
+    ],
+    "score": 3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "편리",
+    "variants": [
+      "편리입니다",
+      "편리예요"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "편안",
+    "variants": [
+      "편안입니다"
+    ],
+    "score": 2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불가능하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불가능",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사용불가",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "작동불가",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "파열",
+    "variants": [
+      "파열입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "균열",
+    "variants": [
+      "균열입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "손상",
+    "variants": [
+      "손상을",
+      "손상입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부식",
+    "variants": [
+      "부식입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "변질",
+    "variants": [
+      "변질입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "변색",
+    "variants": [
+      "변색입니다"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찢어짐",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "파손되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "훼손되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "손상되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "변질되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부식되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "녹슬다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "너덜거리다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "흐물흐물하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "우그러지다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쪼개지다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "늘러붙다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "눌어붙다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "누린내",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비린내",
+    "variants": [
+      "비린내입니다",
+      "비린내예요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잡내",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "구린내",
+    "variants": [
+      "구린내입니다",
+      "구린내예요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쉰내",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "탄내",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "시리다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓰라리다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "간지럽다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "따끔하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "따끔거리다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "두통",
+    "variants": [
+      "두통입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "복통",
+    "variants": [
+      "복통입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "통증",
+    "variants": [
+      "통증을",
+      "통증입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "염증",
+    "variants": [
+      "염증입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "발진",
+    "variants": [
+      "발진입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "충혈",
+    "variants": [
+      "충혈입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불면",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "메스껍다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "울렁거리다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불쾌스럽다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불쾌해하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불편해하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "실망감",
+    "variants": [
+      "실망감입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불만감",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "당혹스럽다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "민망하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "한심하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "엉터리",
+    "variants": [
+      "엉터리입니다",
+      "엉터리예요"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "터무니없다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부당하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불합격",
+    "variants": [
+      "불합격입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "실패하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "망치다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "망가뜨리다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "훼손하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "손상하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "분노",
+    "variants": [
+      "분노입니다",
+      "분노예요"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "격분",
+    "variants": [
+      "격분입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "열받다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "화내다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "억울하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "짜증스럽다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "귀찮음",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불성실",
+    "variants": [
+      "불성실입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불친절",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부실",
+    "variants": [
+      "부실입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "조악",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "엉성",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불안정",
+    "variants": [
+      "불안정입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비위생적",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비위생",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비상식적",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "무책임",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "성의없다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "성의 없다",
+    "variants": [
+      "성의가 없다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어이 없다",
+    "variants": [
+      "어이가 없다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어처구니 없다",
+    "variants": [
+      "어처구니가 없다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잘못",
+    "variants": [
+      "잘못이"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잘못되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "잘못하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "약하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "심하다",
+    "variants": [
+      "심해요ㅠ"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "딱딱하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헐렁하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헐렁헐렁하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "애매하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "심각하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "느끼하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비릿하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "독하다",
+    "variants": [
+      "독해요"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "어지럽다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "엉망진창",
+    "variants": [
+      "엉망진창가",
+      "엉망진창입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "개판",
+    "variants": [
+      "개판가",
+      "개판입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "노답",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "병맛",
+    "variants": [
+      "병맛가",
+      "병맛입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "대실망",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불호",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "혐오스럽다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "못마땅하다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "못미덥다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "언짢다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불쾌해지다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불편해지다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찝찝",
+    "variants": [
+      "찝찝해"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "거북하다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "거북스럽다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불편감",
+    "variants": [
+      "불편감가",
+      "불편감입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "찢어발기다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "박살",
+    "variants": [
+      "박살가",
+      "박살입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "박살나다",
+    "variants": [
+      "박살남"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부서뜨리다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "갈라지다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "금가다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "뒤틀리다",
+    "variants": [
+      "뒤틀렸어요"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비뚤다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "삐뚤다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "비뚤어지다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "삐뚤어지다",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불균형",
+    "variants": [
+      "불균형가",
+      "불균형입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "울퉁불퉁하다",
+    "variants": [
+      "울퉁불퉁"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "먹통",
+    "variants": [
+      "먹통입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헛돌다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헛돈",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헛수고",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "헛되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "허탕",
+    "variants": [
+      "허탕가",
+      "허탕입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불발",
+    "variants": [
+      "불발가",
+      "불발입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불발되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "누출",
+    "variants": [
+      "누출가",
+      "누출입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "누액",
+    "variants": [
+      "누액가",
+      "누액입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "누유",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "오염되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "오염물",
+    "variants": [
+      "오염물가",
+      "오염물입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "이물질",
+    "variants": [],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "부작용",
+    "variants": [
+      "부작용이",
+      "부작용가",
+      "부작용입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "역효과",
+    "variants": [
+      "역효과이",
+      "역효과입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "악영향",
+    "variants": [
+      "악영향가",
+      "악영향입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "악화",
+    "variants": [
+      "악화이",
+      "악화입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "악화되다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "손실",
+    "variants": [
+      "손실이",
+      "손실가",
+      "손실입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "피해보다",
+    "variants": [
+      "피해보다이",
+      "피해보다가"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "손해보다",
+    "variants": [
+      "손해보다이",
+      "손해보다가",
+      "손해보다입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사기꾼",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사기치다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사기당하다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "사기다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "쓰레기다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "한숨",
+    "variants": [
+      "한숨가",
+      "한숨입니다"
+    ],
+    "score": -1,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "한탄",
+    "variants": [
+      "한탄가",
+      "한탄입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "탄식",
+    "variants": [
+      "탄식가",
+      "탄식입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "실망시키다",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "기만",
+    "variants": [
+      "기만가",
+      "기만입니다"
+    ],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "기만하다",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "과대광고",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "허위광고",
+    "variants": [],
+    "score": -3,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "눈속임",
+    "variants": [
+      "눈속임가",
+      "눈속임입니다"
+    ],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "거품가격",
+    "variants": [],
+    "score": -2,
+    "domain": null,
+    "source": "project"
+  },
+  {
+    "term": "불량판정",
+    "variants": [],
+    "score": -3,
+    "domain": null,
     "source": "project"
   }
 ]
