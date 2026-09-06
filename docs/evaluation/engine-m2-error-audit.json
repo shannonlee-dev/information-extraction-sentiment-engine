@@ -1,0 +1,795 @@
+{
+  "scope": "post-measurement fixed-seed sample audit; not training or polarity evidence",
+  "reviewer": "AI-assisted diagnostic audit",
+  "human_reviewed": false,
+  "seed": 20260906,
+  "sampled_buckets_reviewed": {
+    "A": 50,
+    "C": 50
+  },
+  "other_buckets": "B/D/E/F sample IDs preserved in measurement report; not manually classified here",
+  "cause_counts": {
+    "A": {
+      "morphology_unknown": 24,
+      "lexicon_missing": 7,
+      "mixed_aspect": 2,
+      "polarity_ambiguous": 19,
+      "rating_noise_possible": 4,
+      "negation_scope": 11,
+      "comparison": 4,
+      "hypothetical": 1,
+      "temporal_change": 3
+    },
+    "C": {
+      "contrast": 2,
+      "comparison": 5,
+      "rating_noise_possible": 13,
+      "mixed_aspect": 30,
+      "lexicon_missing": 1,
+      "temporal_change": 5,
+      "hypothetical": 10,
+      "polarity_ambiguous": 7,
+      "negation_scope": 10
+    }
+  },
+  "rows": [
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:49554",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "lexicon_missing"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:108502",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:45854",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:21204",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:57161",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:138817",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:90496",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:152472",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:178016",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope",
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:97390",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:75531",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:192837",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:113322",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:149338",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:186323",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:13034",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:16186",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous",
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:134690",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:78722",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:97969",
+      "bucket": "A",
+      "possible_causes": [
+        "comparison",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:171735",
+      "bucket": "A",
+      "possible_causes": [
+        "hypothetical",
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:88839",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:188180",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:139236",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:95600",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope",
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:67538",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:18435",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:168243",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101201",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:75621",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:52679",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:35939",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:11408",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:162560",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:130152",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:125702",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:196673",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "temporal_change"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:166883",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:43080",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope",
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:27086",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "temporal_change"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:57326",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:153584",
+      "bucket": "A",
+      "possible_causes": [
+        "comparison",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:160121",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing",
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:42275",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing",
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:72128",
+      "bucket": "A",
+      "possible_causes": [
+        "temporal_change",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:172159",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:148083",
+      "bucket": "A",
+      "possible_causes": [
+        "morphology_unknown"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:48195",
+      "bucket": "A",
+      "possible_causes": [
+        "lexicon_missing",
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:63339",
+      "bucket": "A",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:182564",
+      "bucket": "A",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:133402",
+      "bucket": "C",
+      "possible_causes": [
+        "contrast",
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:73672",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:67897",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "lexicon_missing"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:199775",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:145092",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:80307",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:131986",
+      "bucket": "C",
+      "possible_causes": [
+        "temporal_change",
+        "mixed_aspect",
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:79058",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:17934",
+      "bucket": "C",
+      "possible_causes": [
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:121206",
+      "bucket": "C",
+      "possible_causes": [
+        "polarity_ambiguous",
+        "hypothetical"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:40150",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:75193",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:67043",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:45246",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:91121",
+      "bucket": "C",
+      "possible_causes": [
+        "polarity_ambiguous",
+        "temporal_change"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:175049",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:172490",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "hypothetical"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:23216",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:29222",
+      "bucket": "C",
+      "possible_causes": [
+        "temporal_change",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:198867",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:128832",
+      "bucket": "C",
+      "possible_causes": [
+        "contrast",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:84829",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:196073",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:149007",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:44457",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:16639",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:62244",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:181801",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:36000",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "polarity_ambiguous"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:78465",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:173199",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "hypothetical"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:176971",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:15585",
+      "bucket": "C",
+      "possible_causes": [
+        "comparison",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:30365",
+      "bucket": "C",
+      "possible_causes": [
+        "temporal_change",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:116364",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:93165",
+      "bucket": "C",
+      "possible_causes": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:61287",
+      "bucket": "C",
+      "possible_causes": [
+        "temporal_change",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:79636",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:97129",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:122596",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:49712",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:99803",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:127297",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:113079",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:118899",
+      "bucket": "C",
+      "possible_causes": [
+        "rating_noise_possible"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:161556",
+      "bucket": "C",
+      "possible_causes": [
+        "mixed_aspect",
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:20647",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:125130",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "mixed_aspect"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:120264",
+      "bucket": "C",
+      "possible_causes": [
+        "negation_scope"
+      ]
+    },
+    {
+      "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:31220",
+      "bucket": "C",
+      "possible_causes": [
+        "hypothetical",
+        "mixed_aspect"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "frozen_at": "2026-09-06T21:37:06.820977+00:00",
+  "phase2_status": "closed",
+  "candidate_name": "M2-L",
+  "candidate_count": 1,
+  "route": "direct",
+  "selection_evaluation": "skipped",
+  "development_accuracy": 0.6061,
+  "development_target_reached": false,
+  "development_gate_override": "Explicit user instruction to end development at 60.61% and run one untouched final; no threshold or evaluation policy changes.",
+  "candidate_manifests": {
+    "M2-L": {
+      "path": "/home/shannon/__dev/cody/information-extraction-sentiment-engine/artifacts/benchmark/m2-development-matching2/candidate.json",
+      "sha256": "971f4a4b10f6a9ab76c3327264a294ac2a9b672d595eda7cdb60978f48d0d9f9"
+    },
+    "M": {
+      "path": "/home/shannon/__dev/cody/information-extraction-sentiment-engine/artifacts/benchmark/m2-development-M/candidate.json",
+      "sha256": "939f651e73513a017c75da7af447280dc4d14d9d68f91cc88eacbccc3e22a610"
+    }
+  },
+  "development_report_sha256": "dc4fc773b5a643d161ecf0829550d81ce73d13f203327db0dffe29674919c3db",
+  "verification": {
+    "full_tests_passed": 564,
+    "python310_targeted_tests_passed": 152,
+    "baseline_tracked_blobs_match_git": true,
+    "baseline_generated_packaging_metadata": [
+      "src/information_extraction_sentiment_engine.egg-info/PKG-INFO",
+      "src/information_extraction_sentiment_engine.egg-info/SOURCES.txt",
+      "src/information_extraction_sentiment_engine.egg-info/dependency_links.txt",
+      "src/information_extraction_sentiment_engine.egg-info/requires.txt",
+      "src/information_extraction_sentiment_engine.egg-info/top_level.txt"
+    ],
+    "candidate_matches_current_allowlist": true
+  },
+  "data_preparation": {
+    "seed": 20260907,
+    "selection_rows": 5000,
+    "final_rows": 10000,
+    "policy": "Whole connected components, old reserve untouched membership only; exhaustive normalized exact and >=20-character 5-shingle Jaccard >=.85 against all prior groups and registered exposure. Label-independent stable-hash allocation; no text rewriting."
+  },
+  "evaluator_sha256": {
+    "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/benchmark/__init__.py": "7877c684a122957c1b50596836a030d7973cc579ad96ce0469188171813f4df0",
+    "scripts/benchmark/artifacts.py": "159ba7f374875cd837a60d448cc3f1071bae0f69a94244347fd75a3fc3c6f3a7",
+    "scripts/benchmark/data.py": "e4616bb93ff0096851ac1f136ed471162d47af9cf17469a308a712c8f95804e6",
+    "scripts/benchmark/metrics.py": "3857e2cd6b49d87a6e3f6a1f878e101f074be40570966d0f83adcdbd3cd7fc36",
+    "scripts/benchmark/release.py": "2d0830516b3bc1e00fdb2d8036368e71954d99b8ca14fa81a2904acfd0e98463",
+    "scripts/benchmark/runner.py": "f99c36d9289711aaef0a28639d60409c031e5bd9a3840ca0b210df8c9d513129",
+    "scripts/benchmark_v2/__init__.py": "499fee186138b190cfd619659fe4223ac1c08365e57612821adaa5cb04b9932c",
+    "scripts/benchmark_v2/data.py": "da434b419dca0efa78a5992ca05b26178cef71563eee808f8527138572bfd9ad",
+    "scripts/benchmark_v2/evaluator.py": "3d27a31cf303f066882f1b2fe3d6da1a7cd6a6e24860429161d0de17923982c7",
+    "scripts/benchmark_v2/release.py": "fdba03894ad2438a1cec97a2bebd61629b115e039059fd771513ee32be7862f7",
+    "scripts/build_exposure_register.py": "e6cbc80a1ede4a8cb6dd2435580a7563bb1f8e17eca91542c7775ae46503a0ea",
+    "scripts/build_sentiment_lexicon.py": "a12116df362ad65bdc98fd47c6cf1da2f8cf20a0fb4b7c40c8fc902b164f80a7",
+    "scripts/evaluate_sentiment_benchmark.py": "c5966c35a3fbec22c0a3d5817481a236dc093d3f8b289f065863223557d1a957",
+    "scripts/mine_sentiment_coverage.py": "bd0dc08f89a28be7dbec6e78af762c3aadc1d63f7632fd3eecbc9dc6def0dc3e",
+    "scripts/predict_sentiment_benchmark.py": "a91ea1f3c31cf790f2b56492bf29ec2424d97d617c2978d0cddeb2d5e94c966e",
+    "scripts/prepare_sentiment_benchmark.py": "5791b1bd33b4b2ebe8cc08dc8ac95df664bae39624d73134a9988fa90f475480",
+    "scripts/prepare_sentiment_workset_v2.py": "6c5f3418a3cc4107a4c17cc0301af483eaa7e50a9f8e3cd4cbd41128dae6f529",
+    "scripts/probe_komoran.py": "1de4bacb7ecb2895ae8e88f751f6101e976bc0f522632750ef5b4a38b6769854",
+    "scripts/profile_sentiment_engine.py": "cf5294c59fd207fcdf52765458a66286cced9e69406b1bfabcd8e44e90f2ee6c",
+    "scripts/run_engine_development.py": "1f7db14099ad74d2dde4497f954bfd0d660663eb8fb1ec1893cff7ec64b45470",
+    "scripts/run_m2_development.py": "89cc6d10b3ed80fd17126805ec3fb33a70c5ab0b6722e7f669a0091fdb145df1",
+    "scripts/run_sentiment_benchmark.py": "24eec6b0204e84620abe290e0b22d3d6fed1d8c7abe8ba4a8e22889e8613b70a",
+    "requirements-eval.in": "06581951cca396ecc8ee0df807e64e29a3d0bbc492bc940e3b821a1906de3da0",
+    "requirements-eval.lock": "9d89b0303e9e76777c642cb6dd9d046081da691c54c83957f33cb3d121cad605",
+    "requirements-komoran-probe.in": "b10f12e1b4b4afbd70f91574247dbe52448b1cba4b96c57d8b94783bd7cb4462",
+    "requirements-komoran-probe.lock": "e7d2997ca3d4c51fea213d0f63025a75fd39bee51713468579b896c0f591e3b4",
+    "requirements-runtime.lock": "268f51f01a71c47a2216140d84fb52015e5c2d108201a1884ed443c8fa6c5dc2",
+    "requirements.txt": "c33c526802c94e38be33e87f295c4fc2348f6029a37b78b9ec3a92e918d39d56",
+    "pyproject.toml": "bb5ab8d7a630809ad995e00b69c24770ffa1e61e9cabf62b33110181d0d8f488"
+  },
+  "post_final_policy": "Never modify engine/lexicon/evaluator or rerun this holdout; preserve failed target result."
+}
