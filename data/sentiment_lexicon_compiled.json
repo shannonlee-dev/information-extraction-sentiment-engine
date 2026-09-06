@@ -1,0 +1,7514 @@
+{
+  "analyzer": {
+    "adapter_contract": 2,
+    "adapter_sha256": "e12e74a2e25ec41186bdf8294bbae4fdbc81bbb8083c9b5f057809f245bacb94",
+    "files": {
+      "java/aho-corasick.jar": "6125665d002473e4bbc147cfad3cfb60557b507aa41408284672d56c8a3d83f4",
+      "java/data/models/irregular.model": "326149a5e9b4c4463988dce8f50651aa19e4ce4b6847352c836b4da0d4db4e36",
+      "java/data/models/observation.model": "856f08c848edc087f2db4ac815c6d01ed6ac8fa7696bb9b34307d8f33344b8b1",
+      "java/data/models/pos.table": "bafb524671d8a7c119a1b3721227b78bce629cb4dc38313992e3caf4a49f999b",
+      "java/data/models/transition.model": "61d38232e6c0d372709b91692b2291ad11f36abb5caad3d3faa020918e90f412",
+      "java/jhannanum-0.8.4.jar": "6167b92f7743fb6a5985bd354a8d8468192bb1de14973bafbad2aec0cf04391a",
+      "java/kkma-2.0.jar": "f628c5fa20086f95f8a70147c0cdb715688844db63aa4693aa87ff526e3776a6",
+      "java/komoran-3.0.jar": "63c3c1fd445e2c802647c05166b8357048ab40e2ea91ff7c9426c62fe01db34a",
+      "java/open-korean-text-2.1.0.jar": "568fd66e85b849a18f838a9ff88b5e1c6c29b210fa36eb3b61865a736c7b3fe6",
+      "java/scala-library-2.12.3.jar": "a8dd181a996dcc53a8c0bbb554bef7a1a9017ca09a377603167cf15444a85404",
+      "java/shineware-common-1.0.jar": "0b69d8e245aa7dba166ed4b7727d816ac3982369950aea97a5297dc53dcadd3c",
+      "java/shineware-ds-1.0.jar": "a572bd9f508abf04a0ecffbd79250107e088d44d5238b06021a1e2b7f0dc5419",
+      "java/snakeyaml-1.12.jar": "0699c809d1644b6a8209e700763bf59497df3e63756bb22f52e331e2c7e750a8",
+      "java/twitter-text-1.14.7.jar": "e81c89d9b3e1707294f7102a1af42438b72855078f9a3b8fea5d5fea82a79c68",
+      "jvm.py": "45a7f7888fa1ddc55064b93379b3bf2e12049bd2f6a682859a2dda37ac124460",
+      "tag/_komoran.py": "b2dc67068df18446cb50efea9309f1f9d294a51e323200642ad4f0697e6fed58"
+    },
+    "heap_mib": 1024,
+    "versions": {
+      "JPype1": "1.6.0",
+      "konlpy": "0.6.0"
+    }
+  },
+  "annotations_sha256": "bf76a0fa511224c1f82eb1ebc85d05451df4694af094b315db5fd584aafc5340",
+  "conflicts": [],
+  "entries": [
+    {
+      "atomic": false,
+      "canonical_id": "project:0133db04ec1a6d964db3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "풍부",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "풍부하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "풍부하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:019c59c6641c17f3989f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "냄새나",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "냄새나다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "냄새나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:029b35c5ac62e89e4e6e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "희망",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "희망",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "희망적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "희망적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:02a452c9e80ccc955756",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "실망",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "실망",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "실망",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "실망"
+      ],
+      "priority": 10,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "실망"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:03c1eb542ece3e013c34",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "최악",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "최악",
+            "NNG"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "최악"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "최악"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:04cb148e65f2f00223d6",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "정확",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "정확하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "정확하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0554d90865e9fcff1c05",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "기특",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "기특하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "기특하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:060ec31d7a06c82230c3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "보람",
+            "NNG"
+          ],
+          [
+            "있",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "보람",
+            "NNP"
+          ],
+          [
+            "있다",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "보람있다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "보람있다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:06221da4281e2016e193",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "편리",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "편리하다",
+        "편리함"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "편리하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:063c1a7bb93233dcd205",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "비싸",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "비싸다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "비싸다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:081b1df12b5571c5b942",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "불통",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불통"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불통"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:086a96db168cd21a589e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "훌륭",
+            "XR"
+          ]
+        ],
+        [
+          [
+            "훌륭",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "훌륭",
+        "훌륭하다",
+        "훌륭함"
+      ],
+      "priority": 10,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "훌륭하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:08c1c0c55db6ad616dcb",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불안",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "불안",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불안"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불안"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:08d28e7bc6876eddc83d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "난처",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "난처하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "난처하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:08fb30fbfd8d553f8fbe",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "소중",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "소중하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "소중하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:097b062680ccfaca68c1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "정중",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "정중하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "정중하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0c6d453f7a684fef8c12",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불안정",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불안정하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불안정하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0e36d35aa4f598beb7e6",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "무",
+            "XPN"
+          ],
+          [
+            "기력",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "무",
+            "XPN"
+          ],
+          [
+            "기력",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무기력"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무기력"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0e50e2d6a0d5cbb74924",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "명료",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "명료하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "명료하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0e7cec40f3517746ddf7",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "꼼꼼",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "꼼꼼하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "꼼꼼하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:0effd3aa896496d2b929",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "찢어지",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "찢어지다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "찢어지다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:101d1409876e431a52d9",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "불",
+            "XPN"
+          ],
+          [
+            "친절",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불친절하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불친절하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1197b28135aa8853eb33",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "괴롭",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "괴롭다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "괴롭다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:11fcb0e62a825a5018bc",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "산뜻",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "산뜻하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "산뜻하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1217ad82fd4ac08460e3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "뿌듯",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "뿌듯하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "뿌듯하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:12194e98cc6edbd899e3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "아깝",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "아깝다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "아깝다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1642b6bca5b266fcfe6d",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "훼손",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "훼손",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "훼손"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "훼손"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:17487ef1f18e3b1a3a8a",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "투명",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "투명하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "투명하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:186232324c8c8f9a117e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "기분",
+            "NNG"
+          ],
+          [
+            "전환",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "기분전환"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "기분전환"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:190a14d912809fa23ef9",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "허",
+            "NNG"
+          ],
+          [
+            "접하",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "허접하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "허접하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:19f436e8f26213a5764f",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "원활",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "원활하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "원활하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1a46bda80d113ed1f8eb",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "감명",
+            "NNG"
+          ],
+          [
+            "깊",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "감명깊다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "감명깊다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1adedab084e1d1b96c5c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "부서지",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "부서지다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "부서지다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1d96056b78ae719f88fd",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "오안",
+            "NNP"
+          ],
+          [
+            "내",
+            "NNB"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "오안내"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "오안내"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1e887fec342107757727",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "환불",
+            "NNG"
+          ],
+          [
+            "거절",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "환불거절"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "환불거절"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:1ea3a2c98555af25294e",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "불명확",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불명확하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불명확하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2000339228ac7a42408e",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "진정",
+            "XR"
+          ],
+          [
+            "성",
+            "XSN"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "진정성"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "진정성"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2011ef2922f6c340fc2d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "싫",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "싫다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "싫다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2142d1350b13970b7e23",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "성",
+            "NNG"
+          ],
+          [
+            "가시",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "성가시",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "성가시다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "성가시다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:21e91ac8a208ff9e520a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "맛있",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "맛있다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "맛있다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:22008dbacac6710d232d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불합리",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불합리하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불합리하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2307c76c95f3e8031518",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "신속",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "신속하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "신속하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2526ce35a4d035381af1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "유익",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "유익하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "유익하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:272ec21b191d5f48e5c0",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "스트레스",
+            "NNG"
+          ],
+          [
+            "받",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "스트레스",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "스트레스"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "스트레스"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:298f30b986f631509e74",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "완벽",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "완벽하다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "완벽하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2a1ffce0bf4b418393ca",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "감동",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "감동",
+            "NNG"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ],
+        [
+          [
+            "감동",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "감동"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "감동"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2a3aa050974245f69f74",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "긍정",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "긍정",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "긍정적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "긍정적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2b5fc264e1c6e1f1396e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "신뢰",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "신뢰하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "신뢰하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2b6551da3926436a9395",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "멋지",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "멋지다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "멋지다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:2faacb9229f558aae574",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "눅눅",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "눅눅하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "눅눅하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:303de431f55bd88a5993",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "답답",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "답답하다",
+        "답답함"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "답답하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:32804c4d22289355d92e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "허약",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "허약하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "허약하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:32e672dd759164d4f035",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "참신",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "참신하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "참신하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:33bf1e37d2739b22abdd",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "편하",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "편하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "편하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:340391047747705f9976",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "추천",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "추천하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "추천하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:34720ed784c102b48bda",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "행복",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "행복",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "행복"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "행복"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:34ce48b9a78ae52e1c3f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "기쁘",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "기쁘다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "기쁘다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:353a30893a2db349502e",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "누락",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "누락"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "누락"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3606b9c856db0254a2ce",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "넉넉",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "넉넉하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "넉넉하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:37ab0519afa2fbad0fe7",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "미흡",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "미흡하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "미흡하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:380dff375fc26c29cffe",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "화나",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "화나",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "화나다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "화나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:39b8f9df959f709ddfc2",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "근사",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "근사하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "근사하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3a58f816cf2de398a7b1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불량",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "불량",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불량"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불량"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3ad6cd06dcf2c7ae483b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "고급",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "고급스럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "고급스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3bfff3241c19ec86737e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "허술",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "허술하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "허술하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3c7f0fd9087ab847588e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "재밌",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "재밌다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "재밌다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3cd53ff96766b2e03bad",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "의심",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "의심스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "의심스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3d61cf57e6da404da30b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "부담",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "부담스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "부담스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3d777369d0410f9c1c57",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불결",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불결하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불결하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3dd9c5f65c6da41a8a1c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "부족",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "부족하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "부족하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3e6eeddd71358c15ee01",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "자랑",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "자랑스럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "자랑스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3ee370f6bb8b01235ee1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "결제",
+            "NNG"
+          ],
+          [
+            "실패",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "결제실패"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "결제실패"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3f663e28cb8bea91b2ae",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "감사",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "감사",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "감사",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "감사",
+        "감사하다"
+      ],
+      "priority": 10,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "감사"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:3fc3b6b7d32bb06de335",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "심심",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "심심하다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "심심하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:420d027aaef726a500cb",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "알",
+            "VV"
+          ],
+          [
+            "ㄹ",
+            "ETM"
+          ],
+          [
+            "차",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "알차",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "알차다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "알차다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:42a0a473d11161cd59c0",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "만족",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "만족스럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "만족스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:42d2fce2e74da5bade84",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "믿음",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "믿음"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "믿음"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:43c2e71b0e8e38aafe95",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "견고",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "견고하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "견고하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:447f12b319211efefda4",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "파손",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "파손"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "파손"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:46baa4b3a3b120dd9b00",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "청결",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "청결하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "청결하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:47a34456eefa36886429",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "오",
+            "NR"
+          ],
+          [
+            "청구",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "오청구"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "오청구"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:48608d97df9ed38672b6",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불만",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불만스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불만스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:4bcec614450931aa0048",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "기대",
+            "NNG"
+          ],
+          [
+            "되",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "기대된다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "기대된다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:4fa0c857c7d7472a1ca7",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불신",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "불신",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "불신",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불신",
+        "불신하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불신"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:500b3ea03853b2a5ef11",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불쾌감",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불쾌감"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불쾌감"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:506e351161b05dbf7463",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "교환",
+            "NNG"
+          ],
+          [
+            "거절",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "교환거절"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "교환거절"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:51398cc24f40dd90a6b8",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "우아",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "우아하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "우아하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:52412465c5e224d95529",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "망설이",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "망설이다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "망설이다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5255c098f8cbc4d0043f",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "만족",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "만족",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "만족",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "만족",
+        "만족하다"
+      ],
+      "priority": 10,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "만족"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:52f6e629edb6c5aee8ae",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "흥미",
+            "NNG"
+          ],
+          [
+            "롭",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "흥미롭다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "흥미롭다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:530d572037155af19afe",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "세련",
+            "XR"
+          ],
+          [
+            "되",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "세련되다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "세련되다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:546e211475887e7443f1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "실수",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "실수",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "실수",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "실수"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "실수"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:55d0f08434308816bcaf",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "어렵",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "어렵다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "어렵다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:56adc335681f00093b9f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "끈적",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "끈적하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "끈적하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:56fbe47d0efba605b063",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "존중",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "존중하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "존중하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5778f620e0a1a77732cd",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불",
+            "XPN"
+          ],
+          [
+            "만족",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "불만족",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "불만족",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불만족"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불만족"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5827b9bfe1de17f4cb46",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "거칠",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "거칠다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "거칠다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5a96ecc0c80fdcdb9493",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "신",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "신나",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "신나다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "신나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5bca329372c891599d09",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "부드럽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "부드럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "부드럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5bee04cf3d5162b16431",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "공손",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "공손하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "공손하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:5dbf35135abd52ef985a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "사랑",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "사랑스럽다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "사랑스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:60800c6b65bbfe559848",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "친근",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "친근하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "친근하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:609a668689e5fc8977bb",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "환상",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "환상",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "환상적"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "환상적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6169876756b24d326372",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "촌",
+            "NNB"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "촌스럽다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "촌스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:61d5c0f0fef18581a7a1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "인상",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "인상",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "인상적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "인상적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:63723261aca62bee841b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "편안",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "편안하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "편안하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:646fa517b1e63fe66868",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "튼튼",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "튼튼하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "튼튼하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:653161c326427f17a781",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "깨끗",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "깨끗하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "깨끗하다"
+    },
+    {
+      "atomic": true,
+      "canonical_id": "project:65419728c922bd119aee",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "마음",
+            "NNG"
+          ],
+          [
+            "에",
+            "JKB"
+          ],
+          [
+            "들",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "맘",
+            "NNG"
+          ],
+          [
+            "에",
+            "JKB"
+          ],
+          [
+            "들",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "마음에 들다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "마음에 들다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:66b12a44c8431defbc6c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "향긋",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "향긋하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "향긋하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:66f30cf912516aa2f0fe",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "책임감",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "책임감"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "책임감"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6701dfa172c150f323e5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "까칠",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "까칠하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "까칠하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6755a932b8455d1ec6f5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "악취",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "악취"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "악취"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6918dd98c028544053b8",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "분실",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "분실"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "분실"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:69e26389ae2a6e2f50d8",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "피곤",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "피곤하다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "피곤하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6b86cc13db8f37a3711e",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "해결",
+            "NNG"
+          ],
+          [
+            "되",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "해결되다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "해결되다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6c5692ebced898c0376c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "무섭",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무섭다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무섭다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6d1f5ef241bba594d802",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "명확",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "명확하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "명확하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:6da4d64cec5019682252",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "감격",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "감격",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "감격"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "감격"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:710c55f6dfa550624362",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "슬프",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "슬프다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "슬프다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:71ab7f4d89daedabda61",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "즐겁",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "즐겁다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "즐겁다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7282b66a9a00aae67bea",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "든든",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "든든하다",
+        "든든함"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "든든하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7370e512ef89205e5485",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불",
+            "XPN"
+          ],
+          [
+            "공정",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "불공",
+            "NNP"
+          ],
+          [
+            "정해",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불공정하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불공정하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:74a6aa2fc6ae8f0c6bc1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "좋아하",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "좋아하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "좋아하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:75763544456a9742e590",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "고요",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "고요하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "고요하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7582493f75565a84cbf1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "걱정",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "걱정",
+            "NNG"
+          ],
+          [
+            "되",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "걱정"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "걱정"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:77a32bb22d5598e11702",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "과장",
+            "NNG"
+          ],
+          [
+            "되",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "과장되다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "과장되다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:79c9b7dc16f60b07c0ba",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "탄탄",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "탄탄하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "탄탄하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7a505a30d4cea6e5e9c7",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "퀴퀴",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "퀴퀴하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "퀴퀴하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7ac5c30eb21a685e37a9",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "답답",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ],
+          [
+            "아",
+            "EC"
+          ],
+          [
+            "하",
+            "VX"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "답답해하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "답답해하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7b49ed18f84bb909162c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "축축",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "축축하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "축축하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:7dae578a4442f113f8da",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "쾌활",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "쾌활하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "쾌활하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:804b9988134538bb6c9b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "조잡",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "조잡하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "조잡하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:810e6e796e934adeb9ba",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "복잡",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "복잡하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "복잡하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8116aac2c993bf202ed9",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "무",
+            "XPN"
+          ],
+          [
+            "책임",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무책임하다"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무책임하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:814fc2ae241450a27691",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "무",
+            "XPN"
+          ],
+          [
+            "응답",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무응답"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무응답"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:823280267708e3498166",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "호감",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "호감",
+            "NNG"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "호감"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "호감"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:82a698651a30f5d28de9",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "우스꽝스럽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "우스꽝스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "우스꽝스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:83bd483bd2a5a4cea23f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "효율",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "효율",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "효율적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "효율적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:84038e23aa13046fb034",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "압박감",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "압박감"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "압박감"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:842efb3cddcd4cbbb764",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "매끄럽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "매끄럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "매끄럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:845045455cc5b08e7b8b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "우수",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "우수하다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "우수하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:847c4d563cd16847f96a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "비",
+            "XPN"
+          ],
+          [
+            "효율",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "비",
+            "XPN"
+          ],
+          [
+            "효율",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "비효율적"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "비효율적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8678e3dcf30b4fad0aa5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "늦",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "늦다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "늦다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8681c57c2f6337355e73",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "오작동",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "오작동"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "오작동"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:86d0464f1c6da40233cd",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "좋",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "좋다"
+      ],
+      "priority": 10,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "좋다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:87a8ff4571b3b9b4b632",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "낭비",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "낭비",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "낭비"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "낭비"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8889c7d331879f6907da",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "놀랍",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "놀랍다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "놀랍다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8d901cc28dffe7ee0af6",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "도움",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "도움"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "도움"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8db48a7863a37c7a29f1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "지저분",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "지저분하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "지저분하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8dc32dd77addc03ae572",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "칙칙",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "칙칙하다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "칙칙하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8eec39c3609a6c71740f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "힘들",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "힘들다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "힘들다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8f7cc6f2974a527da59c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "매력",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "매력",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "매력적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "매력적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8faad9d83a35aa4301ea",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "성의",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "성의"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "성의"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:8fea8dc657bad5c28b1f",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "지체",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "지체"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "지체"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:904de91feaff572f721f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "빠르",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "빠르다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "빠르다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:91e3eab0a3ea6c9e4a4d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "무겁",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무겁다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무겁다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:92005ab199b710001461",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "안정",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "안정",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "안정적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "안정적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:922c5e9b800a57ceb0b5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "훤하",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "훤하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "훤하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:92ca00674e8956f7f713",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "난감",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "난감하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "난감하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:95be9f34e199d28ceb96",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "정교",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "정교하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "정교하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:97b8be84b3d009c4b9b1",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "최고",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "최고",
+            "NNG"
+          ],
+          [
+            "예",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "최고",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "최고"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "최고"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:97b9c42a4d71bc026ff4",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "다양",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "다양하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "다양하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9984229f0a2e336ca5be",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "우울",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "우울하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "우울하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9999a82daf3dbb9489b3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "풍성",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "풍성하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "풍성하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:99b464ce6894fd7776a1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "품질",
+            "NNP"
+          ],
+          [
+            "불량",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "품질불량"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "품질불량"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9ab5de4fda1dbfa08583",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "낙담",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "낙담",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "낙담"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "낙담"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9b8f0383399e75200b4e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "초라",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "초라하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "초라하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9c2e62f124765187eb14",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "중복",
+            "NNG"
+          ],
+          [
+            "결제",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "중복결제"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "중복결제"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:9f7d4b34efe5885c141a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "눈부시",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "눈부시다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "눈부시다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a08db070ebfe1971b607",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "합리",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ],
+        [
+          [
+            "합리",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "합리적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "합리적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a0b20d926a76285c586c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "달콤",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "달콤하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "달콤하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a146bc1db8a47a35e28a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "후회",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ],
+        [
+          [
+            "후회",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "후회"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "후회"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a1a23b7fbec5dd69c7b5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "시원",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "시원하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "시원하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a1a759c684921a8dd35e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "고장",
+            "NNG"
+          ],
+          [
+            "나",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "고장",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "고장"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "고장"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a5ae7d0e116c6daf202a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "괴로움",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "괴로움"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "괴로움"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a78ae346fd5a24b6518b",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "배",
+            "NNG"
+          ],
+          [
+            "송",
+            "NNP"
+          ],
+          [
+            "지연",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "배송지",
+            "NNP"
+          ],
+          [
+            "연",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "배송지연"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "배송지연"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a7936a104a33327719b2",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "빛나",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "빛나다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "빛나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:a9069dc89833e8547f58",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "이중",
+            "NNP"
+          ],
+          [
+            "결제",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "이중결제"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "이중결제"
+    },
+    {
+      "atomic": true,
+      "canonical_id": "project:aaac5e68ea85fa60cb6d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "형편없",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "형편없다"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "형편없다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:abab1c85bcd0be9e532d",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "착오",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "착오"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "착오"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:af422da88e6c5a06f998",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "더럽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "더럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "더럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:af7024ef4a5f6e8ceffe",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "성실",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "성실하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "성실하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b0d5a487db4674cfe726",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "썩",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "썩다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "썩다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b187aff392c86f2bfccd",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "특별",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "특별하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "특별하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b1c21ded73e886cad68f",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "지연",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "지연",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "지연"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "지연"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b24ffef83699a59d7b75",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "무례",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "무례하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "무례하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b268d2d7c70fba616cc5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "고통",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "고통스럽다"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "고통스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b39be518859c28e09afb",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "아름답",
+            "VA"
+          ]
+        ],
+        [
+          [
+            "아름답다",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "아름답다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "아름답다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b47cc488adafc6109d02",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "우월",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "우월하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "우월하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b49de9d3aa94832c659c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "믿음직",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "믿음직하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "믿음직하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b49f20d86148ddfda470",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "오류",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "오류",
+            "NNP"
+          ],
+          [
+            "가나",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "오류"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "오류"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b55b5c7a43b416e847f0",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "미",
+            "NNP"
+          ],
+          [
+            "배",
+            "NNP"
+          ],
+          [
+            "송",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "미배송"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "미배송"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b5bc2bdd91e111ed65a2",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "위험",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "위험하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "위험하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b5fe62e2844b3e576e89",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "불성실",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불성실하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불성실하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b6336d2f945b40349cf1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "신용",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "신용"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "신용"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b67c592bde724aa15bfa",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "나쁘",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "나쁘다"
+      ],
+      "priority": 10,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "나쁘다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b824c626e411b4df73f8",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불만",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "불만",
+            "NNG"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ],
+        [
+          [
+            "불만",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불만"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불만"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b8a82f1738605b1f15c5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "싱그럽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "싱그럽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "싱그럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b90537aecebf988b4b9b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "아쉽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "아쉽다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "아쉽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b98bbdd306c5e5d9d487",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "상냥",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "상냥하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "상냥하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:b9a2699f824000e36e45",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "괜찮",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "괜찮다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "괜찮다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ba58e169c3b1964bf918",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "실망",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "실망스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "실망스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:babd49ba3313cf82752e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "혐오",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ],
+        [
+          [
+            "혐오",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "혐오"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "혐오"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:bc0fca46ae9a48794dbd",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "문제",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "문제"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "문제"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:bd5a50d0170e56c0bccc",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "만족감",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "만족감"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "만족감"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:bea34fe43b0dbde372f1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "번거롭",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "번거롭다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "번거롭다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:bf20484ec6c5a558f2fa",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "거",
+            "NNB"
+          ],
+          [
+            "슬",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "거슬리",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "거슬리다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "거슬리다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c045ea8767dad6e8f0a5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "신선",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "신선하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "신선하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c1bbf45466d4236e4fd1",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "경청",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "경청"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "경청"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c3522148de6accd3068c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "저렴",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "저렴하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "저렴하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c52851f49c25565734e4",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "과",
+            "XPN"
+          ],
+          [
+            "청구",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "과청구"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "과청구"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c59ee627251a8b93938f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "깨지",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "깨지다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "깨지다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c68052ebe38ab2966de7",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "손해",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "손해",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "손해"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "손해"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:c8df24319cc6eb896670",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "수월",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "수월하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "수월하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:cc6314d04dbd1563ff5a",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "거절",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "거절"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "거절"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:cd980654c479773e3242",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "쾌적",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "쾌적하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "쾌적하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:cf4debf243e03e25b146",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불쾌",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불쾌하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불쾌하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:cff4048664564031dc63",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "탁월",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "탁월하다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "탁월하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d27eddcc5a2cbfb591c0",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "망가지",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "망가지다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "망가지다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d35189b9e5cc2f971220",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "유쾌",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "유쾌하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "유쾌하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d5cacddd111bc906da5c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "반갑",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "반갑다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "반갑다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d7b1acf8ccdbda574e71",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "뛰어나",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "뛰어나다"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "뛰어나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d7be7c93b76ba96d58ad",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "부",
+            "XPN"
+          ],
+          [
+            "정확",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "부정확하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "부정확하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d7cff34d699c87fa14d5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "간편",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "간편하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "간편하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:d8d75024b7fecc85c40e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "혼란",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "혼란스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "혼란스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:da848e9c20a145332823",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "엉성",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "엉성하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "엉성하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:da8aaebfc31fec0c8991",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불투명",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불투명하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불투명하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:dad12a6bcd7dc17061a7",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "짜증",
+            "NNG"
+          ],
+          [
+            "나",
+            "VV"
+          ]
+        ],
+        [
+          [
+            "짜증",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "짜증",
+            "NNP"
+          ],
+          [
+            "나",
+            "JC"
+          ],
+          [
+            "요",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "짜증나다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "짜증나다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:dad57363687e370b7204",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "존중",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "존중"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "존중"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:dbda1e6ec8afe7e2c475",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "불",
+            "XPN"
+          ],
+          [
+            "성의",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "불성",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불성의"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불성의"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:dc61396243e54920c51c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "지루",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "지루하다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "지루하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ded2b4943e89f57dd33d",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "고마워요",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "고맙",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "고맙다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "고맙다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:df280628172fa651a813",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "상하",
+            "VV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "상하다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "상하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e08e515768a58254af96",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "끔찍",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "끔찍하다"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "끔찍하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e3a81c369f5e123fbec0",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불편",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불편하다",
+        "불편함"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불편하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e4840ad0903352f1e2e3",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "따뜻",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "따뜻하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "따뜻하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e555952607266b722e72",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "별로",
+            "MAG"
+          ]
+        ],
+        [
+          [
+            "별로",
+            "MAG"
+          ],
+          [
+            "다",
+            "MAG"
+          ]
+        ],
+        [
+          [
+            "별로",
+            "MAG"
+          ],
+          [
+            "예",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "별로다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "별로다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e68ee24a4227081f7fcd",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "환불",
+            "NNG"
+          ],
+          [
+            "지연",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "환불지연"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "환불지연"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:e6de708c58b3dd5edd6a",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "상쾌",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "상쾌하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "상쾌하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ea0fa3f3ef6be62f820b",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "배려",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "배려"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "배려"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:eb25af0dffca4bef8a33",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "유용",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "유용하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "유용하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ec798b2cb6fde0b4592d",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "결제",
+            "NNG"
+          ],
+          [
+            "오류",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "결제오류"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "결제오류"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ee58d6163577b6448307",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "배려",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "배려하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "배려하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:eeb61bc5c7fb3a10dc0b",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "피해",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "피해"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "피해"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f0bc9ed4fd1ddf990357",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "감탄",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "감탄",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "감탄"
+      ],
+      "priority": 0,
+      "score": 3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "감탄"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f187220f5ae912ef1a0e",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "칭찬",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "칭찬",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "칭찬"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "칭찬"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f62ff8982d788e72028f",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "예뻐",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "예쁘",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "예쁘다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "예쁘다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f6866c147cb407d922da",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "귀엽",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "귀엽다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "귀엽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f6ed7f4901108f75a819",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "깔끔",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "깔끔하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "깔끔하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f87d99966b99555454af",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "협조",
+            "NNG"
+          ],
+          [
+            "적",
+            "XSN"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "협조적"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "협조적"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:f8907ed13bd075cc1008",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "절망",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "절망",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "절망"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "절망"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:faaa76ed2a5783e1c80c",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "어색",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "어색하다"
+      ],
+      "priority": 0,
+      "score": -1,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "어색하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:fb1afecd3f80bf06f340",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "배",
+            "NNG"
+          ],
+          [
+            "송",
+            "NNP"
+          ],
+          [
+            "누락",
+            "NNG"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "배송누락"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "배송누락"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:fc7056f87cfee23a5a00",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "불만족",
+            "NNG"
+          ],
+          [
+            "스럽",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "불만족스럽다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "불만족스럽다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:fe69fe8e35dcb47d2900",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "활기",
+            "NNG"
+          ],
+          [
+            "차",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "활기차",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "활기차다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "활기차다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:fea649e060d7ccfe82a6",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "오",
+            "NR"
+          ],
+          [
+            "배",
+            "NNP"
+          ],
+          [
+            "송",
+            "NNP"
+          ]
+        ],
+        [
+          [
+            "잘못",
+            "MAG"
+          ],
+          [
+            "배",
+            "NNG"
+          ],
+          [
+            "송",
+            "NNP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "오배송"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "오배송"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:fefab822c00f5a651f89",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "느리",
+            "VA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "느리다"
+      ],
+      "priority": 0,
+      "score": -2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "느리다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ff2845853d48838be604",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "여유",
+            "NNG"
+          ],
+          [
+            "롭",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "여유롭다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "여유롭다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ff4e0c9a8436a25a7ba5",
+      "domain": null,
+      "keys": [
+        [
+          [
+            "엉망",
+            "NNG"
+          ]
+        ],
+        [
+          [
+            "엉망",
+            "NNG"
+          ],
+          [
+            "이",
+            "VCP"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "엉망"
+      ],
+      "priority": 0,
+      "score": -3,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "엉망"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ff4e28051799c8113b6b",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "세심",
+            "XR"
+          ],
+          [
+            "하",
+            "XSA"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "세심하다"
+      ],
+      "priority": 0,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "세심하다"
+    },
+    {
+      "atomic": false,
+      "canonical_id": "project:ffcfc4ac1458aeaf5919",
+      "domain": "customer_support",
+      "keys": [
+        [
+          [
+            "친절",
+            "NNG"
+          ],
+          [
+            "하",
+            "XSV"
+          ]
+        ]
+      ],
+      "merged_terms": [
+        "친절하다"
+      ],
+      "priority": 10,
+      "score": 2,
+      "source": "project",
+      "sources": [
+        "project"
+      ],
+      "term": "친절하다"
+    }
+  ],
+  "exclusions": [
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "결제편리"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "교환불편"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "교환원활"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "기대이상"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "기분좋다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "기분좋음"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "답없다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "대기길다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "대기짧다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "만족도높다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "맘에안들다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "문제가 해결되다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "배송빠르다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "배송정확"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "상담만족"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "상태나쁘다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "안내명확"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "응답느림"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "응대불친절"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "응대좋다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "처리빠르다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "포장꼼꼼"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "품질좋다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "피해없다"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "해결안됨"
+    },
+    {
+      "reason": "독립 어휘가 아닌 주어·속성+평가/상태변화 또는 합성 부정 구문. 어휘와 문법으로 분해; 문장 예외 제외.",
+      "term": "환불원활"
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "f4670c8796803c2d9a7734a2e9d20730de5d47c8763da409da69c64e8ba8d5ce"
+}

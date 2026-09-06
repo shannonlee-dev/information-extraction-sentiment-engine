@@ -1,2 +1,4 @@
--e .
-pytest>=8,<9
+# Requires JDK 17 and JAVA_HOME. For hash-verified runtime installation, first run:
+# python -m pip install --require-hashes -r requirements-runtime.lock
+# Then install this checkout and its test dependency with this file.
+-e .[test]

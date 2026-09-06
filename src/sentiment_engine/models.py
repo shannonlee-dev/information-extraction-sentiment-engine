@@ -65,3 +65,51 @@ class AnalysisResult:
     extractions: list[ExtractionItem]
     sentiment: SentimentResult
     diagnostics: list[Diagnostic]
+
+
+@dataclass(frozen=True, slots=True)
+class MorphToken:
+    morph: str
+    pos: str
+    start: int
+    end: int
+    eojeol_index: int
+
+
+@dataclass(frozen=True, slots=True)
+class MorphologyAdjustment:
+    kind: str
+    start: int
+    end: int
+
+
+@dataclass(frozen=True, slots=True)
+class SentimentEvent:
+    canonical_id: str
+    term: str
+    score: int
+    token_start: int
+    token_end: int
+    atomic: bool
+
+
+@dataclass(frozen=True, slots=True)
+class ModifierLink:
+    event_index: int
+    modifier_start: int
+    modifier_end: int
+    kind: str
+    rule_id: str
+    multiplier: float
+
+
+@dataclass(frozen=True, slots=True)
+class LexicalEntry:
+    canonical_id: str
+    term: str
+    score: int
+    domain: str | None
+    sources: tuple[str, ...]
+    atomic: bool
+    priority: int
+    keys: tuple[tuple[tuple[str, str], ...], ...]

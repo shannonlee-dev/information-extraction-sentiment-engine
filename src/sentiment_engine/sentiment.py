@@ -1,7 +1,8 @@
-"""Validated sentiment resources and token-level matching primitives."""
+"""Compiled lexical events and the unchanged public sentiment API."""
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from dataclasses import dataclass
@@ -10,37 +11,20 @@ from pathlib import Path
 from types import MappingProxyType
 from typing import Mapping
 
-from sentiment_engine.models import SentimentMatch, SentimentResult
-from sentiment_engine.korean import word_forms
-
+from sentiment_engine.korean import analyze_morphology, analyzer_fingerprint
+from sentiment_engine.models import LexicalEntry, MorphToken, SentimentEvent, SentimentResult
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_LEXICON_PATH = _REPOSITORY_ROOT / "data" / "sentiment_lexicon.json"
-DEFAULT_MODIFIERS_PATH = _REPOSITORY_ROOT / "data" / "modifiers.json"
-# A maximal (+) Korean/Latin/digit run forms a word token; supported punctuation
-# is kept as one-character alternatives so modifier scope stops at sentence boundaries.
+DEFAULT_LEXICON_PATH = _REPOSITORY_ROOT / 'data/sentiment_lexicon.json'
+DEFAULT_ANNOTATIONS_PATH = _REPOSITORY_ROOT / 'data/lexicon_annotations.json'
+DEFAULT_COMPILED_PATH = _REPOSITORY_ROOT / 'data/sentiment_lexicon_compiled.json'
+DEFAULT_MODIFIERS_PATH = _REPOSITORY_ROOT / 'data/modifiers.json'
 _TOKEN_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+|[.!?,;:]")
-# The same word character class distinguishes words from boundary punctuation.
-_WORD_PATTERN = re.compile(r"[가-힣A-Za-z0-9]+")
-_VALID_SCORES = frozenset({-3, -2, -1, 1, 2, 3})
-_CLAUSE_CONNECTORS = frozenset({"하지만", "그러나", "그런데", "그래도", "반면", "그리고"})
-# Nominalization/modal bridges license an auxiliary chain, not arbitrary distance.
-_NEGATION_BRIDGE = re.compile(r"(?:것[은이는도]?|이유[가는]?|수[가는]?|할 수[가는]?)?")
-
-
-@dataclass(frozen=True, slots=True)
-class _LexiconEntry:
-    term: str
-    score: int
-    domain: str | None
-    source: str = "project"
-
 
 @dataclass(frozen=True, slots=True)
 class _ModifierEntry:
     term: str
     multiplier: float | None = None
-
 
 @dataclass(frozen=True, slots=True)
 class _Token:
@@ -53,70 +37,6 @@ class _Token:
     @property
     def text(self) -> str:
         return self.raw
-
-
-@dataclass(frozen=True, slots=True)
-class _SentimentTokenMatch:
-    entry: _LexiconEntry
-    raw: str
-    start: int
-    end: int
-    token_start: int
-    token_end: int
-
-
-@dataclass(frozen=True, slots=True)
-class _ModifierTokenMatch:
-    entry: _ModifierEntry
-    token_start: int
-    token_end: int
-
-
-def _load_lexicon(path: Path) -> Mapping[str, _LexiconEntry]:
-    """Load a validated lexicon, indexed by each canonical term and variant."""
-    with Path(path).open(encoding="utf-8") as resource:
-        raw_entries = json.load(resource)
-    if not isinstance(raw_entries, list):
-        raise ValueError("invalid sentiment lexicon")
-
-    terms: set[str] = set()
-    surfaces: dict[str, _LexiconEntry] = {}
-    for raw_entry in raw_entries:
-        if not isinstance(raw_entry, dict) or set(raw_entry) - {
-            "term", "variants", "score", "domain", "source"
-        }:
-            raise ValueError("invalid sentiment entry")
-        term = raw_entry.get("term")
-        variants = raw_entry.get("variants")
-        score = raw_entry.get("score")
-        source = raw_entry.get("source")
-        domain = raw_entry.get("domain")
-        if not isinstance(term, str) or not term or not isinstance(variants, list):
-            raise ValueError("invalid sentiment entry")
-        if not isinstance(source, str) or not source or (
-            domain is not None and (not isinstance(domain, str) or not domain)
-        ):
-            raise ValueError("invalid sentiment entry")
-        if not isinstance(score, int) or isinstance(score, bool) or score not in _VALID_SCORES:
-            raise ValueError("invalid sentiment score")
-        if any(not isinstance(variant, str) or not variant for variant in variants):
-            raise ValueError("invalid sentiment entry")
-        if term in terms:
-            raise ValueError("duplicate sentiment term")
-        terms.add(term)
-        entry = _LexiconEntry(term, score, domain, source)
-        for surface in (term, *variants):
-            previous = surfaces.get(surface)
-            if previous is not None and previous.term != term:
-                raise ValueError("conflicting sentiment surface")
-            surfaces[surface] = entry
-
-    if len(terms) < 200:
-        raise ValueError("sentiment lexicon requires at least 200 terms")
-    if sum(entry.domain == "customer_support" for entry in {value.term: value for value in surfaces.values()}.values()) < 30:
-        raise ValueError("sentiment lexicon requires at least 30 domain terms")
-    return MappingProxyType(surfaces)
-
 
 def _load_modifiers(path: Path) -> Mapping[str, Mapping[str, _ModifierEntry]]:
     """Load validated negation and emphasis lookup maps without mutability leaks."""
@@ -171,267 +91,116 @@ def _tokenize(text: str) -> list[_Token]:
     ]
 
 
-def _find_sentiment_matches(
-    tokens: list[_Token], lexicon: Mapping[str, _LexiconEntry]
-) -> list[_SentimentTokenMatch]:
-    """Find non-overlapping sentiment entries, preferring the longest token span."""
-    phrases = _sentiment_phrases(tuple(lexicon.items()))
-    max_length = max((len(phrase) for phrase in phrases), default=0)
-
-    matches: list[_SentimentTokenMatch] = []
-    index = 0
-    while index < len(tokens):
-        if not _WORD_PATTERN.fullmatch(tokens[index].text):
-            index += 1
-            continue
-        for length in range(min(max_length, len(tokens) - index), 0, -1):
-            phrase = tuple(token.text for token in tokens[index : index + length])
-            entry = phrases.get(phrase)
-            if entry is None:
-                continue
-            span = tokens[index : index + length]
-            source = span[0].source
-            raw = (
-                source[span[0].start : span[-1].end]
-                if source is not None and all(token.source is source for token in span)
-                else " ".join(token.text for token in span)
-            )
-            matches.append(
-                _SentimentTokenMatch(
-                    entry,
-                    raw,
-                    span[0].start,
-                    span[-1].end,
-                    index,
-                    index + length,
-                )
-            )
-            index += length
-            break
-        else:
-            index += 1
-    return matches
-
-
-@lru_cache(maxsize=8)
-def _sentiment_phrases(
-    items: tuple[tuple[str, _LexiconEntry], ...],
-) -> Mapping[tuple[str, ...], _LexiconEntry]:
-    """Compile once; exact entries override generated forms, ambiguity abstains."""
-    exact = {tuple(t.text for t in _tokenize(surface)): entry for surface, entry in items}
-    generated: dict[tuple[str, ...], _LexiconEntry] = {}
-    ambiguous = set()
-    for phrase, entry in exact.items():
-        if not phrase:
-            continue
-        is_variant = phrase != tuple(t.text for t in _tokenize(entry.term))
-        for form in word_forms(phrase[-1], conversational=is_variant):
-            key = (*phrase[:-1], form)
-            previous = generated.get(key)
-            if previous is not None and previous.score != entry.score:
-                ambiguous.add(key)
-            generated.setdefault(key, entry)
-    return MappingProxyType({**{k: v for k, v in generated.items() if k not in ambiguous}, **exact})
-
 
 @lru_cache(maxsize=1)
-def _get_lexicon() -> Mapping[str, _LexiconEntry]:
-    """Load the default lexicon on first use and reuse its immutable lookup."""
-    return _load_lexicon(DEFAULT_LEXICON_PATH)
-
-
-@lru_cache(maxsize=1)
-def _get_modifiers() -> Mapping[str, Mapping[str, _ModifierEntry]]:
-    """Load the default modifiers only when modifier scoring is requested."""
+def _get_modifiers():
     return _load_modifiers(DEFAULT_MODIFIERS_PATH)
 
 
-def _find_modifier_matches(
-    tokens: list[_Token], lookup: Mapping[str, _ModifierEntry]
-) -> list[_ModifierTokenMatch]:
-    """Find non-overlapping modifier surfaces, preferring longer phrases."""
-    phrases = _modifier_phrases(tuple(lookup.items()))
-    max_length = max((len(phrase) for phrase in phrases), default=0)
+def _load_compiled(path: Path, source_path: Path = DEFAULT_LEXICON_PATH,
+                   annotations_path: Path = DEFAULT_ANNOTATIONS_PATH) -> tuple[LexicalEntry, ...]:
+    artifact = json.loads(Path(path).read_text(encoding='utf-8'))
+    if not isinstance(artifact, dict) or artifact.get('schema_version') != 1:
+        raise ValueError('invalid compiled lexicon schema')
+    for field, source in (('source_sha256', source_path), ('annotations_sha256', annotations_path)):
+        if artifact.get(field) != hashlib.sha256(Path(source).read_bytes()).hexdigest():
+            raise ValueError(f'compiled lexicon {field} mismatch; rebuild the lexicon')
+    if artifact.get('analyzer') != analyzer_fingerprint():
+        raise ValueError('compiled lexicon analyzer/model hash mismatch; rebuild with the locked runtime')
+    if not isinstance(artifact.get('entries'), list):
+        raise ValueError('compiled lexicon entries must be a list')
+    entries, ids, keys = [], set(), set()
+    for row in artifact.get('entries', []):
+        if (not isinstance(row,dict) or not isinstance(row.get('canonical_id'),str)
+                or not row['canonical_id'] or row['canonical_id'] in ids
+                or not isinstance(row.get('term'),str) or not row['term']
+                or type(row.get('score')) is not int or row['score'] not in {-3,-2,-1,1,2,3}
+                or type(row.get('atomic')) is not bool or type(row.get('priority')) is not int
+                or not isinstance(row.get('sources'),list) or not row['sources']
+                or any(not isinstance(s,str) or not s for s in row['sources'])
+                or (row.get('domain') is not None and not isinstance(row['domain'],str))):
+            raise ValueError('invalid compiled lexical entry')
+        entry_keys=[]
+        if not isinstance(row.get('keys'),list) or not row['keys']:
+            raise ValueError('compiled lexical entry requires keys')
+        for key in row['keys']:
+            if not isinstance(key,list) or not key or any(
+                    not isinstance(pair,list) or len(pair)!=2 or any(not isinstance(x,str) or not x for x in pair)
+                    for pair in key):
+                raise ValueError('invalid compiled lexical key')
+            immutable=tuple(tuple(pair) for pair in key)
+            if immutable in keys:
+                raise ValueError('duplicate compiled lexical key')
+            keys.add(immutable)
+            entry_keys.append(immutable)
+        ids.add(row['canonical_id'])
+        entries.append(LexicalEntry(row['canonical_id'],row['term'],row['score'],row.get('domain'),
+                                    tuple(row['sources']),row['atomic'],row['priority'],tuple(entry_keys)))
+    if len(entries)<200:
+        raise ValueError('compiled lexicon requires at least 200 canonical entries')
+    if sum(e.domain=='customer_support' and 'project' in e.sources for e in entries)<30:
+        raise ValueError('compiled lexicon requires at least 30 project domain entries')
+    return tuple(entries)
 
-    matches: list[_ModifierTokenMatch] = []
-    index = 0
-    while index < len(tokens):
-        if tokens[index].is_boundary:
-            index += 1
-            continue
-        for length in range(min(max_length, len(tokens) - index), 0, -1):
-            entry = phrases.get(tuple(token.text for token in tokens[index : index + length]))
-            if entry is None:
+
+@lru_cache(maxsize=1)
+def _get_lexicon() -> tuple[LexicalEntry,...]:
+    return _load_compiled(DEFAULT_COMPILED_PATH)
+
+
+@lru_cache(maxsize=4)
+def _index(entries: tuple[LexicalEntry,...]):
+    index={}
+    for entry in entries:
+        for key in entry.keys:
+            index.setdefault(key[0],[]).append((key,entry))
+    return {first: tuple(sorted(rows,key=lambda row:(-len(row[0]),-row[1].priority,row[1].canonical_id)))
+            for first,rows in index.items()}
+
+
+def find_events(tokens: tuple[MorphToken,...], entries: tuple[LexicalEntry,...] | None = None,
+                *, text: str | None = None) -> tuple[SentimentEvent,...]:
+    """Leftmost, longest lexical keys; no deletion of intervening morphology."""
+    index=_index(_get_lexicon() if entries is None else entries)
+    events=[]
+    i=0
+    while i<len(tokens):
+        first=tokens[i]
+        for key,entry in index.get((first.morph,first.pos),()):
+            end=i+len(key)
+            span=tokens[i:end]
+            if tuple((t.morph,t.pos) for t in span)!=key:
                 continue
-            matches.append(_ModifierTokenMatch(entry, index, index + length))
-            index += length
+            if text is not None and any(c in text[first.start:span[-1].end] for c in '\r\n\v\f\x1c\x1d\x1e\x85\u2028\u2029'):
+                continue
+            if i and tokens[i-1].eojeol_index==first.eojeol_index and (
+                    tokens[i-1].pos.startswith(('NN','XR','XP'))):
+                continue
+            last=span[-1]
+            if end<len(tokens) and tokens[end].eojeol_index==last.eojeol_index:
+                following=tokens[end].pos
+                if last.pos.startswith(('NN','XR')) and following.startswith(('NN','XSN','XSA','XSV')):
+                    continue
+            events.append(SentimentEvent(entry.canonical_id,entry.term,entry.score,i,end,entry.atomic))
+            i=end
             break
         else:
-            index += 1
-    return matches
-
-
-@lru_cache(maxsize=8)
-def _modifier_phrases(
-    items: tuple[tuple[str, _ModifierEntry], ...],
-) -> Mapping[tuple[str, ...], _ModifierEntry]:
-    phrases = {}
-    for surface, entry in items:
-        phrase = tuple(t.text for t in _tokenize(surface))
-        if not phrase:
-            continue
-        forms = (
-            word_forms(phrase[-1], conversational=surface != entry.term)
-            if entry.term in {"않다", "아니다", "없다", "못"} and len(surface) > 1
-            else {phrase[-1]}
-        )
-        for form in forms:
-            phrases[(*phrase[:-1], form)] = entry
-    return MappingProxyType(phrases)
-
-
-def _segment_ids(tokens: list[_Token]) -> list[int]:
-    """Bound modifier scope at punctuation and explicit clause transitions."""
-    segment = 0
-    result: list[int] = []
-    for token in tokens:
-        result.append(segment)
-        if token.is_boundary or token.text in _CLAUSE_CONNECTORS or token.text.endswith(("지만", "는데", "은데")):
-            segment += 1
-    return result
-
-
-def _intervening_word_count(
-    tokens: list[_Token], modifier: _ModifierTokenMatch, sentiment: _SentimentTokenMatch
-) -> int:
-    """Count word tokens strictly between a modifier and sentiment expression."""
-    if modifier.token_end <= sentiment.token_start:
-        between = tokens[modifier.token_end : sentiment.token_start]
-    else:
-        between = tokens[sentiment.token_end : modifier.token_start]
-    return sum(not token.is_boundary for token in between)
-
-
-def _modifier_values(
-    tokens: list[_Token],
-    sentiments: list[_SentimentTokenMatch],
-    modifiers: Mapping[str, Mapping[str, _ModifierEntry]],
-) -> tuple[list[float], list[int]]:
-    """Associate each bounded modifier with one eligible sentiment expression."""
-    segment_ids = _segment_ids(tokens)
-    emphasis_values: list[list[float]] = [[] for _ in sentiments]
-    negation_counts = [0 for _ in sentiments]
-
-    for emphasis in _find_modifier_matches(tokens, modifiers["emphasizers"]):
-        for index, sentiment in enumerate(sentiments):
-            if sentiment.token_start < emphasis.token_end:
-                continue
-            if segment_ids[emphasis.token_start] != segment_ids[sentiment.token_start]:
-                continue
-            if _intervening_word_count(tokens, emphasis, sentiment) <= 2:
-                multiplier = emphasis.entry.multiplier
-                if multiplier is not None:
-                    emphasis_values[index].append(multiplier)
-                break
-
-    previous_negation: tuple[_ModifierTokenMatch, int] | None = None
-    for negation in _find_modifier_matches(tokens, modifiers["negations"]):
-        # 못 is preverbal; 못하다/못해요 are postverbal auxiliaries.
-        postposed_inability = (
-            negation.entry.term == "못" and tokens[negation.token_start].text != "못"
-        )
-        # A lexical phrase already owns its internal negation (해결 안 됨).
-        if any(s.token_start < negation.token_end and negation.token_start < s.token_end for s in sentiments):
-            continue
-        # A linked auxiliary chain can extend through a small grammatical bridge.
-        # Full-match alternatives restrict this to nominalization/modal constructions.
-        if previous_negation is not None:
-            previous, owner = previous_negation
-            bridge = " ".join(t.text for t in tokens[previous.token_end:negation.token_start])
-            if (segment_ids[previous.token_start] == segment_ids[negation.token_start]
-                    and negation.entry.term in {"않다", "아니다", "없다"}
-                    and _NEGATION_BRIDGE.fullmatch(bridge)
-                    and not any(previous.token_end <= s.token_start < negation.token_start for s in sentiments)):
-                negation_counts[owner] += 1
-                previous_negation = (negation, owner)
-                continue
-        eligible: list[tuple[int, int, int]] = []
-        for index, sentiment in enumerate(sentiments):
-            if segment_ids[negation.token_start] != segment_ids[sentiment.token_start]:
-                continue
-            distance = _intervening_word_count(tokens, negation, sentiment)
-            if distance > 2:
-                continue
-            follows = sentiment.token_start >= negation.token_end
-            # 안/못 precede their predicate. 않다/없다 follow the expression.
-            # 아니다 keeps nearest-expression fallback for bare copular fragments.
-            if (negation.entry.term in {"않다", "없다"} or postposed_inability) and follows:
-                continue
-            if negation.entry.term in {"안", "못"} and not postposed_inability and not follows:
-                # Nominal light verbs: 도움이 안 된다 / 만족 안 해요.
-                after = tokens[negation.token_end:negation.token_end + 1]
-                nominal = (after and (
-                    (after[0].text in word_forms("되다") and sentiment.raw.endswith(("이", "가")))
-                    or (after[0].text in word_forms("하다") and not sentiment.entry.term.endswith("다"))
-                ))
-                reported = (negation.entry.term == "못" and after
-                            and after[0].text in {"하다", "해요", "하겠습니다"}
-                            and sentiment.raw.endswith("다고"))
-                if not (nominal or reported):
-                    continue
-            eligible.append((distance, 0 if follows else 1, index))
-        if eligible:
-            owner = min(eligible)[2]
-            negation_counts[owner] += 1
-            previous_negation = (negation, owner)
-
-    multipliers: list[float] = []
-    for values in emphasis_values:
-        product = 1.0
-        for value in values:
-            product *= value
-        multipliers.append(min(product, 2.0))
-    return multipliers, negation_counts
+            i+=1
+    return tuple(events)
 
 
 def analyze_sentiment(text: str, apply_modifiers: bool = True) -> SentimentResult:
-    """Analyze text using lexicon scores and bounded modifier rules."""
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
+    if not isinstance(text,str):
+        raise TypeError('text must be a string')
     if not text.strip():
-        raise ValueError("text must not be empty")
+        raise ValueError('text must not be empty')
+    from sentiment_engine.sentiment_rules import link_modifiers, score_events
 
-    tokens = _tokenize(text)
-    token_matches = _find_sentiment_matches(tokens, _get_lexicon())
-    if apply_modifiers:
-        multipliers, negation_counts = _modifier_values(
-            tokens, token_matches, _get_modifiers()
-        )
-    else:
-        multipliers = [1.0 for _ in token_matches]
-        negation_counts = [0 for _ in token_matches]
-    matches = [
-        SentimentMatch(
-            term=match.entry.term,
-            raw=match.raw,
-            base_score=match.entry.score,
-            emphasis_multiplier=multipliers[index],
-            negation_count=negation_counts[index],
-            contribution=float(
-                match.entry.score
-                * multipliers[index]
-                * (-1) ** negation_counts[index]
-            ),
-            start=match.start,
-            end=match.end,
-        )
-        for index, match in enumerate(token_matches)
-    ]
-    score = round(sum(match.contribution for match in matches), 6)
-    label = "positive" if score > 0 else "negative" if score < 0 else "neutral"
-    mixed = (
-        any(match.contribution > 0 for match in matches)
-        and any(match.contribution < 0 for match in matches)
-    )
-
-    return SentimentResult(score, label, mixed, [token.raw for token in tokens], matches)
+    morphology=analyze_morphology(text)
+    events=find_events(morphology,text=text)
+    links=link_modifiers(text,morphology,events) if apply_modifiers else ()
+    matches=score_events(text,morphology,events,links,apply_modifiers=apply_modifiers)
+    score=round(sum(m.contribution for m in matches),6)
+    label='positive' if score>0 else 'negative' if score<0 else 'neutral'
+    mixed=any(m.contribution>0 for m in matches) and any(m.contribution<0 for m in matches)
+    return SentimentResult(score,label,mixed,[t.raw for t in _tokenize(text)],matches)

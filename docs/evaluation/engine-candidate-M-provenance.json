@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "candidate": "M",
+  "status": "development_complete",
+  "split": "development",
+  "independent_final_evaluation": false,
+  "candidate_snapshot": {
+    "manifest": "candidate-M.json",
+    "sha256": "56d18a028e7def2d3eb68686045ca7b30d3db57974a4decc24d463a29775fc30"
+  },
+  "source_files_sha256": {
+    "data/lexicon_annotations.json": "bf76a0fa511224c1f82eb1ebc85d05451df4694af094b315db5fd584aafc5340",
+    "data/lexicon_provenance.json": "c3ec44974469655f4b786a4152243512f0f126ae6b2196588163c9111e57c7f5",
+    "data/modifiers.json": "584a934ca207f1cd18fdced4a9a3dc23e64c3b727687cdc5a9fc74f5b4fc1f58",
+    "data/sentiment_lexicon.json": "f4670c8796803c2d9a7734a2e9d20730de5d47c8763da409da69c64e8ba8d5ce",
+    "data/sentiment_lexicon_compiled.json": "d6f11e39389993f2502863d3fdb07f852a1494595405877d043be34aff9ba60b",
+    "main.py": "cd02cf9adc8b551f269cef841347444a1a37f8f4293468b18744de2cd31b3e42",
+    "pyproject.toml": "bb5ab8d7a630809ad995e00b69c24770ffa1e61e9cabf62b33110181d0d8f488",
+    "requirements-eval.in": "06581951cca396ecc8ee0df807e64e29a3d0bbc492bc940e3b821a1906de3da0",
+    "requirements-eval.lock": "9d89b0303e9e76777c642cb6dd9d046081da691c54c83957f33cb3d121cad605",
+    "requirements-komoran-probe.in": "b10f12e1b4b4afbd70f91574247dbe52448b1cba4b96c57d8b94783bd7cb4462",
+    "requirements-komoran-probe.lock": "e7d2997ca3d4c51fea213d0f63025a75fd39bee51713468579b896c0f591e3b4",
+    "requirements-runtime.lock": "268f51f01a71c47a2216140d84fb52015e5c2d108201a1884ed443c8fa6c5dc2",
+    "requirements.txt": "c33c526802c94e38be33e87f295c4fc2348f6029a37b78b9ec3a92e918d39d56",
+    "src/information_extraction_sentiment_engine.egg-info/PKG-INFO": "ff1d2c34dbf718cd7ac6945445a0a41703664160ab775d793c8049034f3d7ee9",
+    "src/information_extraction_sentiment_engine.egg-info/SOURCES.txt": "847d68555c0c2914aaebe2777b48a394bbcd2672acd87bd0c12509f4d2ed8e6b",
+    "src/information_extraction_sentiment_engine.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/information_extraction_sentiment_engine.egg-info/requires.txt": "3d7b6f54d413592a4a9913da23df2dd5bcfa679ab85448f3e895e8d1bf6b5906",
+    "src/information_extraction_sentiment_engine.egg-info/top_level.txt": "046348ebc479567b7c9befeff0169f81510f89358f24195744e711f1453c59b0",
+    "src/sentiment_engine/__init__.py": "6eb580d21c6fa5c6da307a4bae545fe616cc570c3061901fbcf40219ce3c993d",
+    "src/sentiment_engine/cli.py": "7a0644b5777fa7dccf4c9008c3881207bd9c4b3f0bd92a4245d47964f3cae8d4",
+    "src/sentiment_engine/evaluation.py": "24b2a4fb4f9fb089b9879f59ace602778a9e02ab87ea4d22feb1b7a494d228b0",
+    "src/sentiment_engine/extraction.py": "3c1290983e214b23e8054aa82ffb87691df5aea122d14c07d9d3c226aca8b3a2",
+    "src/sentiment_engine/korean.py": "e12e74a2e25ec41186bdf8294bbae4fdbc81bbb8083c9b5f057809f245bacb94",
+    "src/sentiment_engine/models.py": "da3c63ca55398162d16ee820bee768389d2e41d59a767778bb9b568216fec8f8",
+    "src/sentiment_engine/sentiment.py": "1a4cab524403901d690f662a912c12029b0c94df2877f75aec165e0e2566265c",
+    "src/sentiment_engine/sentiment_rules.py": "02ffcdcba7f11a82ecede3b3de59946c8be560c4a7db57071c63328450f3cd5b"
+  },
+  "compiled_sha256": "d6f11e39389993f2502863d3fdb07f852a1494595405877d043be34aff9ba60b",
+  "runtime_lock_sha256": "268f51f01a71c47a2216140d84fb52015e5c2d108201a1884ed443c8fa6c5dc2",
+  "runtime": {
+    "python": {
+      "executable": "/tmp/sentiment-komoran-venv/bin/python",
+      "version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]"
+    },
+    "packages": {
+      "konlpy": "0.6.0",
+      "JPype1": "1.6.0",
+      "numpy": "2.2.6",
+      "lxml": "6.0.2",
+      "packaging": "25.0"
+    },
+    "analyzer": {
+      "versions": {
+        "konlpy": "0.6.0",
+        "JPype1": "1.6.0"
+      },
+      "files": {
+        "tag/_komoran.py": "b2dc67068df18446cb50efea9309f1f9d294a51e323200642ad4f0697e6fed58",
+        "jvm.py": "45a7f7888fa1ddc55064b93379b3bf2e12049bd2f6a682859a2dda37ac124460",
+        "java/aho-corasick.jar": "6125665d002473e4bbc147cfad3cfb60557b507aa41408284672d56c8a3d83f4",
+        "java/jhannanum-0.8.4.jar": "6167b92f7743fb6a5985bd354a8d8468192bb1de14973bafbad2aec0cf04391a",
+        "java/kkma-2.0.jar": "f628c5fa20086f95f8a70147c0cdb715688844db63aa4693aa87ff526e3776a6",
+        "java/komoran-3.0.jar": "63c3c1fd445e2c802647c05166b8357048ab40e2ea91ff7c9426c62fe01db34a",
+        "java/open-korean-text-2.1.0.jar": "568fd66e85b849a18f838a9ff88b5e1c6c29b210fa36eb3b61865a736c7b3fe6",
+        "java/scala-library-2.12.3.jar": "a8dd181a996dcc53a8c0bbb554bef7a1a9017ca09a377603167cf15444a85404",
+        "java/shineware-common-1.0.jar": "0b69d8e245aa7dba166ed4b7727d816ac3982369950aea97a5297dc53dcadd3c",
+        "java/shineware-ds-1.0.jar": "a572bd9f508abf04a0ecffbd79250107e088d44d5238b06021a1e2b7f0dc5419",
+        "java/snakeyaml-1.12.jar": "0699c809d1644b6a8209e700763bf59497df3e63756bb22f52e331e2c7e750a8",
+        "java/twitter-text-1.14.7.jar": "e81c89d9b3e1707294f7102a1af42438b72855078f9a3b8fea5d5fea82a79c68",
+        "java/data/models/irregular.model": "326149a5e9b4c4463988dce8f50651aa19e4ce4b6847352c836b4da0d4db4e36",
+        "java/data/models/observation.model": "856f08c848edc087f2db4ac815c6d01ed6ac8fa7696bb9b34307d8f33344b8b1",
+        "java/data/models/pos.table": "bafb524671d8a7c119a1b3721227b78bce629cb4dc38313992e3caf4a49f999b",
+        "java/data/models/transition.model": "61d38232e6c0d372709b91692b2291ad11f36abb5caad3d3faa020918e90f412"
+      },
+      "adapter_contract": 2,
+      "heap_mib": 1024,
+      "adapter_sha256": "e12e74a2e25ec41186bdf8294bbae4fdbc81bbb8083c9b5f057809f245bacb94"
+    },
+    "java": {
+      "home": "/tmp/sentiment-jdk17",
+      "properties": {
+        "file.encoding": "UTF-8",
+        "file.separator": "/",
+        "java.class.path": "",
+        "java.class.version": "61.0",
+        "java.home": "/tmp/sentiment-jdk17",
+        "java.io.tmpdir": "/tmp",
+        "java.library.path": "/usr/java/packages/lib",
+        "java.runtime.name": "OpenJDK Runtime Environment",
+        "java.runtime.version": "17.0.20.1+1",
+        "java.specification.maintenance.version": "1",
+        "java.specification.name": "Java Platform API Specification",
+        "java.specification.vendor": "Oracle Corporation",
+        "java.specification.version": "17",
+        "java.vendor": "Eclipse Adoptium",
+        "java.vendor.url": "https://adoptium.net/",
+        "java.vendor.url.bug": "https://github.com/adoptium/adoptium-support/issues",
+        "java.vendor.version": "Temurin-17.0.20.1+1",
+        "java.version": "17.0.20.1",
+        "java.version.date": "2026-08-18",
+        "java.vm.compressedOopsMode": "32-bit",
+        "java.vm.info": "mixed mode, sharing",
+        "java.vm.name": "OpenJDK 64-Bit Server VM",
+        "java.vm.specification.name": "Java Virtual Machine Specification",
+        "java.vm.specification.vendor": "Oracle Corporation",
+        "java.vm.specification.version": "17",
+        "java.vm.vendor": "Eclipse Adoptium",
+        "java.vm.version": "17.0.20.1+1",
+        "jdk.debug": "release",
+        "line.separator": "\\n",
+        "native.encoding": "UTF-8",
+        "os.arch": "amd64",
+        "os.name": "Linux",
+        "os.version": "6.6.87.2-microsoft-standard-WSL2",
+        "path.separator": ":",
+        "sun.arch.data.model": "64",
+        "sun.boot.library.path": "/tmp/sentiment-jdk17/lib",
+        "sun.cpu.endian": "little",
+        "sun.io.unicode.encoding": "UnicodeLittle",
+        "sun.java.launcher": "SUN_STANDARD",
+        "sun.jnu.encoding": "UTF-8",
+        "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
+        "user.dir": "/home/shannon/__dev/cody/information-extraction-sentiment-engine",
+        "user.home": "/home/shannon",
+        "user.language": "en",
+        "user.name": "shannon"
+      },
+      "properties_output": "Property settings:\n    file.encoding = UTF-8\n    file.separator = /\n    java.class.path = \n    java.class.version = 61.0\n    java.home = /tmp/sentiment-jdk17\n    java.io.tmpdir = /tmp\n    java.library.path = /usr/java/packages/lib\n        /usr/lib64\n        /lib64\n        /lib\n        /usr/lib\n    java.runtime.name = OpenJDK Runtime Environment\n    java.runtime.version = 17.0.20.1+1\n    java.specification.maintenance.version = 1\n    java.specification.name = Java Platform API Specification\n    java.specification.vendor = Oracle Corporation\n    java.specification.version = 17\n    java.vendor = Eclipse Adoptium\n    java.vendor.url = https://adoptium.net/\n    java.vendor.url.bug = https://github.com/adoptium/adoptium-support/issues\n    java.vendor.version = Temurin-17.0.20.1+1\n    java.version = 17.0.20.1\n    java.version.date = 2026-08-18\n    java.vm.compressedOopsMode = 32-bit\n    java.vm.info = mixed mode, sharing\n    java.vm.name = OpenJDK 64-Bit Server VM\n    java.vm.specification.name = Java Virtual Machine Specification\n    java.vm.specification.vendor = Oracle Corporation\n    java.vm.specification.version = 17\n    java.vm.vendor = Eclipse Adoptium\n    java.vm.version = 17.0.20.1+1\n    jdk.debug = release\n    line.separator = \\n \n    native.encoding = UTF-8\n    os.arch = amd64\n    os.name = Linux\n    os.version = 6.6.87.2-microsoft-standard-WSL2\n    path.separator = :\n    sun.arch.data.model = 64\n    sun.boot.library.path = /tmp/sentiment-jdk17/lib\n    sun.cpu.endian = little\n    sun.io.unicode.encoding = UnicodeLittle\n    sun.java.launcher = SUN_STANDARD\n    sun.jnu.encoding = UTF-8\n    sun.management.compiler = HotSpot 64-Bit Tiered Compilers\n    user.dir = /home/shannon/__dev/cody/information-extraction-sentiment-engine\n    user.home = /home/shannon\n    user.language = en\n    user.name = shannon\n\nopenjdk version \"17.0.20.1\" 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)\n",
+      "properties_sha256": "71f3f259c5861437a75d690b8e62b68ed04ab987b0aea08b957a899f0c3e5ae9",
+      "release_sha256": "973f28729da43962dfba2e39b2a27ab736122f3a1bf829e06abfbde2a731c711",
+      "libjvm_sha256": "11e5d09f442e42bddc4619b6eed829eaf3952158a5f77c797a58d558fae21738"
+    }
+  },
+  "protocol_sha256": "51761d3b410b4d8f20c1cce968a7def8269ac8f154d83188ec666d628706f88e",
+  "development": {
+    "benchmark": "/home/shannon/__dev/cody/information-extraction-sentiment-engine/artifacts/benchmark/v1",
+    "rows": 4000,
+    "manifest_sha256": "afcc98e481fb30dd8d0912cc9cc68e9e5d37586fd3b6089fb9895ffe8ba8259e",
+    "inputs_sha256": "1da66791858c8a1913e5bf7c341edc52ff5d2a4bcc996314534d362b80f78383",
+    "gold_sha256": "05a325852d52fb129a8acbb5e45dfb68b29327a613d8b9bf5944b4d62f545045"
+  },
+  "baseline": {
+    "manifest": "/home/shannon/__dev/cody/information-extraction-sentiment-engine/artifacts/benchmark/v1/baseline.json",
+    "manifest_sha256": "57c5a17e20c430f8a10b67f0bb2d4f39e88757fad4592fd87b785d6db71134a5",
+    "predictions_sha256": {
+      "on": "34c9b15630f5ceb1d5f44381a40a7820eccd90360e92f6f4c02be240ddbaee1c",
+      "off": "f046f1812605b937e1d2140a1a33565e8b86a4145fac9aafa799d67971c6e89d"
+    },
+    "prediction_provenance": "Existing development predictions; hashes captured for this run, baseline not reevaluated."
+  },
+  "predictions_sha256": {
+    "on": "c8aca46b71998217d2e1746bb95ee6bd3566cdf2d7912273dc69e545502d1981",
+    "off": "d65ea04fc9df948db4e7bf59d216ecbb8be60a7dc55c09080b1ea18cbcf78554"
+  },
+  "report_sha256": "311ab57fc8b41eb4175074433f9cb5d37121ed66789ea652cc72eb18e94a4e60",
+  "tooling_sha256": {
+    "scripts/run_engine_development.py": "1f7db14099ad74d2dde4497f954bfd0d660663eb8fb1ec1893cff7ec64b45470",
+    "scripts/benchmark/artifacts.py": "159ba7f374875cd837a60d448cc3f1071bae0f69a94244347fd75a3fc3c6f3a7",
+    "scripts/benchmark/runner.py": "f99c36d9289711aaef0a28639d60409c031e5bd9a3840ca0b210df8c9d513129",
+    "scripts/benchmark/metrics.py": "3857e2cd6b49d87a6e3f6a1f878e101f074be40570966d0f83adcdbd3cd7fc36",
+    "scripts/predict_sentiment_benchmark.py": "a91ea1f3c31cf790f2b56492bf29ec2424d97d617c2978d0cddeb2d5e94c966e"
+  },
+  "redesign_plan_sha256": "917e0ec291b98d31d60f7093b6e1abb483c579ade0a14e6aa8396180371c16ac"
+}

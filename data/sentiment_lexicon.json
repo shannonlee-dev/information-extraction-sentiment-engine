@@ -1,210 +1,2394 @@
 [
-  {"term":"좋다","variants":["좋아","좋아요","좋지만","좋지"],"score":2,"source":"project"},
-  {"term":"훌륭하다","variants":["훌륭해","훌륭해요"],"score":3,"source":"project"},
-  {"term":"행복","variants":["행복해","행복하다"],"score":3,"source":"project"},
-  {"term":"기쁘다","variants":["기뻐","기뻐요"],"score":2,"source":"project"},
-  {"term":"즐겁다","variants":["즐거워","즐거워요"],"score":2,"source":"project"},
-  {"term":"만족스럽다","variants":["만족스러워","만족스러워요"],"score":2,"source":"project"},
-  {"term":"최고","variants":["최고예요","최고다"],"score":3,"source":"project"},
-  {"term":"완벽하다","variants":["완벽해","완벽해요"],"score":3,"source":"project"},
-  {"term":"뛰어나다","variants":["뛰어나","뛰어나요"],"score":3,"source":"project"},
-  {"term":"우수하다","variants":["우수해","우수해요"],"score":3,"source":"project"},
-  {"term":"훌륭","variants":[],"score":3,"source":"project"},
-  {"term":"긍정적","variants":["긍정적이다"],"score":2,"source":"project"},
-  {"term":"편리하다","variants":["편리해","편리해요"],"score":2,"source":"project"},
-  {"term":"유용하다","variants":["유용해","유용해요"],"score":2,"source":"project"},
-  {"term":"신나다","variants":["신나","신나요"],"score":2,"source":"project"},
-  {"term":"감동","variants":["감동적","감동이다"],"score":3,"source":"project"},
-  {"term":"감사","variants":["감사해요","감사합니다"],"score":2,"source":"project"},
-  {"term":"고맙다","variants":["고마워","고마워요"],"score":2,"source":"project"},
-  {"term":"사랑스럽다","variants":["사랑스러워","사랑스러워요"],"score":3,"source":"project"},
-  {"term":"아름답다","variants":["아름다워","아름다워요"],"score":2,"source":"project"},
-  {"term":"멋지다","variants":["멋져","멋져요"],"score":2,"source":"project"},
-  {"term":"깔끔하다","variants":["깔끔해","깔끔해요"],"score":2,"source":"project"},
-  {"term":"쾌적하다","variants":["쾌적해","쾌적해요"],"score":2,"source":"project"},
-  {"term":"안정적","variants":["안정적이다"],"score":2,"source":"project"},
-  {"term":"신뢰하다","variants":["신뢰해","신뢰해요"],"score":2,"source":"project"},
-  {"term":"믿음직하다","variants":["믿음직해","믿음직해요"],"score":2,"source":"project"},
-  {"term":"빠르다","variants":["빨라","빨라요"],"score":2,"source":"project"},
-  {"term":"정확하다","variants":["정확해","정확해요"],"score":2,"source":"project"},
-  {"term":"효율적","variants":["효율적이다"],"score":2,"source":"project"},
-  {"term":"합리적","variants":["합리적이다"],"score":2,"source":"project"},
-  {"term":"저렴하다","variants":["저렴해","저렴해요"],"score":2,"source":"project"},
-  {"term":"풍부하다","variants":["풍부해","풍부해요"],"score":2,"source":"project"},
-  {"term":"다양하다","variants":["다양해","다양해요"],"score":2,"source":"project"},
-  {"term":"신선하다","variants":["신선해","신선해요"],"score":2,"source":"project"},
-  {"term":"맛있다","variants":["맛있어","맛있어요"],"score":3,"source":"project"},
-  {"term":"부드럽다","variants":["부드러워","부드러워요"],"score":2,"source":"project"},
-  {"term":"편안하다","variants":["편안해","편안해요"],"score":2,"source":"project"},
-  {"term":"친근하다","variants":["친근해","친근해요"],"score":2,"source":"project"},
-  {"term":"반갑다","variants":["반가워","반가워요"],"score":2,"source":"project"},
-  {"term":"기대된다","variants":["기대돼","기대돼요"],"score":2,"source":"project"},
-  {"term":"희망적","variants":["희망적이다"],"score":2,"source":"project"},
-  {"term":"든든하다","variants":["든든해","든든해요"],"score":2,"source":"project"},
-  {"term":"만족감","variants":[],"score":2,"source":"project"},
-  {"term":"감탄","variants":["감탄스럽다"],"score":3,"source":"project"},
-  {"term":"추천하다","variants":["추천해","추천해요"],"score":2,"source":"project"},
-  {"term":"재밌다","variants":["재밌어","재밌어요"],"score":2,"source":"project"},
-  {"term":"흥미롭다","variants":["흥미로워","흥미로워요"],"score":2,"source":"project"},
-  {"term":"유익하다","variants":["유익해","유익해요"],"score":2,"source":"project"},
-  {"term":"특별하다","variants":["특별해","특별해요"],"score":2,"source":"project"},
-  {"term":"소중하다","variants":["소중해","소중해요"],"score":2,"source":"project"},
-  {"term":"따뜻하다","variants":["따뜻해","따뜻해요"],"score":2,"source":"project"},
-  {"term":"세련되다","variants":["세련돼","세련돼요"],"score":2,"source":"project"},
-  {"term":"탁월하다","variants":["탁월해","탁월해요"],"score":3,"source":"project"},
-  {"term":"인상적","variants":["인상적이다"],"score":2,"source":"project"},
-  {"term":"매력적","variants":["매력적이다"],"score":2,"source":"project"},
-  {"term":"유쾌하다","variants":["유쾌해","유쾌해요"],"score":2,"source":"project"},
-  {"term":"상쾌하다","variants":["상쾌해","상쾌해요"],"score":2,"source":"project"},
-  {"term":"기분좋다","variants":["기분좋아","기분좋아요"],"score":2,"source":"project"},
-  {"term":"알차다","variants":["알차","알차요"],"score":2,"source":"project"},
-  {"term":"뿌듯하다","variants":["뿌듯해","뿌듯해요"],"score":2,"source":"project"},
-  {"term":"감사하다","variants":["감사해","감사하고"],"score":2,"source":"project"},
-  {"term":"놀랍다","variants":["놀라워","놀라워요"],"score":3,"source":"project"},
-  {"term":"명확하다","variants":["명확해","명확해요"],"score":2,"source":"project"},
-  {"term":"깨끗하다","variants":["깨끗해","깨끗해요"],"score":2,"source":"project"},
-  {"term":"편하다","variants":["편해","편해요"],"score":2,"source":"project"},
-  {"term":"고급스럽다","variants":["고급스러워","고급스러워요"],"score":2,"source":"project"},
-  {"term":"기대이상","variants":["기대 이상"],"score":3,"source":"project"},
-  {"term":"만족도높다","variants":["만족도 높아"],"score":2,"source":"project"},
-  {"term":"환상적","variants":["환상적이다"],"score":3,"source":"project"},
-  {"term":"감격","variants":["감격스럽다"],"score":3,"source":"project"},
-  {"term":"칭찬","variants":["칭찬하다"],"score":2,"source":"project"},
-  {"term":"호감","variants":["호감이다"],"score":2,"source":"project"},
-  {"term":"참신하다","variants":["참신해","참신해요"],"score":2,"source":"project"},
-  {"term":"훌륭함","variants":[],"score":3,"source":"project"},
-  {"term":"기특하다","variants":["기특해","기특해요"],"score":2,"source":"project"},
-  {"term":"보람있다","variants":["보람있어","보람있어요"],"score":2,"source":"project"},
-  {"term":"여유롭다","variants":["여유로워","여유로워요"],"score":2,"source":"project"},
-  {"term":"쾌활하다","variants":["쾌활해","쾌활해요"],"score":2,"source":"project"},
-  {"term":"든든함","variants":[],"score":2,"source":"project"},
-  {"term":"만족하다","variants":["만족해","만족한다"],"score":2,"source":"project"},
-  {"term":"기분좋음","variants":[],"score":2,"source":"project"},
-  {"term":"감명깊다","variants":["감명깊어","감명깊어요"],"score":3,"source":"project"},
-  {"term":"나쁘다","variants":["나빠","나빠요"],"score":-2,"source":"project"},
-  {"term":"최악","variants":["최악이다"],"score":-3,"source":"project"},
-  {"term":"불만","variants":["불만이다"],"score":-2,"source":"project"},
-  {"term":"불편하다","variants":["불편해","불편해요"],"score":-2,"source":"project"},
-  {"term":"어렵다","variants":["어려워","어려워요"],"score":-2,"source":"project"},
-  {"term":"복잡하다","variants":["복잡해","복잡해요"],"score":-2,"source":"project"},
-  {"term":"지루하다","variants":["지루해","지루해요"],"score":-1,"source":"project"},
-  {"term":"화나다","variants":["화나","화나요"],"score":-2,"source":"project"},
-  {"term":"슬프다","variants":["슬퍼","슬퍼요"],"score":-2,"source":"project"},
-  {"term":"짜증나다","variants":["짜증나","짜증나요"],"score":-2,"source":"project"},
-  {"term":"답답하다","variants":["답답해","답답해요"],"score":-2,"source":"project"},
-  {"term":"걱정","variants":["걱정된다"],"score":-1,"source":"project"},
-  {"term":"불안","variants":["불안하다"],"score":-2,"source":"project"},
-  {"term":"아쉽다","variants":["아쉬워","아쉬워요"],"score":-1,"source":"project"},
-  {"term":"후회","variants":["후회하다"],"score":-2,"source":"project"},
-  {"term":"싫다","variants":["싫어","싫어요"],"score":-2,"source":"project"},
-  {"term":"혐오","variants":["혐오스럽다"],"score":-3,"source":"project"},
-  {"term":"형편없다","variants":["형편없어","형편없어요"],"score":-3,"source":"project"},
-  {"term":"부족하다","variants":["부족해","부족해요"],"score":-2,"source":"project"},
-  {"term":"엉망","variants":["엉망이다"],"score":-3,"source":"project"},
-  {"term":"문제","variants":["문제다"],"score":-2,"source":"project"},
-  {"term":"오류","variants":["오류가나다"],"score":-2,"source":"project"},
-  {"term":"고장","variants":["고장나다"],"score":-2,"source":"project"},
-  {"term":"불량","variants":["불량하다"],"score":-3,"source":"project"},
-  {"term":"비싸다","variants":["비싸","비싸요"],"score":-2,"source":"project"},
-  {"term":"낭비","variants":["낭비하다"],"score":-2,"source":"project"},
-  {"term":"느리다","variants":["느려","느려요"],"score":-2,"source":"project"},
-  {"term":"늦다","variants":["늦어","늦어요"],"score":-2,"source":"project"},
-  {"term":"무겁다","variants":["무거워","무거워요"],"score":-1,"source":"project"},
-  {"term":"피곤하다","variants":["피곤해","피곤해요"],"score":-1,"source":"project"},
-  {"term":"힘들다","variants":["힘들어","힘들어요"],"score":-2,"source":"project"},
-  {"term":"괴롭다","variants":["괴로워","괴로워요"],"score":-2,"source":"project"},
-  {"term":"무섭다","variants":["무서워","무서워요"],"score":-2,"source":"project"},
-  {"term":"미흡하다","variants":["미흡해","미흡해요"],"score":-2,"source":"project"},
-  {"term":"불친절하다","variants":["불친절해","불친절해요"],"score":-2,"source":"project"},
-  {"term":"부정확하다","variants":["부정확해","부정확해요"],"score":-2,"source":"project"},
-  {"term":"비효율적","variants":["비효율적이다"],"score":-2,"source":"project"},
-  {"term":"불합리하다","variants":["불합리해","불합리해요"],"score":-2,"source":"project"},
-  {"term":"위험하다","variants":["위험해","위험해요"],"score":-2,"source":"project"},
-  {"term":"불쾌하다","variants":["불쾌해","불쾌해요"],"score":-2,"source":"project"},
-  {"term":"어색하다","variants":["어색해","어색해요"],"score":-1,"source":"project"},
-  {"term":"심심하다","variants":["심심해","심심해요"],"score":-1,"source":"project"},
-  {"term":"답답함","variants":[],"score":-2,"source":"project"},
-  {"term":"혼란스럽다","variants":["혼란스러워","혼란스러워요"],"score":-2,"source":"project"},
-  {"term":"불투명하다","variants":["불투명해","불투명해요"],"score":-2,"source":"project"},
-  {"term":"의심스럽다","variants":["의심스러워","의심스러워요"],"score":-2,"source":"project"},
-  {"term":"불신","variants":["불신하다"],"score":-2,"source":"project"},
-  {"term":"불만족","variants":["불만족하다"],"score":-2,"source":"project"},
-  {"term":"불안정하다","variants":["불안정해","불안정해요"],"score":-2,"source":"project"},
-  {"term":"성가시다","variants":["성가셔","성가셔요"],"score":-1,"source":"project"},
-  {"term":"거슬리다","variants":["거슬려","거슬려요"],"score":-1,"source":"project"},
-  {"term":"부담스럽다","variants":["부담스러워","부담스러워요"],"score":-2,"source":"project"},
-  {"term":"허술하다","variants":["허술해","허술해요"],"score":-2,"source":"project"},
-  {"term":"촌스럽다","variants":["촌스러워","촌스러워요"],"score":-1,"source":"project"},
-  {"term":"칙칙하다","variants":["칙칙해","칙칙해요"],"score":-1,"source":"project"},
-  {"term":"무책임하다","variants":["무책임해","무책임해요"],"score":-3,"source":"project"},
-  {"term":"과장되다","variants":["과장돼","과장돼요"],"score":-1,"source":"project"},
-  {"term":"불공정하다","variants":["불공정해","불공정해요"],"score":-2,"source":"project"},
-  {"term":"불편함","variants":[],"score":-2,"source":"project"},
-  {"term":"손해","variants":["손해보다"],"score":-2,"source":"project"},
-  {"term":"피해","variants":["피해보다"],"score":-2,"source":"project"},
-  {"term":"망설이다","variants":["망설여","망설여요"],"score":-1,"source":"project"},
-  {"term":"고통스럽다","variants":["고통스러워","고통스러워요"],"score":-3,"source":"project"},
-  {"term":"괴로움","variants":[],"score":-2,"source":"project"},
-  {"term":"실수","variants":["실수하다"],"score":-2,"source":"project"},
-  {"term":"불만스럽다","variants":["불만스러워","불만스러워요"],"score":-2,"source":"project"},
-  {"term":"상태나쁘다","variants":["상태 나빠"],"score":-2,"source":"project"},
-  {"term":"맘에안들다","variants":["맘에 안 들어"],"score":-2,"source":"project"},
-  {"term":"실망스럽다","variants":["실망스러워","실망스러워요"],"score":-2,"source":"project"},
-  {"term":"별로다","variants":["별로야","별로예요"],"score":-1,"source":"project"},
-  {"term":"아깝다","variants":["아까워","아까워요"],"score":-1,"source":"project"},
-  {"term":"답없다","variants":["답이없다"],"score":-2,"source":"project"},
-  {"term":"불쾌감","variants":[],"score":-2,"source":"project"},
-  {"term":"낙담","variants":["낙담하다"],"score":-2,"source":"project"},
-  {"term":"절망","variants":["절망하다"],"score":-3,"source":"project"},
-  {"term":"무기력","variants":["무기력하다"],"score":-2,"source":"project"},
-  {"term":"우울하다","variants":["우울해","우울해요"],"score":-2,"source":"project"},
-  {"term":"스트레스","variants":["스트레스받다"],"score":-2,"source":"project"},
-  {"term":"압박감","variants":[],"score":-1,"source":"project"},
-  {"term":"난감하다","variants":["난감해","난감해요"],"score":-2,"source":"project"},
-  {"term":"난처하다","variants":["난처해","난처해요"],"score":-2,"source":"project"},
-  {"term":"끔찍하다","variants":["끔찍해","끔찍해요"],"score":-3,"source":"project"},
-  {"term":"엉성하다","variants":["엉성해","엉성해요"],"score":-2,"source":"project"},
-  {"term":"친절하다","variants":["친절해","친절하고"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"신속하다","variants":["신속해","신속해요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"배송빠르다","variants":["배송 빨라","배송 빨라요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"응대좋다","variants":["응대 좋아","응대 좋아요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"환불원활","variants":["환불 원활"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"교환원활","variants":["교환 원활"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"결제편리","variants":["결제 편리"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"품질좋다","variants":["품질 좋아","품질 좋아요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"포장꼼꼼","variants":["포장 꼼꼼"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"해결되다","variants":["해결돼","해결됐어요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"문제가 해결되다","variants":["문제가 해결돼","문제가 해결되었다","문제가 해결되었습니다"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"안내명확","variants":["안내 명확"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"배송정확","variants":["배송 정확"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"상담만족","variants":["상담 만족"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"처리빠르다","variants":["처리 빨라","처리 빨라요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"대기짧다","variants":["대기 짧아","대기 짧아요"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"만족","variants":["만족해요","만족했다"],"score":2,"domain":"customer_support","source":"project"},
-  {"term":"실망","variants":["실망해요","실망했다","실망하다"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"배송지연","variants":["배송 지연"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"응답느림","variants":["응답 느려","응답 느려요"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"환불지연","variants":["환불 지연"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"교환불편","variants":["교환 불편"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"결제오류","variants":["결제 오류"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"품질불량","variants":["품질 불량"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"대기길다","variants":["대기 길어","대기 길어요"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"해결안됨","variants":["해결 안 됨"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"배송누락","variants":["배송 누락"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"오배송","variants":["잘못 배송"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"응대불친절","variants":["응대 불친절"],"score":-2,"domain":"customer_support","source":"project"},
-  {"term":"환불거절","variants":["환불 거절"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"교환거절","variants":["교환 거절"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"결제실패","variants":["결제 실패"],"score":-3,"domain":"customer_support","source":"project"},
-  {"term":"상냥하다","variants":["상냥해","상냥해요"],"score":2,"source":"project"},
-  {"term":"활기차다","variants":["활기차","활기차요"],"score":2,"source":"project"},
-  {"term":"기분전환","variants":["기분 전환"],"score":2,"source":"project"},
-  {"term":"답답해하다","variants":["답답해해","답답해해요"],"score":-2,"source":"project"},
-  {"term":"피해없다","variants":["피해 없어"],"score":1,"source":"project"},
-  {"term":"예쁘다","variants":["예뻐","예뻐요"],"score":2,"source":"project"},
-  {"term":"간편하다","variants":["간편해","간편해요"],"score":2,"source":"project"},
-  {"term":"성실하다","variants":["성실해","성실해요"],"score":2,"source":"project"},
-  {"term":"도움","variants":[],"score":2,"source":"project"},
-  {"term":"믿음","variants":[],"score":2,"source":"project"},
-  {"term":"불만족스럽다","variants":["불만족스러워","불만족스러워요"],"score":-2,"source":"project"}
+  {
+    "term": "좋다",
+    "variants": [
+      "좋아",
+      "좋아요",
+      "좋지만",
+      "좋지"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "훌륭하다",
+    "variants": [
+      "훌륭해",
+      "훌륭해요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "행복",
+    "variants": [
+      "행복해",
+      "행복하다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "기쁘다",
+    "variants": [
+      "기뻐",
+      "기뻐요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "즐겁다",
+    "variants": [
+      "즐거워",
+      "즐거워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "만족스럽다",
+    "variants": [
+      "만족스러워",
+      "만족스러워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "최고",
+    "variants": [
+      "최고예요",
+      "최고다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "완벽하다",
+    "variants": [
+      "완벽해",
+      "완벽해요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "뛰어나다",
+    "variants": [
+      "뛰어나",
+      "뛰어나요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "우수하다",
+    "variants": [
+      "우수해",
+      "우수해요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "훌륭",
+    "variants": [],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "긍정적",
+    "variants": [
+      "긍정적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "편리하다",
+    "variants": [
+      "편리해",
+      "편리해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "유용하다",
+    "variants": [
+      "유용해",
+      "유용해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "신나다",
+    "variants": [
+      "신나",
+      "신나요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "감동",
+    "variants": [
+      "감동적",
+      "감동이다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "감사",
+    "variants": [
+      "감사해요",
+      "감사합니다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "고맙다",
+    "variants": [
+      "고마워",
+      "고마워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "사랑스럽다",
+    "variants": [
+      "사랑스러워",
+      "사랑스러워요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "아름답다",
+    "variants": [
+      "아름다워",
+      "아름다워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "멋지다",
+    "variants": [
+      "멋져",
+      "멋져요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "깔끔하다",
+    "variants": [
+      "깔끔해",
+      "깔끔해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "쾌적하다",
+    "variants": [
+      "쾌적해",
+      "쾌적해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "안정적",
+    "variants": [
+      "안정적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "신뢰하다",
+    "variants": [
+      "신뢰해",
+      "신뢰해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "믿음직하다",
+    "variants": [
+      "믿음직해",
+      "믿음직해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "빠르다",
+    "variants": [
+      "빨라",
+      "빨라요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "정확하다",
+    "variants": [
+      "정확해",
+      "정확해요"
+    ],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "효율적",
+    "variants": [
+      "효율적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "합리적",
+    "variants": [
+      "합리적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "저렴하다",
+    "variants": [
+      "저렴해",
+      "저렴해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "풍부하다",
+    "variants": [
+      "풍부해",
+      "풍부해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "다양하다",
+    "variants": [
+      "다양해",
+      "다양해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "신선하다",
+    "variants": [
+      "신선해",
+      "신선해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "맛있다",
+    "variants": [
+      "맛있어",
+      "맛있어요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "부드럽다",
+    "variants": [
+      "부드러워",
+      "부드러워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "편안하다",
+    "variants": [
+      "편안해",
+      "편안해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "친근하다",
+    "variants": [
+      "친근해",
+      "친근해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "반갑다",
+    "variants": [
+      "반가워",
+      "반가워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "기대된다",
+    "variants": [
+      "기대돼",
+      "기대돼요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "희망적",
+    "variants": [
+      "희망적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "든든하다",
+    "variants": [
+      "든든해",
+      "든든해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "만족감",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "감탄",
+    "variants": [
+      "감탄스럽다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "추천하다",
+    "variants": [
+      "추천해",
+      "추천해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "재밌다",
+    "variants": [
+      "재밌어",
+      "재밌어요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "흥미롭다",
+    "variants": [
+      "흥미로워",
+      "흥미로워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "유익하다",
+    "variants": [
+      "유익해",
+      "유익해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "특별하다",
+    "variants": [
+      "특별해",
+      "특별해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "소중하다",
+    "variants": [
+      "소중해",
+      "소중해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "따뜻하다",
+    "variants": [
+      "따뜻해",
+      "따뜻해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "세련되다",
+    "variants": [
+      "세련돼",
+      "세련돼요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "탁월하다",
+    "variants": [
+      "탁월해",
+      "탁월해요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "인상적",
+    "variants": [
+      "인상적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "매력적",
+    "variants": [
+      "매력적이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "유쾌하다",
+    "variants": [
+      "유쾌해",
+      "유쾌해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "상쾌하다",
+    "variants": [
+      "상쾌해",
+      "상쾌해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "기분좋다",
+    "variants": [
+      "기분좋아",
+      "기분좋아요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "알차다",
+    "variants": [
+      "알차",
+      "알차요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "뿌듯하다",
+    "variants": [
+      "뿌듯해",
+      "뿌듯해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "감사하다",
+    "variants": [
+      "감사해",
+      "감사하고"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "놀랍다",
+    "variants": [
+      "놀라워",
+      "놀라워요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "명확하다",
+    "variants": [
+      "명확해",
+      "명확해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "깨끗하다",
+    "variants": [
+      "깨끗해",
+      "깨끗해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "편하다",
+    "variants": [
+      "편해",
+      "편해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "고급스럽다",
+    "variants": [
+      "고급스러워",
+      "고급스러워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "기대이상",
+    "variants": [
+      "기대 이상"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "만족도높다",
+    "variants": [
+      "만족도 높아"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "환상적",
+    "variants": [
+      "환상적이다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "감격",
+    "variants": [
+      "감격스럽다"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "칭찬",
+    "variants": [
+      "칭찬하다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "호감",
+    "variants": [
+      "호감이다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "참신하다",
+    "variants": [
+      "참신해",
+      "참신해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "훌륭함",
+    "variants": [],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "기특하다",
+    "variants": [
+      "기특해",
+      "기특해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "보람있다",
+    "variants": [
+      "보람있어",
+      "보람있어요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "여유롭다",
+    "variants": [
+      "여유로워",
+      "여유로워요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "쾌활하다",
+    "variants": [
+      "쾌활해",
+      "쾌활해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "든든함",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "만족하다",
+    "variants": [
+      "만족해",
+      "만족한다"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "기분좋음",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "감명깊다",
+    "variants": [
+      "감명깊어",
+      "감명깊어요"
+    ],
+    "score": 3,
+    "source": "project"
+  },
+  {
+    "term": "나쁘다",
+    "variants": [
+      "나빠",
+      "나빠요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "최악",
+    "variants": [
+      "최악이다"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "불만",
+    "variants": [
+      "불만이다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불편하다",
+    "variants": [
+      "불편해",
+      "불편해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "어렵다",
+    "variants": [
+      "어려워",
+      "어려워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "복잡하다",
+    "variants": [
+      "복잡해",
+      "복잡해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "지루하다",
+    "variants": [
+      "지루해",
+      "지루해요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "화나다",
+    "variants": [
+      "화나",
+      "화나요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "슬프다",
+    "variants": [
+      "슬퍼",
+      "슬퍼요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "짜증나다",
+    "variants": [
+      "짜증나",
+      "짜증나요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "답답하다",
+    "variants": [
+      "답답해",
+      "답답해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "걱정",
+    "variants": [
+      "걱정된다"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "불안",
+    "variants": [
+      "불안하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "아쉽다",
+    "variants": [
+      "아쉬워",
+      "아쉬워요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "후회",
+    "variants": [
+      "후회하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "싫다",
+    "variants": [
+      "싫어",
+      "싫어요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "혐오",
+    "variants": [
+      "혐오스럽다"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "형편없다",
+    "variants": [
+      "형편없어",
+      "형편없어요"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "부족하다",
+    "variants": [
+      "부족해",
+      "부족해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "엉망",
+    "variants": [
+      "엉망이다"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "문제",
+    "variants": [
+      "문제다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "오류",
+    "variants": [
+      "오류가나다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "고장",
+    "variants": [
+      "고장나다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불량",
+    "variants": [
+      "불량하다"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "비싸다",
+    "variants": [
+      "비싸",
+      "비싸요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "낭비",
+    "variants": [
+      "낭비하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "느리다",
+    "variants": [
+      "느려",
+      "느려요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "늦다",
+    "variants": [
+      "늦어",
+      "늦어요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "무겁다",
+    "variants": [
+      "무거워",
+      "무거워요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "피곤하다",
+    "variants": [
+      "피곤해",
+      "피곤해요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "힘들다",
+    "variants": [
+      "힘들어",
+      "힘들어요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "괴롭다",
+    "variants": [
+      "괴로워",
+      "괴로워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "무섭다",
+    "variants": [
+      "무서워",
+      "무서워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "미흡하다",
+    "variants": [
+      "미흡해",
+      "미흡해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불친절하다",
+    "variants": [
+      "불친절해",
+      "불친절해요"
+    ],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "부정확하다",
+    "variants": [
+      "부정확해",
+      "부정확해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "비효율적",
+    "variants": [
+      "비효율적이다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불합리하다",
+    "variants": [
+      "불합리해",
+      "불합리해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "위험하다",
+    "variants": [
+      "위험해",
+      "위험해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불쾌하다",
+    "variants": [
+      "불쾌해",
+      "불쾌해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "어색하다",
+    "variants": [
+      "어색해",
+      "어색해요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "심심하다",
+    "variants": [
+      "심심해",
+      "심심해요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "답답함",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "혼란스럽다",
+    "variants": [
+      "혼란스러워",
+      "혼란스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불투명하다",
+    "variants": [
+      "불투명해",
+      "불투명해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "의심스럽다",
+    "variants": [
+      "의심스러워",
+      "의심스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불신",
+    "variants": [
+      "불신하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불만족",
+    "variants": [
+      "불만족하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불안정하다",
+    "variants": [
+      "불안정해",
+      "불안정해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "성가시다",
+    "variants": [
+      "성가셔",
+      "성가셔요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "거슬리다",
+    "variants": [
+      "거슬려",
+      "거슬려요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "부담스럽다",
+    "variants": [
+      "부담스러워",
+      "부담스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "허술하다",
+    "variants": [
+      "허술해",
+      "허술해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "촌스럽다",
+    "variants": [
+      "촌스러워",
+      "촌스러워요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "칙칙하다",
+    "variants": [
+      "칙칙해",
+      "칙칙해요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "무책임하다",
+    "variants": [
+      "무책임해",
+      "무책임해요"
+    ],
+    "score": -3,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "과장되다",
+    "variants": [
+      "과장돼",
+      "과장돼요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "불공정하다",
+    "variants": [
+      "불공정해",
+      "불공정해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불편함",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "손해",
+    "variants": [
+      "손해보다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "피해",
+    "variants": [
+      "피해보다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "망설이다",
+    "variants": [
+      "망설여",
+      "망설여요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "고통스럽다",
+    "variants": [
+      "고통스러워",
+      "고통스러워요"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "괴로움",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "실수",
+    "variants": [
+      "실수하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불만스럽다",
+    "variants": [
+      "불만스러워",
+      "불만스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "상태나쁘다",
+    "variants": [
+      "상태 나빠"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "맘에안들다",
+    "variants": [
+      "맘에 안 들어"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "실망스럽다",
+    "variants": [
+      "실망스러워",
+      "실망스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "별로다",
+    "variants": [
+      "별로야",
+      "별로예요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "아깝다",
+    "variants": [
+      "아까워",
+      "아까워요"
+    ],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "답없다",
+    "variants": [
+      "답이없다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불쾌감",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "낙담",
+    "variants": [
+      "낙담하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "절망",
+    "variants": [
+      "절망하다"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "무기력",
+    "variants": [
+      "무기력하다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "우울하다",
+    "variants": [
+      "우울해",
+      "우울해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "스트레스",
+    "variants": [
+      "스트레스받다"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "압박감",
+    "variants": [],
+    "score": -1,
+    "source": "project"
+  },
+  {
+    "term": "난감하다",
+    "variants": [
+      "난감해",
+      "난감해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "난처하다",
+    "variants": [
+      "난처해",
+      "난처해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "끔찍하다",
+    "variants": [
+      "끔찍해",
+      "끔찍해요"
+    ],
+    "score": -3,
+    "source": "project"
+  },
+  {
+    "term": "엉성하다",
+    "variants": [
+      "엉성해",
+      "엉성해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "친절하다",
+    "variants": [
+      "친절해",
+      "친절하고"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "신속하다",
+    "variants": [
+      "신속해",
+      "신속해요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "배송빠르다",
+    "variants": [
+      "배송 빨라",
+      "배송 빨라요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "응대좋다",
+    "variants": [
+      "응대 좋아",
+      "응대 좋아요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "환불원활",
+    "variants": [
+      "환불 원활"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "교환원활",
+    "variants": [
+      "교환 원활"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "결제편리",
+    "variants": [
+      "결제 편리"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "품질좋다",
+    "variants": [
+      "품질 좋아",
+      "품질 좋아요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "포장꼼꼼",
+    "variants": [
+      "포장 꼼꼼"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "해결되다",
+    "variants": [
+      "해결돼",
+      "해결됐어요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "문제가 해결되다",
+    "variants": [
+      "문제가 해결돼",
+      "문제가 해결되었다",
+      "문제가 해결되었습니다"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "안내명확",
+    "variants": [
+      "안내 명확"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "배송정확",
+    "variants": [
+      "배송 정확"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "상담만족",
+    "variants": [
+      "상담 만족"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "처리빠르다",
+    "variants": [
+      "처리 빨라",
+      "처리 빨라요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "대기짧다",
+    "variants": [
+      "대기 짧아",
+      "대기 짧아요"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "만족",
+    "variants": [
+      "만족해요",
+      "만족했다"
+    ],
+    "score": 2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "실망",
+    "variants": [
+      "실망해요",
+      "실망했다",
+      "실망하다"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "배송지연",
+    "variants": [
+      "배송 지연"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "응답느림",
+    "variants": [
+      "응답 느려",
+      "응답 느려요"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "환불지연",
+    "variants": [
+      "환불 지연"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "교환불편",
+    "variants": [
+      "교환 불편"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "결제오류",
+    "variants": [
+      "결제 오류"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "품질불량",
+    "variants": [
+      "품질 불량"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "대기길다",
+    "variants": [
+      "대기 길어",
+      "대기 길어요"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "해결안됨",
+    "variants": [
+      "해결 안 됨"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "배송누락",
+    "variants": [
+      "배송 누락"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "오배송",
+    "variants": [
+      "잘못 배송"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "응대불친절",
+    "variants": [
+      "응대 불친절"
+    ],
+    "score": -2,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "환불거절",
+    "variants": [
+      "환불 거절"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "교환거절",
+    "variants": [
+      "교환 거절"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "결제실패",
+    "variants": [
+      "결제 실패"
+    ],
+    "score": -3,
+    "domain": "customer_support",
+    "source": "project"
+  },
+  {
+    "term": "상냥하다",
+    "variants": [
+      "상냥해",
+      "상냥해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "활기차다",
+    "variants": [
+      "활기차",
+      "활기차요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "기분전환",
+    "variants": [
+      "기분 전환"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "답답해하다",
+    "variants": [
+      "답답해해",
+      "답답해해요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "피해없다",
+    "variants": [
+      "피해 없어"
+    ],
+    "score": 1,
+    "source": "project"
+  },
+  {
+    "term": "예쁘다",
+    "variants": [
+      "예뻐",
+      "예뻐요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "간편하다",
+    "variants": [
+      "간편해",
+      "간편해요"
+    ],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "성실하다",
+    "variants": [
+      "성실해",
+      "성실해요"
+    ],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "도움",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "믿음",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "불만족스럽다",
+    "variants": [
+      "불만족스러워",
+      "불만족스러워요"
+    ],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "괜찮다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "튼튼하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "귀엽다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "좋아하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "시원하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "산뜻하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "편리함",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "청결하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "정교하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "견고하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "탄탄하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "매끄럽다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "근사하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "우아하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "고요하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "달콤하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "향긋하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "넉넉하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "풍성하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "눈부시다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "빛나다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "우월하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "훤하다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "싱그럽다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "자랑스럽다",
+    "variants": [],
+    "score": 2,
+    "source": "project"
+  },
+  {
+    "term": "썩다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "상하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "망가지다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "찢어지다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "부서지다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "깨지다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "끈적하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "까칠하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "거칠다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "냄새나다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "악취",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "퀴퀴하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "눅눅하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "축축하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "더럽다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "지저분하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "허약하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "조잡하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "허접하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불결하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "초라하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "우스꽝스럽다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "불신하다",
+    "variants": [],
+    "score": -2,
+    "source": "project"
+  },
+  {
+    "term": "공손하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "정중하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "세심하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "꼼꼼하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "배려",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "존중",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "경청",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "배려하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "존중하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "협조적",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "원활하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "수월하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "명료하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "투명하다",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "책임감",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "성의",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "진정성",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "신용",
+    "variants": [],
+    "score": 2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "무례하다",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "불성실하다",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "불성의",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "무응답",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "오안내",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "오청구",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "과청구",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "중복결제",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "이중결제",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "미배송",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "파손",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "훼손",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "분실",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "누락",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "지연",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "거절",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "지체",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "착오",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "불통",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "오작동",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "번거롭다",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "불명확하다",
+    "variants": [],
+    "score": -2,
+    "source": "project",
+    "domain": "customer_support"
+  },
+  {
+    "term": "마음에 들다",
+    "variants": [
+      "맘에 들다"
+    ],
+    "score": 2,
+    "source": "project"
+  }
 ]

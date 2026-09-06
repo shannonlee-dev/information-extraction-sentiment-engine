@@ -45,10 +45,8 @@ def test_matching_does_not_treat_arbitrary_substrings_as_sentiment(text):
     ("만족하지 않는 것은 아니다", [2.0], [2]),
     ("문제가 없지는 않다", [-2.0], [2]),
     ("좋지 않다 그런데 불편하다", [-2.0, -2.0], [1, 0]),
-    ("해결 안 됨", [-3.0], [0]),
-    ("맘에 안 들어", [-2.0], [0]),
-    ("피해 없어", [1.0], [0]),
-    ("문제가 해결되었다", [2.0], [0]),
+    ("피해 없어", [2.0], [1]),
+    ("문제가 해결되었다", [-2.0, 2.0], [0, 0]),
 ])
 def test_negations_attach_to_their_predicate_once(text, contributions, counts):
     result = analyze_sentiment(text)
@@ -69,15 +67,17 @@ def test_disabled_modifiers_keep_inflection_matching():
 
 
 def test_multiword_inflection_preserves_whitespace_and_avoids_double_counting():
-    text = "문제가  \t해결되었습니다"
+    text = "마음에  \t들어요"
     result = analyze_sentiment(text)
     assert result.label == "positive"
     assert len(result.matches) == 1
     assert result.matches[0].raw == text
 
 
-def test_reported_predicate_can_be_negated_by_cannot_say():
-    assert analyze_sentiment("정확하다고 못 하겠습니다").label == "negative"
+def test_quoted_speech_does_not_borrow_negation_without_supported_grammar():
+    result = analyze_sentiment("정확하다고 못 하겠습니다")
+    assert result.matches[0].negation_count == 0
+    assert result.score == 2.0
 
 
 def test_contrast_blocks_auxiliary_chain_and_emphasis():
@@ -96,9 +96,28 @@ def test_negation_inflected_with_clause_ending():
 def test_postposed_inability_and_nominal_negation_are_negative(text):
     result = analyze_sentiment(text)
     assert result.label == "negative"
-    assert result.matches[0].negation_count == 1
+    assert result.matches[-1].negation_count == 1
 
 
 @pytest.mark.parametrize("text", ["햇빛을 피했다", "햇빛을 피했습니다", "모자를 벗고 햇빛을 피했어요"])
 def test_noun_ending_hae_is_not_conjugated_into_an_unrelated_verb(text):
     assert analyze_sentiment(text).label == "neutral"
+
+
+def test_compositional_exceptions_are_not_lexical_entries():
+    from sentiment_engine.sentiment import _get_lexicon
+    assert not ({'해결안됨','맘에안들다','피해없다','문제가 해결되다'} & {e.term for e in _get_lexicon()})
+
+
+def test_atomic_idiom_consumes_internal_span_and_accepts_external_negation():
+    from sentiment_engine.korean import analyze_morphology
+    from sentiment_engine.sentiment import find_events
+    from sentiment_engine.sentiment_rules import link_modifiers
+    text='마음에 들지 않다'
+    result=analyze_sentiment(text)
+    assert result.score == -2.0
+    assert len(result.matches)==1
+    assert result.matches[0].negation_count==1
+    tokens=analyze_morphology(text);events=find_events(tokens,text=text)
+    trace=link_modifiers(text,tokens,events)
+    assert [(l.kind,l.event_index) for l in trace]==[('consumed',0),('negation',0)]

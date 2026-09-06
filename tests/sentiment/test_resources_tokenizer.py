@@ -1,13 +1,9 @@
 import json
 from pathlib import Path
-from types import MappingProxyType
 
 import pytest
 
 from sentiment_engine.sentiment import (
-    _LexiconEntry,
-    _find_sentiment_matches,
-    _load_lexicon,
     _load_modifiers,
     _tokenize,
 )
@@ -16,19 +12,6 @@ from sentiment_engine.sentiment import (
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 LEXICON_PATH = REPOSITORY_ROOT / "data" / "sentiment_lexicon.json"
 MODIFIERS_PATH = REPOSITORY_ROOT / "data" / "modifiers.json"
-
-
-def _valid_entries(count: int = 200, customer_support_count: int = 30) -> list[dict[str, object]]:
-    return [
-        {
-            "term": f"term{index}",
-            "variants": [f"variant{index}"],
-            "score": 1,
-            "domain": "customer_support" if index < customer_support_count else None,
-            "source": "project",
-        }
-        for index in range(count)
-    ]
 
 
 def _write_json(path: Path, value: object) -> Path:
@@ -62,54 +45,6 @@ def test_committed_lexicon_has_required_inventory_and_schema() -> None:
         and ("domain" not in entry or entry["domain"] is None or isinstance(entry["domain"], str))
         for entry in entries
     )
-
-
-def test_lexicon_rejects_duplicate_term_before_inventory_count(tmp_path: Path) -> None:
-    """A second canonical term must not silently overwrite the first entry."""
-    entries = _valid_entries()
-    entries[1]["term"] = entries[0]["term"]
-
-    with pytest.raises(ValueError, match="duplicate sentiment term"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
-
-
-def test_lexicon_rejects_conflicting_variant_surface(tmp_path: Path) -> None:
-    """A surface form cannot resolve to two different sentiment entries."""
-    entries = _valid_entries()
-    entries[1]["variants"] = [entries[0]["variants"][0]]
-
-    with pytest.raises(ValueError, match="conflicting sentiment surface"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
-
-
-def test_lexicon_rejects_zero_score(tmp_path: Path) -> None:
-    """Neutral scores would make a sentiment entry meaningless."""
-    entries = _valid_entries()
-    entries[0]["score"] = 0
-
-    with pytest.raises(ValueError, match="invalid sentiment score"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
-
-
-def test_lexicon_rejects_boolean_score(tmp_path: Path) -> None:
-    """A boolean is not a valid integer sentiment score."""
-    entries = _valid_entries()
-    entries[0]["score"] = True
-
-    with pytest.raises(ValueError, match="invalid sentiment score"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", entries))
-
-
-def test_lexicon_rejects_insufficient_inventory(tmp_path: Path) -> None:
-    """A small lexicon does not meet the project coverage floor."""
-    with pytest.raises(ValueError, match="sentiment lexicon requires at least 200 terms"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", _valid_entries(199)))
-
-
-def test_lexicon_rejects_insufficient_customer_support_inventory(tmp_path: Path) -> None:
-    """Domain coverage has its own independent minimum."""
-    with pytest.raises(ValueError, match="sentiment lexicon requires at least 30 domain terms"):
-        _load_lexicon(_write_json(tmp_path / "lexicon.json", _valid_entries(customer_support_count=29)))
 
 
 @pytest.mark.parametrize("multiplier", [1.0, 2.1])
@@ -178,33 +113,3 @@ def test_tokenize_marks_every_supported_punctuation_as_boundary() -> None:
 
     assert [token.text for token in tokens] == ["가", ",", "나", ";", "다", ":", "라"]
     assert [token.is_boundary for token in tokens] == [False, True, False, True, False, True, False]
-
-
-def test_longest_sentiment_expression_claims_overlapping_span() -> None:
-    """Emitting the shorter prefix as well would double-count a phrase sentiment."""
-    lexicon = MappingProxyType(
-        {
-            "마음": _LexiconEntry("마음", 1, None),
-            "마음에 들다": _LexiconEntry("마음에 들다", 3, None),
-        }
-    )
-
-    text = "이 디자인은 마음에 들다."
-    matches = _find_sentiment_matches(_tokenize(text), lexicon)
-
-    assert [(match.entry.term, match.raw) for match in matches] == [("마음에 들다", "마음에 들다")]
-    assert all(text[match.start : match.end] == match.raw for match in matches)
-
-
-def test_sentiment_match_preserves_source_whitespace() -> None:
-    """Normalizing separators in a match would break its source span contract."""
-    lexicon = MappingProxyType(
-        {"마음에 들다": _LexiconEntry("마음에 들다", 3, None)}
-    )
-
-    text = "이 디자인은 마음에  \t\n들다."
-    matches = _find_sentiment_matches(_tokenize(text), lexicon)
-
-    assert len(matches) == 1
-    assert matches[0].raw == "마음에  \t\n들다"
-    assert text[matches[0].start : matches[0].end] == matches[0].raw

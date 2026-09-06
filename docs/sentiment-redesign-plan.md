@@ -1,12 +1,12 @@
 # 미션 범위 감성 엔진 개선 Implementation Plan
 
-> **상태: 미실행 후속 제안.** 기존 엔진의 외부 평가는 완료됐고 목표에 미달했다. 이 문서는 재설계 실행 지시가 있을 때 개발 분할 진단부터 진행하기 위한 계획이다. 체크박스는 실제 검증 후 표시한다. 이미 열람한 v1 final은 새 엔진의 독립 최종 평가에 재사용할 수 없다.
+> **상태 (2026-09-06): B1~B3 구현·검증 완료, B4 개발 비교·동결 진행.** 승인된 공백 위치 복원·surrogate 검증·TAB 경계 추적을 적용했다. 공개 API와 정보 추출은 유지한다. [개발 기록](evaluation/engine-development.md)에 결과와 제한을 기록하며, 이미 노출된 v1 final은 재사용하지 않는다.
 
 **Goal:** 개발 자료에서 확인된 활용형·품사·부정 범위 오류를 공통 언어 규칙으로 개선하되, 미션의 사전 기반 점수와 공개 API를 유지한다.
 
 **Architecture:** 한 개의 KOMORAN 어댑터가 원문 위치를 보존한 형태소를 반환한다. 입력과 사전을 같은 어휘 표현으로 정규화하고, 제한된 형태소 문법으로 감성 사건과 수정어를 연결한다. 평가 데이터의 준비·보류·최종 판정은 A 계획에 맡긴다.
 
-**Tech Stack:** Python 3.10 이상, 내장 re, KoNLPy 0.6.0, 그 배포물의 KOMORAN jar/model, 실제 호환성을 검증한 JPype/JDK, pytest. JDK 17은 우선 검증할 후보이며 동작 확인 사실이 아니다.
+**Tech Stack:** Python 3.10 이상, 내장 re, KoNLPy 0.6.0, 그 배포물의 KOMORAN jar/model, 실제 호환성을 검증한 JPype/JDK, pytest. Python 3.10.20/3.12.3, JPype1 1.6.0, Temurin JDK 17.0.20.1에서 실제 검증했다.
 
 **평가 기준:** [동결 프로토콜](evaluation/sentiment-protocol.md), [실행 가이드](evaluation/benchmark-guide.md), [확정 결과](evaluation/sentiment-results.md). 완료된 상위 계획과 대체된 초기 제안은 Git 커밋 `db765d9`에 보존돼 있다.
 
@@ -31,7 +31,7 @@
 3. 공식 설치 문서는 Java 의존성을 설명하지만 Python 3.10/3.12·JPype·JDK 17 조합을 인증하지 않는다. 실제 import/초기화/위치·메모리 검증이 필요하다. [T4]
 4. KNU는 단어뿐 아니라 어구·문형·축약어·이모티콘을 포함한다. 공개 README/ReadMe.txt 조사에서 명시적 라이선스 조건은 확인하지 못했다. 외부 출처가 있다는 사실만으로 검수 없는 전체 phrase lookup 또는 재배포를 정당화하지 않는다. [T5][T6]
 
-이 문서 작성 중 KoNLPy/Java 설치, jar 호출, 사전 다운로드, 형태소 분석 성능 실험을 실행하지 않았다.
+최초 작성 시에는 기술 검증 전이었다. 아래 원래 계약에서 발견된 위치 문제와 승인된 변경은 개발 기록에 보존한다.
 
 ## 3. 형태소·사전·점수 계약
 
@@ -39,8 +39,8 @@
 
 - 분석기 접근은 `korean.py` 한 곳에서 한다. 레지스트리·복수 백엔드 프레임워크를 만들지 않는다. `self.jki` 의존성을 어댑터 내부에 가두고 배포 버전·파일 해시를 확인한다.
 - `MorphToken`은 `morph:str`, `pos:str`, `start:int`, `end:int`, `eojeol_index:int`를 가진다. `morph`를 원문 substring과 같다고 가정하지 않는다. `lemma`라는 필드명으로 일반 표제어 추출을 보증하지 않는다.
-- `text.splitlines(keepends=True)`로 줄과 원래 시작점을 보존한다. CR/LF 구분자는 분석 입력에서 제외해도 전체 오프셋에 정확히 더한다. 원문 NFC/공백 축약은 하지 않는다. 어절은 원문 공백 구간으로 정의하고 형태소 범위와 대조한다.
-- Java UTF-16 경계→Python code point 인덱스를 명시적으로 변환한다. emoji surrogate 중간 경계는 오류다. 축약형에서 여러 형태소가 같은 음절 범위를 가질 수 있다. 구간 중첩 자체를 실패로 보지 않는다.
+- `text.splitlines(keepends=True)`로 줄과 원래 시작점을 보존한다. CR/LF 구분자는 분석 입력에서 제외해도 전체 오프셋에 정확히 더한다. 원문 NFC/공백 축약은 하지 않는다. 단, 번들 jar의 공백 축약·trim에 정확히 대응하는 경계표로 분석기 위치를 원문에 복원한다. 어절은 원문 공백 구간으로 정의한다. 여러 어절을 차지하는 사전 고유명사는 통째로 보존하고 eojeol_index는 시작 어절 번호다. 형태소 양 끝은 실제 원문 어절에 속해야 한다.
+- Java UTF-16 경계→Python code point 인덱스를 명시적으로 변환한다. emoji surrogate 중간 경계는 원칙적으로 오류다. 예외는 같은 원문 supplementary 문자에서 나온 인접 SW 두 개의 실제 UTF-16 값·위치가 정확히 일치하는 경우로 한정해 복원하며 trace에 남긴다. 원문 공백과 일치하는 TAB 등의 SW는 경계 trace로 보존한다. 축약형에서 여러 형태소가 같은 음절 범위를 가질 수 있다. 구간 중첩 자체를 실패로 보지 않는다.
 - 문장부호·줄바꿈을 절 경계 구성에 보존한다. 분석기가 빈 입력/공백만 입력에 반환하는 결과는 별도로 정의한다. 전체가 분석 불가능한 비어 있지 않은 입력과 정상 빈 감성 매칭을 구별한다.
 - 하나의 프로세스에서 JVM을 한 번 초기화하고 bounded 캐시만 사용한다. heap 1024MiB를 우선 검증하며 실제 peak RSS도 기록한다. 모델/설정 변경 시 캐시를 재사용하지 않는다.
 - 지원 경로는 저장소 checkout+editable install이다. 현 구조의 루트 `data/` 접근을 wheel 설치 지원이라고 주장하지 않는다. 패키지 배포 개선은 별도 범위다.
@@ -139,9 +139,9 @@ token_start/end는 형태소 열의 반개구간, 공개 start/end는 Python 원
 **Files:** probe_komoran.py, korean.py, 내부 타입, test_morphology.py, runtime lock.
 **Consumes:** A1 baseline과 development 오류 근거. **Produces:** 위치가 보존된 형태소 어댑터 또는 명시적 부적격 판정.
 
-- [ ] 별도 환경에서 KoNLPy 0.6.0/JDK 17을 우선 설치한다. Python 3.10/현재 Python에서 호환하는 JPype를 검증하고 실제 버전·Python/JDK vendor·OS·architecture를 기록한다. 현재 환경을 덮어쓰지 않는다.
-- [ ] 배포 jar/model의 파일명·해시를 수집하고 토큰의 `getMorph/getPos/getBeginIndex/getEndIndex` 실재와 호출 결과를 확인한다. 3.3.9 문서만 보고 배포 jar 버전을 바꾸지 않는다.
-- [ ] 축약·과거·높임, 이모지, 반복 단어, 공백 두 개, TAB, CRLF/빈 줄에 정확한 기대 source 범위를 둔 테스트를 작성하고 현재 어댑터에서 실패를 확인한다.
+- [x] 별도 환경에서 KoNLPy 0.6.0/JDK 17을 우선 설치한다. Python 3.10/현재 Python에서 호환하는 JPype를 검증하고 실제 버전·Python/JDK vendor·OS·architecture를 기록한다. 현재 환경을 덮어쓰지 않는다.
+- [x] 배포 jar/model의 파일명·해시를 수집하고 토큰의 `getMorph/getPos/getBeginIndex/getEndIndex` 실재와 호출 결과를 확인한다. 3.3.9 문서만 보고 배포 jar 버전을 바꾸지 않는다.
+- [x] 축약·과거·높임, 이모지, 반복 단어, 공백 두 개, TAB, CRLF/빈 줄에 정확한 기대 source 범위를 둔 테스트를 작성하고 현재 어댑터에서 실패를 확인한다.
 
 ```python
 def test_utf16_map_has_no_surrogate_midpoint():
@@ -157,10 +157,10 @@ def test_repeated_words_keep_distinct_source_ranges():
     assert all(0 <= t.start < t.end <= len(text) for t in tokens)
 ```
 
-- [ ] `utf16_boundaries(text:str)->dict[int,int]`는 Unicode 문자를 순회하여 BMP면 Java index+1, supplementary면 +2, Python index+1로 경계만 기록한다. 없는 Java 경계를 조회하면 오류다. 문자열 find로 정렬하지 않는다.
-- [ ] 실제 jar에서 축약형의 중첩 범위가 어떻게 나오는지 기록하고 어댑터 계약을 충족하는지 확인한다. 중첩된 음절 범위와 길이가 0인 범위를 구별하며 임의 범위 보정을 금지한다.
-- [ ] 이 계획의 초기 위치 계약은 모든 반환 MorphToken에 `0 <= start < end <= len(text)`다. 실제 분석기가 타당한 zero-length 형태소를 요구하면 이를 조용히 버리거나 주변 글자에 붙이지 않는다. B1 부적격으로 기록하고 위치 계약 개정안을 먼저 문서화한 뒤 재검증한다. 원문 사건 정렬이 검증되기 전 B2로 넘어가지 않는다.
-- [ ] cold/warm 호출·heap/RSS를 기록한다. `python -m pytest tests/sentiment/test_morphology.py -q`와 새 환경 import를 확인한다.
+- [x] `utf16_boundaries(text:str)->dict[int,int]`는 Unicode 문자를 순회하여 BMP면 Java index+1, supplementary면 +2, Python index+1로 경계만 기록한다. 없는 Java 경계를 조회하면 오류다. 문자열 find로 정렬하지 않는다.
+- [x] 실제 jar에서 축약형의 중첩 범위가 어떻게 나오는지 기록하고 어댑터 계약을 충족하는지 확인한다. 중첩된 음절 범위와 길이가 0인 범위를 구별하며 임의 범위 보정을 금지한다.
+- [x] 이 계획의 초기 위치 계약은 모든 반환 MorphToken에 `0 <= start < end <= len(text)`다. 실제 분석기가 타당한 zero-length 형태소를 요구하면 이를 조용히 버리거나 주변 글자에 붙이지 않는다. B1 부적격으로 기록하고 위치 계약 개정안을 먼저 문서화한 뒤 재검증한다. 원문 사건 정렬이 검증되기 전 B2로 넘어가지 않는다.
+- [x] cold/warm 호출·heap/RSS를 기록한다. `python -m pytest tests/sentiment/test_morphology.py -q`와 새 환경 import를 확인한다.
 
 **Gate:** 위치·버전·환경 계약 미충족이면 B1 실패를 보고하고 B2를 진행하지 않는다. A 계획의 baseline 평가 경로는 사용 가능하다.
 
@@ -169,11 +169,11 @@ def test_repeated_words_keep_distinct_source_ranges():
 **Files:** 사전 원본/annotations/provenance/compiled, build 스크립트, sentiment.py, resources 테스트.
 **Consumes:** B1 분석기·현재 사전, 선택적으로 이용 조건 확인된 KNU. **Produces:** 후보 M, 조건 충족 시 K의 사전 artifact.
 
-- [ ] 모든 현재 canonical 항목에 source/score/품사/도메인/유지·제외 근거를 기록한다. 활용형 중복과 동의어를 구별하고 전체 문장 예외를 감사한다.
-- [ ] 정상 활용형, 피해/피하다, 명사 복합어 부분 매칭 방지, 같은 key 상충, 입력 파일 순서 독립성, 원자적 내부 부정 소비 테스트를 먼저 작성→실패 확인한다.
-- [ ] key 구성·canonical 병합·충돌 제외를 구현한다. 최소 200개/직접 domain 30개는 compiled 최종 기준으로 검사한다. 부족하면 development에서 의미·극성이 설명 가능한 어휘를 추가하고 검수 근거를 남긴다.
-- [ ] 원본+annotations+model hash가 같으면 compiled 바이트 동일, 사전 순서만 바뀌면 semantic index 동일, model hash가 바뀌면 런타임 거부를 검사한다.
-- [ ] KNU는 3절 K 조건을 충족할 때만 도입한다. 채택/제외/override 파일이 재현에 포함되어야 한다. 조건 불명확 시 K 부적격 사유를 기록하고 M으로 진행한다.
+- [x] 모든 현재 canonical 항목에 source/score/품사/도메인/유지·제외 근거를 기록한다. 활용형 중복과 동의어를 구별하고 전체 문장 예외를 감사한다.
+- [x] 정상 활용형, 피해/피하다, 명사 복합어 부분 매칭 방지, 같은 key 상충, 입력 파일 순서 독립성, 원자적 내부 부정 소비 테스트를 먼저 작성→실패 확인한다.
+- [x] key 구성·canonical 병합·충돌 제외를 구현한다. 최소 200개/직접 domain 30개는 compiled 최종 기준으로 검사한다. 부족하면 development에서 의미·극성이 설명 가능한 어휘를 추가하고 검수 근거를 남긴다.
+- [x] 원본+annotations+model hash가 같으면 compiled 바이트 동일, 사전 순서만 바뀌면 semantic index 동일, model hash가 바뀌면 런타임 거부를 검사한다.
+- [x] KNU는 3절 K 조건을 충족할 때만 도입한다. 채택/제외/override 파일이 재현에 포함되어야 한다. 조건 불명확 시 K 부적격 사유를 기록하고 M으로 진행한다.
 
 ```bash
 python -m scripts.build_sentiment_lexicon \
@@ -190,8 +190,8 @@ python -m pytest tests/sentiment/test_resources_tokenizer.py tests/sentiment/tes
 **Files:** sentiment_rules.py, sentiment.py, models.py, modifiers, composition/modifiers/scoring/matching 테스트.
 **Consumes:** MorphToken·SentimentEvent. **Produces:** 기존 형식 SentimentResult와 내부 ModifierLink 추적.
 
-- [ ] 어휘 확정→술어/절 경계→원자적 소비→단일 부정→명사화 이중부정→강조→합산 순서를 구현한다. 다중 규칙이 같은 연산자를 소비할 때 더 구체적인 문법 우선, 같은 문법이면 가장 안쪽 술어 그룹 우선으로 고정하고 trace에 남긴다.
-- [ ] 3절 표의 정상/반례를 각 규칙 추가 전에 테스트로 만든다. 친절/불편/훌륭 등 서로 다른 어휘를 사용하고 trace의 대상 event index까지 검증한다.
+- [x] 어휘 확정→술어/절 경계→원자적 소비→단일 부정→명사화 이중부정→강조→합산 순서를 구현한다. 다중 규칙이 같은 연산자를 소비할 때 더 구체적인 문법 우선, 같은 문법이면 가장 안쪽 술어 그룹 우선으로 고정하고 trace에 남긴다.
+- [x] 3절 표의 정상/반례를 각 규칙 추가 전에 테스트로 만든다. 친절/불편/훌륭 등 서로 다른 어휘를 사용하고 trace의 대상 event index까지 검증한다.
 
 ```python
 def test_supported_negation_composition():
@@ -207,11 +207,11 @@ def test_supported_negation_composition():
     assert emphatic.score == 1.5 * plain.score
 ```
 
-- [ ] 수정어 off/on의 사건 목록은 동일하고 기여도만 달라짐을 검사한다. 사전 원자성이 다른 구성에서 off 결과를 단순 문자열 단어합으로 강제하지 않는다.
-- [ ] 모든 공개 match 원문 일치, contribution 합계, 강조 부호 보존, 사건/연산자 단일 소유, 분리된 절에 추가한 부정의 비간섭을 검사한다. 형태소 모델이 문맥에 따라 결과를 바꿀 수 있으므로 구조적 불변식은 같은 내부 사건 구조 조건 아래 검증한다.
-- [ ] 문장별 if/평가 ID/전체 문장 lookup을 금지한다. 일반 문법으로 표현 못 하는 상태 변화·반어·의향은 미지원으로 기록한다.
-- [ ] 기존 테스트에서 옛 거리 타이브레이크나 잘못된 활용형을 정답으로 요구하면 이유와 대체 의미 계약을 기록한다. 정상 공개 API 계약은 보존한다.
-- [ ] `python -m pytest tests/sentiment -q` 실행. 새 미등록 외부 문장을 맞히도록 테스트 기대값을 실제 출력에 맞춰 바꾸지 않는다.
+- [x] 수정어 off/on의 사건 목록은 동일하고 기여도만 달라짐을 검사한다. 사전 원자성이 다른 구성에서 off 결과를 단순 문자열 단어합으로 강제하지 않는다.
+- [x] 모든 공개 match 원문 일치, contribution 합계, 강조 부호 보존, 사건/연산자 단일 소유, 분리된 절에 추가한 부정의 비간섭을 검사한다. 형태소 모델이 문맥에 따라 결과를 바꿀 수 있으므로 구조적 불변식은 같은 내부 사건 구조 조건 아래 검증한다.
+- [x] 문장별 if/평가 ID/전체 문장 lookup을 금지한다. 일반 문법으로 표현 못 하는 상태 변화·반어·의향은 미지원으로 기록한다.
+- [x] 기존 테스트에서 옛 거리 타이브레이크나 잘못된 활용형을 정답으로 요구하면 이유와 대체 의미 계약을 기록한다. 정상 공개 API 계약은 보존한다.
+- [x] `python -m pytest tests/sentiment -q` 실행. 새 미등록 외부 문장을 맞히도록 테스트 기대값을 실제 출력에 맞춰 바꾸지 않는다.
 
 ### B4 — 개발 비교·후보 동결·통합
 
@@ -243,4 +243,4 @@ KNU 단어 채택 자체는 정상적인 외부 어휘 자원 사용이다. 반�
 - **[T5]** [KNU 저장소 설명](https://github.com/park1200656/KnuSentiLex): 단어·어구·문형·축약어·이모티콘과 구축 방법.
 - **[T6]** [KNU ReadMe.txt](https://github.com/park1200656/KnuSentiLex/blob/master/ReadMe.txt): 사전 자원 설명. 조사에서 명시적 이용/배포 허가를 확인하지 못한 상태.
 
-모든 체크박스는 미실행 상태다. 이 문서만으로 특정 API 조합의 동작이나 새 엔진 성능을 검증했다고 주장하지 않는다.
+체크한 항목은 구현·검증 완료다. 최초 B1 부적격 결과도 개발 기록에 보존한다. 개발 지표는 새 독립 최종 성능 판정과 구별한다.

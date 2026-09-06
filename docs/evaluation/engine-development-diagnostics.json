@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "candidate": "M",
+  "independent_final_evaluation": false,
+  "neutral_reasons": {
+    "no_match": 1509,
+    "cancellation": 84
+  },
+  "on_off_correctness": {
+    "both_correct": 1923,
+    "repaired_by_on": 71,
+    "regressed_by_on": 9,
+    "both_wrong": 1997
+  },
+  "error_sample": {
+    "selection": "First 25 wrong M-on IDs in string sort order; nonrandom, AI review, multiple categories allowed. No population-frequency or confirmed rating-error claim.",
+    "category_counts": {
+      "dictionary": 6,
+      "attachment": 1,
+      "mixed": 4,
+      "context": 14,
+      "morphology": 8,
+      "rating_noise_possible": 3,
+      "polarity": 2
+    },
+    "annotations": [
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:1",
+        "categories": [
+          "dictionary",
+          "attachment"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:10",
+        "categories": [
+          "mixed",
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100015",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100016",
+        "categories": [
+          "dictionary",
+          "mixed"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100160",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100340",
+        "categories": [
+          "morphology"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100413",
+        "categories": [
+          "morphology"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100464",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100471",
+        "categories": [
+          "morphology"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100503",
+        "categories": [
+          "dictionary",
+          "morphology"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100542",
+        "categories": [
+          "morphology",
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100619",
+        "categories": [
+          "rating_noise_possible"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100691",
+        "categories": [
+          "dictionary",
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:10079",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100896",
+        "categories": [
+          "morphology",
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100910",
+        "categories": [
+          "mixed",
+          "polarity"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100928",
+        "categories": [
+          "rating_noise_possible"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:100944",
+        "categories": [
+          "morphology"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:10100",
+        "categories": [
+          "context",
+          "rating_noise_possible"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101021",
+        "categories": [
+          "context",
+          "dictionary"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101091",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101345",
+        "categories": [
+          "dictionary",
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101439",
+        "categories": [
+          "context"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:101618",
+        "categories": [
+          "mixed",
+          "polarity"
+        ]
+      },
+      {
+        "id": "dc4d1aca0a148671cbe80bcb81962eee297370acab42be93c1617ce9336479c0:1018",
+        "categories": [
+          "morphology",
+          "context"
+        ]
+      }
+    ]
+  }
+}

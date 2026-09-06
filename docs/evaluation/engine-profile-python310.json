@@ -1,0 +1,20 @@
+{
+  "candidate_manifest": "artifacts/benchmark/redesign-development-M-final/candidate-M.json",
+  "n": 4000,
+  "cold_seconds": 2.5299241009997786,
+  "warm_p50_ms": 0.6359899998642504,
+  "warm_p95_ms": 2.2646719990007114,
+  "peak_rss_bytes": 716595200,
+  "successful_input_codepoints": {
+    "min": 5,
+    "max": 140,
+    "p50": 29,
+    "p95": 100
+  },
+  "matched_inputs": 2410,
+  "on_off_event_and_source_invariant_checks": 3919,
+  "errors": {
+    "KOMORAN did not preserve complete source coverage": 81
+  },
+  "workload": "one uncached morphology call per input; on scoring timed, off invariants checked afterward"
+}

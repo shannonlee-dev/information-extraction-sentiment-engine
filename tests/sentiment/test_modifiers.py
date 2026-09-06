@@ -25,10 +25,10 @@ def test_emphasis_is_claimed_only_by_the_next_sentiment() -> None:
     assert [match.contribution for match in result.matches] == [3.0, 2.0]
 
 
-def test_emphasis_allows_two_intervening_word_tokens() -> None:
+def test_emphasis_does_not_jump_over_unlicensed_nominal_phrase() -> None:
     result = analyze_sentiment("정말 이 제품도 만족")
 
-    assert result.matches[0].emphasis_multiplier == 1.5
+    assert result.matches[0].emphasis_multiplier == 1.0
 
 
 def test_emphasis_does_not_cross_three_intervening_word_tokens() -> None:
@@ -66,10 +66,10 @@ def test_double_negation_restores_polarity() -> None:
     assert result.matches[0].contribution == 2.0
 
 
-def test_negation_allows_two_intervening_word_tokens() -> None:
+def test_negation_does_not_link_an_unrelated_copula_by_distance() -> None:
     result = analyze_sentiment("좋지 이 제품은 아니다")
 
-    assert result.matches[0].negation_count == 1
+    assert result.matches[0].negation_count == 0
 
 
 def test_negation_does_not_cross_three_intervening_word_tokens() -> None:
@@ -86,18 +86,18 @@ def test_punctuation_blocks_negation_scope(boundary: str) -> None:
     assert result.matches[0].negation_count == 0
 
 
-def test_negation_is_claimed_by_the_nearest_sentiment() -> None:
-    result = analyze_sentiment("좋다 아니다 오늘 나쁘다")
+def test_nominal_negation_is_claimed_by_its_grammatical_owner() -> None:
+    result = analyze_sentiment("불만이 아니다 오늘 나쁘다")
 
     assert [match.negation_count for match in result.matches] == [1, 0]
-    assert [match.contribution for match in result.matches] == [-2.0, -2.0]
+    assert [match.contribution for match in result.matches] == [2.0, -2.0]
 
 
-def test_negation_tie_is_claimed_by_the_following_sentiment() -> None:
+def test_disconnected_copula_does_not_choose_a_nearby_predicate() -> None:
     result = analyze_sentiment("좋다 아니다 나쁘다")
 
-    assert [match.negation_count for match in result.matches] == [0, 1]
-    assert [match.contribution for match in result.matches] == [2.0, 2.0]
+    assert [match.negation_count for match in result.matches] == [0, 0]
+    assert [match.contribution for match in result.matches] == [2.0, -2.0]
 
 
 @pytest.mark.parametrize("text", ["좋지 않다", "좋지 않은 것은 아니다"])
@@ -111,7 +111,7 @@ def test_disabled_modifiers_preserve_the_lexicon_sum(text: str) -> None:
 
 
 def test_modified_contributions_recompute_mixed() -> None:
-    result = analyze_sentiment("좋다 나쁘다 아니다")
+    result = analyze_sentiment("좋다 불만이 아니다")
 
     assert result.score == 4.0
     assert result.label == "positive"
