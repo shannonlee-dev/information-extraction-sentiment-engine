@@ -5,6 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "information-extraction-sentiment-engine"
 version = "0.1.0"
+description = "Rule-based Korean information extraction and sentiment analysis engine"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "konlpy==0.6.0",

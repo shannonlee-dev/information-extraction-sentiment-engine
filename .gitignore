@@ -8,4 +8,4 @@ htmlcov/
 build/
 dist/
 *.egg-info/
-artifacts/benchmark/
+artifacts/
