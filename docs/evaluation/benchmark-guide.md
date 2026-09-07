@@ -1,10 +1,13 @@
-# 외부 감성 평가 실행 안내
+# v1 외부 감성 평가 실행 안내
+
+> 이 문서는 재설계 이전 baseline 평가의 역사적 실행 기록이다. 0.1.0의 현재 성능은
+> [M2 최종 결과](engine-m2-final.md)를 기준으로 한다.
 
 Ubuntu 터미널에서 아래 두 줄을 실행하면 환경 준비, 원본 확보, 노출 목록 생성,
 중복 제거와 분할, 기존 엔진 개발평가, 동결 및 최종평가가 순서대로 실행됩니다.
 
 ```bash
-cd /home/shannon/__dev/cody/information-extraction-sentiment-engine
+cd information-extraction-sentiment-engine
 bash scripts/run_benchmark.sh
 ```
 
@@ -40,11 +43,11 @@ Python 3.12와 venv 모듈을 사용해 검증합니다. Ubuntu에서 venv 생�
 분할 후에는 exposures.jsonl과 protocol.md의 사본이 benchmark 안에 동결됩니다.
 최종 결과를 보고 사전·규칙을 고치려면 이번 최종셋은 다음 버전의 개발 자료로
 취급하고, 다음 독립평가에는 개발에 쓰지 않은 새 표본이 필요합니다.
-플랜 2 재설계는 이 명령에 포함되지 않습니다.
+M2 재설계 평가는 이 명령에 포함되지 않습니다.
 
 복수 후보를 받는 `--selection-manifest` 경로에는 최종 평가기와 release 형식이
 맞지 않는 문제가 남아 있습니다. v1에서 사용한 단일 baseline 자동 실행과 별개이며,
-후속 후보 비교 전에 수정·검증해야 합니다. [프로젝트 진단](../project-audit.md)을 참고하세요.
+새 평가에 재사용하려면 먼저 수정·검증해야 합니다.
 
 원본과 상세 실행 파일은 Git에서 제외합니다. 분할 입력 원문을 임의로 출력하지
 말고, 결과 확정 이후 분석할 오류만 확인하세요.
