@@ -20,6 +20,8 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 ├── main.py
 ├── requirements.txt
 ├── pyproject.toml
+├── docs/
+│   └── development-roadmap.md
 ├── data/
 │   ├── sentiment_lexicon.json
 │   └── modifiers.json
