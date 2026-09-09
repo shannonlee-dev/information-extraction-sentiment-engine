@@ -24,7 +24,7 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 ├── requirements.txt
 ├── pyproject.toml
 ├── docs/
-│   └── development-roadmap.md
+│   └── legacy-engine-report.md
 ├── data/
 │   ├── sentiment_lexicon.json
 │   └── modifiers.json
@@ -201,3 +201,5 @@ TF-IDF 자체는 감성 분류기가 아니다. 이 저장소에는 TF-IDF나 �
 regex 토큰화는 형태소 분석보다 활용형·붙여쓰기 처리에 약하고, 가까운 수식어 규칙은 복잡한 부정 범위를 놓친다. 반어, aspect-based sentiment, 담화 문맥 처리는 구현하지 않았다. 개선한다면 오류가 반복되는 표기를 사전에 추가하고, 별도의 중립·미등록 문장으로 평가한 뒤 필요한 범위만 형태소 분석이나 통계 분류기와 비교할 수 있다.
 
 이번 제출에서는 외부 벤치마크, M/M2 개발 실험, exposure/workset, profiling, release 파이프라인, 컴파일 사전과 모델·환경 해시 검증, 과거 실험 문서·테스트를 제거했다. 핵심 미션 로직과 데이터, 재계산 가능한 평가만 남겼다.
+
+리팩터링 이전 엔진의 분석 방식과 외부 평가 기록은 [이전 엔진 분석 및 평가 보고서](docs/legacy-engine-report.md)에 보존했다. 해당 보고서의 구현 설명과 수치는 이전 버전을 기준으로 한다.
