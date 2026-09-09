@@ -1,3 +1,4 @@
+"""추출 값과 감성 점수의 반환 구조."""
 from dataclasses import dataclass
 from typing import Literal, TypeAlias
 
@@ -5,7 +6,7 @@ ExtractionType: TypeAlias = Literal["email", "phone", "date", "money", "url"]
 SentimentLabel: TypeAlias = Literal["positive", "negative", "neutral"]
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class MoneyValue:
     amount: int
     currency: Literal["KRW", "USD"]
@@ -14,7 +15,7 @@ class MoneyValue:
 NormalizedValue: TypeAlias = str | MoneyValue
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class ExtractionItem:
     type: ExtractionType
     raw: str
@@ -23,7 +24,7 @@ class ExtractionItem:
     end: int
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class Diagnostic:
     type: ExtractionType
     raw: str
@@ -32,13 +33,13 @@ class Diagnostic:
     reason: str
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class ExtractionResult:
     items: list[ExtractionItem]
     diagnostics: list[Diagnostic]
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class SentimentMatch:
     term: str
     raw: str
@@ -46,70 +47,11 @@ class SentimentMatch:
     emphasis_multiplier: float
     negation_count: int
     contribution: float
-    start: int
-    end: int
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass
 class SentimentResult:
     score: float
     label: SentimentLabel
-    mixed: bool
     tokens: list[str]
     matches: list[SentimentMatch]
-
-
-@dataclass(frozen=True, slots=True)
-class AnalysisResult:
-    text: str
-    extractions: list[ExtractionItem]
-    sentiment: SentimentResult
-    diagnostics: list[Diagnostic]
-
-
-@dataclass(frozen=True, slots=True)
-class MorphToken:
-    morph: str
-    pos: str
-    start: int
-    end: int
-    eojeol_index: int
-
-
-@dataclass(frozen=True, slots=True)
-class MorphologyAdjustment:
-    kind: str
-    start: int
-    end: int
-
-
-@dataclass(frozen=True, slots=True)
-class SentimentEvent:
-    canonical_id: str
-    term: str
-    score: int
-    token_start: int
-    token_end: int
-    atomic: bool
-
-
-@dataclass(frozen=True, slots=True)
-class ModifierLink:
-    event_index: int
-    modifier_start: int
-    modifier_end: int
-    kind: str
-    rule_id: str
-    multiplier: float
-
-
-@dataclass(frozen=True, slots=True)
-class LexicalEntry:
-    canonical_id: str
-    term: str
-    score: int
-    domain: str | None
-    sources: tuple[str, ...]
-    atomic: bool
-    priority: int
-    keys: tuple[tuple[tuple[str, str], ...], ...]

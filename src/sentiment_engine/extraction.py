@@ -1,3 +1,4 @@
+"""정규식 후보 탐색 → 유효성 검사 → 정규화 → 위치와 함께 반환."""
 import re
 from datetime import date
 from urllib.parse import urlsplit, urlunsplit
@@ -5,29 +6,23 @@ from urllib.parse import urlsplit, urlunsplit
 from sentiment_engine.models import Diagnostic, ExtractionItem, ExtractionResult, MoneyValue
 
 
+# 이메일: 영문/숫자와 흔한 특수문자를 포함한 로컬 부분, 점으로 나뉜 도메인.
+# 연속된 점이나 잘못된 도메인은 후보 전체를 잡은 뒤 유효성 검사에서 거른다.
 EMAIL_CANDIDATE_PATTERN = re.compile(
     r"""
-    # The left lookbehind prevents matching from the middle of a larger email-like token.
-    (?<![A-Za-z0-9.!#$%&'*+/=?^_`{|}~-])
-    (?P<local>
-        # The local part permits common RFC-style atom characters; semantic checks reject bad dots.
-        [A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+
-    )
+    (?<![A-Za-z0-9.!#$%&'*+/=?^_`{|}~-])  # 다른 이메일 토큰 중간에서 시작하지 않음
+    (?P<local>[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+)
     @
-    (?P<domain>
-        # Repeated dotted domain labels include empty labels so semantic validation can reject them.
-        [A-Za-z0-9-]+(?:\.[A-Za-z0-9-]*)*
-    )
-    # The terminal domain must be a 2--63 character alphabetic label during validation.
-    # The right lookahead prevents matching only a prefix of an alphanumeric or hyphenated label.
-    (?![A-Za-z0-9-])
+    (?P<domain>[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]*)*)
+    (?![A-Za-z0-9-])                      # 도메인 일부만 매칭하지 않음
     """,
     re.VERBOSE,
 )
 
+# 전화번호: 0으로 시작하며 하이픈, 공백, 구분자 없는 형식을 허용한다.
+# 앞뒤 숫자 경계로 긴 숫자의 일부를 피하고, 지역번호와 자릿수는 아래에서 검사한다.
 PHONE_CANDIDATE_PATTERN = re.compile(
     r"""
-    # These digit lookarounds prevent matching a phone number inside a longer digit sequence.
     (?<!\d)
     (?P<area>0\d{1,2})
     (?P<first_separator>[- ]?)
@@ -38,46 +33,35 @@ PHONE_CANDIDATE_PATTERN = re.compile(
     """,
     re.VERBOSE,
 )
-
 AREA_CODES = (
     "010", "02", "031", "032", "033", "041", "042", "043", "044",
     "051", "052", "053", "054", "055", "061", "062", "063", "064",
 )
 
-# Dates support Korean markers, slash-separated, and hyphen-separated forms.
-# Named year/month/day groups use digit classes with exact or bounded quantifiers;
-# digit lookarounds stop matches inside longer numbers, while date() validates the calendar.
 DATE_CANDIDATE_PATTERNS = (
+    # 한국어 연월일: 월/일은 한 자리 또는 두 자리이며 공백을 허용한다.
     re.compile(r"(?<!\d)(?P<year>\d{4})년\s*(?P<month>\d{1,2})월\s*(?P<day>\d{1,2})일(?!\d)"),
+    # 슬래시 날짜: 이어지는 /숫자는 날짜의 일부를 잘라 추출하지 않도록 거부한다.
     re.compile(r"(?<!\d)(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})(?!\d|/\d)"),
+    # 하이픈 날짜: 실제 달력에 있는 날짜인지는 date()로 검사한다.
     re.compile(r"(?<!\d)(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})(?!\d|-\d)"),
 )
 
-# USD candidates require a literal dollar sign and capture a digit/comma number;
-# the optional decimal group is intentionally captured for later rejection, and the
-# lookarounds keep the candidate out of identifiers or longer numeric fragments.
+# 달러 금액: $ 뒤 숫자와 쉼표를 잡는다. 소수까지 후보에 포함하되 정수 검사에서 거부한다.
 USD_CANDIDATE_PATTERN = re.compile(
     r"(?<![A-Za-z0-9_])\$(?P<number>\d[\d,]*(?:\.\d[\d,]*)?)(?![\d,]|\.\d)"
 )
-# KRW candidates capture a numeric body followed by won. Repeated optional unit
-# groups accept 억/천만/만/천 compositions; boundary lookarounds avoid adjacent tokens.
+# 원화: 숫자와 억/천만/만/천 조합 뒤에 '원'이 붙는 형식. 예: 1억 2천만원.
 KRW_CANDIDATE_PATTERN = re.compile(
     r"(?<![\d,])(?P<body>\d[\d,]*(?:\s*(?:억|천만|만|천)\s*\d[\d,]*)*(?:\s*(?:억|천만|만|천)\s*)?)원(?![A-Za-z0-9_])"
 )
-# Each KRW component exposes number and optional unit named groups. Character
-# classes admit digits/commas and quantifiers admit surrounding whitespace.
+# 원화 후보를 숫자와 단위로 순서대로 분해한다. 단위의 내림차순 여부도 검사한다.
 MONEY_TOKEN_PATTERN = re.compile(r"(?P<number>\d[\d,]*)(?:\s*(?P<unit>억|천만|만|천))?\s*")
-# Integers are either plain digits or comma-separated three-digit groups.
+# 정수는 쉼표 없는 숫자 또는 세 자리씩 쉼표로 나눈 숫자만 허용한다.
 INTEGER_PATTERN = re.compile(r"(?:\d+|\d{1,3}(?:,\d{3})+)")
-UNIT_VALUES = {
-    "억": 100_000_000,
-    "천만": 10_000_000,
-    "만": 10_000,
-    "천": 1_000,
-}
+UNIT_VALUES = {"억": 100_000_000, "천만": 10_000_000, "만": 10_000, "천": 1_000}
 
-# URLs require an HTTP(S) scheme: s? makes s optional and \S+ consumes the
-# non-whitespace candidate. Delimiter trimming and host validation happen afterward.
+# URL: HTTP(S)부터 공백 전까지 후보로 잡는다. 끝 문장부호를 정리한 뒤 호스트를 검사한다.
 URL_CANDIDATE_PATTERN = re.compile(r"https?://\S+", re.IGNORECASE)
 
 
@@ -288,15 +272,7 @@ def extract_information(text: str) -> ExtractionResult:
     )
     items = [item for extracted_items, _ in extracted for item in extracted_items]
     diagnostics = [diagnostic for _, extracted_diagnostics in extracted for diagnostic in extracted_diagnostics]
-    unique_items = {(item.type, item.start, item.end): item for item in items}
-    unique_diagnostics = {
-        (diagnostic.type, diagnostic.start, diagnostic.end): diagnostic
-        for diagnostic in diagnostics
-    }
     return ExtractionResult(
-        items=sorted(unique_items.values(), key=lambda item: (item.start, item.end, item.type)),
-        diagnostics=sorted(
-            unique_diagnostics.values(),
-            key=lambda diagnostic: (diagnostic.start, diagnostic.end, diagnostic.type),
-        ),
+        items=sorted(items, key=lambda item: (item.start, item.end, item.type)),
+        diagnostics=sorted(diagnostics, key=lambda item: (item.start, item.end, item.type)),
     )

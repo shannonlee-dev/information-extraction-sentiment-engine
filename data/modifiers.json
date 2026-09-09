@@ -1,16 +1,9 @@
 {
-  "negations": [
-    {"term": "안", "variants": []},
-    {"term": "않다", "variants": ["않아", "않아요", "않은", "않았어요", "않았다", "않지"]},
-    {"term": "아니다", "variants": ["아니", "아니에요", "아닌", "아니었다"]},
-    {"term": "못", "variants": ["못하다", "못했다", "못해요"]},
-    {"term": "없다", "variants": ["없는", "없어요", "없었다"]}
+  "before_negations": ["안", "못"],
+  "after_negations": [
+    "않다", "않아", "않아요", "않은", "않는", "않는다", "않았다", "않았어요", "않을",
+    "없다", "없어", "없어요", "없는", "없었다",
+    "아니다", "아니에요", "아닌", "아니었다", "못하다", "못해요", "못했다"
   ],
-  "emphasizers": [
-    {"term": "매우", "variants": [], "multiplier": 1.5},
-    {"term": "정말", "variants": [], "multiplier": 1.5},
-    {"term": "아주", "variants": [], "multiplier": 1.5},
-    {"term": "너무", "variants": [], "multiplier": 1.5},
-    {"term": "굉장히", "variants": [], "multiplier": 1.7}
-  ]
+  "emphasizers": {"매우": 1.5, "정말": 1.5, "아주": 1.5, "너무": 1.5, "굉장히": 1.7}
 }

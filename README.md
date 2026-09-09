@@ -1,164 +1,194 @@
-# 정보 추출·감성 분석 엔진
+# Information Extraction & Sentiment Engine
 
 ## 프로젝트 소개
 
-한국어 비정형 문자열에서 이메일, 전화번호, 날짜, 금액, URL을 추출하고 문장 감성을
-규칙으로 판정하는 Python 프로젝트다. 추출 결과에는 원문 범위와 정규화 값이,
-감성 결과에는 점수와 계산 근거가 포함된다.
-
-공개 API는 `extract_information`, `analyze_sentiment`, 두 결과를 합치는 `analyze`다.
-현재 버전은 **0.1.0**이며 저장소 checkout에서의 editable 설치를 지원한다.
+NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내장 `re`로 이메일·전화번호·날짜·금액·URL을 추출하고, 감성 사전 점수에 강조어와 부정어를 적용한다. 기존 추출 규칙, 감성 사전, 정답 데이터와 평가 공식을 재사용했다.
 
 ## 핵심 특징
 
-- 5종 정보 추출, 형식 검증, 정규화 및 오류 진단
-- KOMORAN 형태소·품사 기반의 한국어 활용형 매칭
-- 감성 사전 점수와 제한된 부정·강조·이중부정 규칙
-- 원문 위치, 사전 항목, 수정어 적용 내역을 포함한 설명 가능한 결과
-- 고정 fixture와 외부 리뷰 benchmark를 분리한 평가 체계
+- 5종 정보 추출, 유형별 3가지 이상 변형, 유효성 검사와 정규화
+- 감성 단어 613개(고객지원 도메인 91개), regex 토큰화, 점수 합산
+- 부정·강조·대표 이중부정 처리 및 `positive / negative / neutral` 판정
+- 추출 65문장, 감성 100문장 평가와 실제 실패 사례 출력
+- 분석은 Python 표준 라이브러리만 사용한다. Java, KoNLPy, 모델 다운로드는 필요 없다.
 
 ## 아키텍처
 
 ```text
-입력 문자열
-├── extraction.py: 정규식 후보 → 의미 검증 → 정규화
-├── korean.py: KOMORAN 분석 → 원문 위치 복원
-├── sentiment.py → sentiment_rules.py: 사전 매칭 → 국소 문법 → 점수 합산
-└── __init__.py: 추출과 감성을 AnalysisResult로 통합
-                    ↓
-             cli.py / evaluation.py
+.
+├── README.md
+├── main.py
+├── requirements.txt
+├── pyproject.toml
+├── data/
+│   ├── sentiment_lexicon.json
+│   └── modifiers.json
+├── src/sentiment_engine/
+│   ├── __init__.py
+│   ├── extraction.py
+│   ├── sentiment.py
+│   ├── models.py
+│   └── evaluation.py
+└── tests/
+    ├── fixtures/
+    │   ├── extraction_cases.json
+    │   └── sentiment_cases.json
+    ├── test_extraction.py
+    ├── test_sentiment.py
+    └── test_evaluation.py
 ```
 
-| 경로 | 책임 |
-|---|---|
-| `src/sentiment_engine/` | 공개 API, 추출기, 감성 분석기, CLI |
-| `data/` | 원본·검수·compiled 감성 사전과 수정어 |
-| `tests/` | 기능·회귀·평가 계약 테스트와 고정 fixture |
-| `scripts/` | 사전 빌드, 환경 확인, 외부 benchmark 재현 도구 |
-| `docs/evaluation/` | 평가 프로토콜, 결과 보고서, 기계 판독 기록 |
+`main.py`가 두 분석 함수를 호출한다. `models.py`는 추출 값·거부 사유·감성 계산 내역을 담는 dataclass만 정의한다. `pyproject.toml`은 `src` 패키지 설치와 테스트 경로 설정에 사용한다. 평가·CLI 검증은 `test_evaluation.py`에 모았다.
 
-## 요구 환경과 설치
+## 설치 방법
 
-- Python 3.10 이상
-- JDK 17과 올바른 `JAVA_HOME`
-- Linux 기준 검증 환경: Python 3.10.20/3.12.3, Temurin 17.0.20.1
+Python 3.10 이상이 필요하다. 저장소 루트에서 가상환경을 만들고 설치한다. 검증 환경은 Python 3.12다.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --require-hashes -r requirements-runtime.lock
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-`requirements-runtime.lock`은 런타임 의존성을 해시로 고정한다.
-`requirements.txt`는 현재 checkout과 테스트 의존성을 editable 방식으로 설치한다.
-`requirements-eval.lock`과 KOMORAN probe 잠금 파일은 과거 평가 환경 재현을 위해 유지한다.
+Windows에서는 `python -m venv .venv` 실행 후 `.venv\Scripts\activate`로 활성화한다. `requirements.txt`는 현재 소스를 editable 방식으로 설치하고 테스트용 pytest를 설치한다. 설치 후에도 `data/`와 `tests/fixtures/`가 있는 이 저장소를 유지한다.
 
-감성 자원 경로가 저장소 루트를 기준으로 계산되므로 독립 wheel 설치는 아직 지원하지 않는다.
-JVM 또는 모델 구성이 잘못되면 자동 대체하지 않고 명시적인 구성 오류를 반환한다.
-
-## 사용법
+## 실행 방법
 
 ```bash
-python main.py --text "문의: help@example.com, 결제 금액은 50,000원입니다. 정말 좋지 않아요."
-python main.py --text "배송이 빨라서 만족합니다." --format json
+python main.py --text "문의: test@example.com, 결제 금액은 50,000원입니다. 정말 좋지 않아요."
+python main.py --evaluate extraction
+python main.py --evaluate sentiment
 python main.py --evaluate all
-python main.py --evaluate all --format json
-```
-
-Python API:
-
-```python
-from sentiment_engine import analyze, analyze_sentiment, extract_information
-
-result = analyze("배송이 빠르다. 문의: help@example.com")
-extractions = extract_information("2024년 3월 15일, 50,000원")
-sentiment = analyze_sentiment("정말 좋지 않다")
-```
-
-`--text`와 `--evaluate`는 함께 사용할 수 없다. 기본 출력은 사람이 읽는 텍스트이며
-`--format json`은 UTF-8 JSON을 출력한다. 비문자열은 `TypeError`, 빈 문자열은
-`ValueError`로 거부한다. CLI의 인자·자원 구성 오류는 종료 코드 2를 반환한다.
-
-## 지원 범위
-
-| 유형 | 지원 예 | 정규화 | 주요 제외 범위 |
-|---|---|---|---|
-| 이메일 | `user@example.com` | 도메인 소문자화 | 완전한 RFC 5322 |
-| 전화 | `010-1234-5678`, `02 1234 5678` | 국내 하이픈 형식 | 국제번호, 한글 숫자 |
-| 날짜 | `2024년 3월 15일`, `2024/03/15` | `YYYY-MM-DD` | 점 구분 날짜 |
-| 금액 | `50,000원`, `$100` | 금액과 통화 코드 | 한글 수사, `USD 100` |
-| URL | `https://example.com/path` | scheme·host 소문자화 | scheme 없는 URL |
-
-정규식은 후보만 찾고 Python 코드가 달력 날짜, 도메인, 숫자 구분자, 화폐 단위 순서를
-검증한다. 지원하지 않는 형식을 추측해 보정하지 않는다.
-
-감성 분석은 `(형태소, 품사)`로 컴파일한 사전을 최장 일치시키고 다음 식으로 점수를 계산한다.
-
-```text
-contribution = base_score × min(강조 배수의 곱, 2.0) × (-1)^(부정 수)
-score = round(기여도 합, 6)
-```
-
-점수의 부호가 각각 `positive`, `negative`, `neutral`을 결정한다. 양·음 기여가 함께
-있으면 `mixed=true`다. 문장 경계를 넘는 수정어 연결, 반어, 인용, 의향과 일반적인
-담화 문맥 해석은 지원하지 않는다.
-
-## 감성 사전
-
-원본 613개 항목을 감사하고 충돌과 중복 활용형을 정리해 대표 어휘 565개를 compiled
-사전에 포함했다. 긍정 207개, 부정 358개이며 점수 ±1~±3은 경험적 강도이지 학습된
-통계값이 아니다.
-
-- `data/sentiment_lexicon.json`: 원본 사전
-- `data/lexicon_annotations.json`: 품사·의미·채택/제외 근거
-- `data/lexicon_provenance.json`: 구축 정책과 변경 이력
-- `data/sentiment_lexicon_compiled.json`: 런타임용 결정적 산출물
-- `data/modifiers.json`: 부정어와 강조어
-
-사전과 평가 fixture는 프로젝트에서 AI 도움을 받아 작성했으며 독립적인 사람의 검수를
-거치지 않았다. 상세 출처와 판단 근거는 provenance와 annotations에 기록돼 있다.
-
-사전을 변경한 뒤에는 같은 잠금 환경에서 compiled 파일을 다시 생성한다.
-
-```bash
-python -m scripts.build_sentiment_lexicon \
-  --source data/sentiment_lexicon.json \
-  --annotations data/lexicon_annotations.json \
-  --output data/sentiment_lexicon_compiled.json
 python -m pytest -q
 ```
 
-원본·검수 파일·분석기 모델의 해시가 다르면 런타임은 오래된 compiled 파일을 거부한다.
+모든 CLI 출력은 JSON이다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 응답에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
+
+## 정보 추출 규칙
+
+각 유형의 함수는 **regex 후보 탐색 → 유효성 검사 → 정규화 → 결과 반환** 순서다. 정규식 바로 위의 주석에서 매칭 범위를 설명한다.
+
+| 유형 | 지원 변형 예 | 검사와 정규화 |
+| --- | --- | --- |
+| Email | `user@domain.com`, `User.Name@sub.domain.co.kr`, `user+tag@example.org` | 연속된 점·잘못된 도메인 거부, 도메인만 소문자화 |
+| Phone | `010-1234-5678`, `02 123 4567`, `03112345678` | 지원 지역번호·자릿수·구분자 일관성 검사, 하이픈 형식으로 통일 |
+| Date | `2024년 1월 15일`, `2024/01/15`, `2024-01-15` | `datetime.date`로 윤년·월·일 검사, `2024-01-15`로 통일 |
+| Money | `10,000원`, `1억 2천만원`, `$100` | 쉼표와 단위 순서 검사, 정수 `amount`와 `KRW / USD` 반환 |
+| URL | HTTP(S) 기본 주소, 경로 포함 주소, query·fragment 포함 주소 | 호스트 존재·포트 검사, scheme·호스트 소문자화, 끝 문장부호·닫는 괄호 정리 |
+
+금액 단위는 `억 / 천만 / 만 / 천`이며 `1억 2천만원`은 `120000000 KRW`다. 달러 소수 금액은 지원하지 않는다. URL 경로·쿼리·fragment는 보존하며 실제 접속 여부는 확인하지 않는다.
+
+결과의 `start`는 시작 위치, `end`는 끝 다음 위치다(Python 문자열 인덱스). 잘못된 후보는 추출 결과에서 제외하고 `diagnostics`에 거부 이유를 남긴다. 정규식에 아예 잡히지 않는 표현에는 진단도 없다.
+
+## 감성 분석 규칙
+
+`sentiment.py` 하나에서 다음 흐름을 읽을 수 있다.
+
+```text
+문장 → 어절·문장부호 토큰 → 사전 표현 매칭 → 기본 점수
+     → 강조 배율 → 부정 횟수에 따른 반전 → 합산 → label
+```
+
+1. 한글·영문·숫자 어절과 문장부호·줄바꿈을 regex로 분리한다. 형태소 분석기는 사용하지 않는다.
+2. 사전의 `term`, `variants`를 비교하고, 같은 위치에서는 긴 표현부터 매칭한다. 예를 들어 `문제가 해결되었다`를 잡으면 `문제`를 중복 가산하지 않는다.
+3. 흔한 `-고 / -지 / -지만` 등의 어미, 일부 `하다` 활용, 명사 뒤 조사만 추가로 지원한다. 완전한 한국어 활용 분석은 아니다.
+4. 감성 표현 바로 앞의 `정말 / 매우 / 아주 / 너무`는 ×1.5, `굉장히`는 ×1.7이다. 연속된 강조어는 배율을 곱한다.
+5. 바로 앞의 `안 / 못`, 바로 뒤의 등록된 `않다 / 없다 / 아니다 / 못하다` 표기를 부정으로 센다. 문장부호나 줄바꿈을 건너가지 않는다.
+6. 대표 이중부정 `좋지 않은 것은 아니다`는 `않은 + 것은 아니다`를 인식해 두 번 반전한다. 임의의 이중부정을 모두 처리하지는 않는다.
+7. 단어별 점수는 `기본 점수 × 강조 배율 × (-1)^부정 횟수`다. 합계가 양수면 positive, 음수면 negative, 0이면 neutral이다.
+
+| 문장 | 계산 | 결과 |
+| --- | --- | --- |
+| `정말 좋지 않아요` | +2 × 1.5 × -1 | -3, negative |
+| `나쁘지 않다` | -2 × -1 | +2, positive |
+| `좋지 않은 것은 아니다` | +2 × (-1)² | +2, positive |
+| `오늘은 수요일이다` | 매칭 없음 | 0, neutral |
+
+`analyze_sentiment(text, apply_modifiers=False)`는 강조와 부정을 모두 끄고 같은 사전의 기본 점수만 합산한다. `matches`에는 단어·기본 점수·배율·부정 횟수·최종 기여 점수가 담긴다.
+
+## 데이터 구성
+
+| 파일 | 구성 |
+| --- | --- |
+| `data/sentiment_lexicon.json` | 기존 프로젝트 작성 사전 613개. `term`, `variants`, `score`, 선택적 `domain` |
+| `data/modifiers.json` | 앞/뒤 부정어 표기와 강조 배율 |
+| `tests/fixtures/extraction_cases.json` | 기존 65문장, 정답 개체 63개. 미지원 변형 6문장과 정답이 빈 7문장 포함 |
+| `tests/fixtures/sentiment_cases.json` | 기존 100문장, 긍정 50·부정 50. 단순 감성·강조·부정·이중부정·혼합 감성·난제 포함 |
+
+도메인은 고객지원(`customer_support`)이며 `친절하다`, `불친절하다`, `정확하다` 등 91개 항목이다. 표기 변형을 별개 단어 수로 세지 않는다.
+
+사전과 정답 예제는 기존 프로젝트에서 AI 도움을 받아 작성했으며 독립적인 사람의 검수를 거치지 않았다. 이번 리팩터링에서 정답은 변경하지 않았다. 각 추출 유형은 미지원 사례를 제외하고도 10문장 이상, 3가지 이상 변형을 포함한다. 사전과 규칙 개발에 이미 사용한 교육용 예제이므로 아래 수치를 독립적인 실서비스 성능으로 해석하면 안 된다. 감성의 난제는 불만 고객의 문맥으로 레이블링되었다.
 
 ## 평가 결과
 
-동결한 M2-L 후보를 2026-09-07 외부 쇼핑 후기 final 10,000건에서 한 번 평가했다.
+`python main.py --evaluate all`로 재계산한다. 추출은 유형·시작/끝 위치·정규화 값이 모두 일치해야 TP이며, 누락은 FN, 추가 추출은 FP다. 정규화가 틀리면 FP와 FN이 하나씩 생긴다.
 
-| 지표 | 기준 M | M2-L |
-|---|---:|---:|
-| Accuracy | 48.24% | **60.62%** |
-| Macro F1 | 0.589757 | **0.695179** |
-| Positive recall | 68.35% | **77.95%** |
-| Negative recall | 28.44% | **43.56%** |
-| 분석 오류율 | 1.92% | 1.92% |
+`Precision = TP/(TP+FP)`, `Recall = TP/(TP+FN)`, `F1 = 2PR/(P+R)`이며 분모가 0이면 0으로 처리한다. **미지원 6문장을 포함한 전체 65문장** 결과다.
 
-M2-L은 기준 M보다 정확도가 12.38%p 높았지만 목표 70%에는 미달했다. 별점은 감성의
-잡음 있는 대리값이며 이 결과는 실제 고객 문의 분포의 성능을 보장하지 않는다.
-고정 합성 fixture는 회귀 검사용이며 독립 외부 평가와 구분한다.
+| Type | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: |
+| Email | 1.000000 | 1.000000 | 1.000000 |
+| Phone | 1.000000 | 0.846154 | 0.916667 |
+| Date | 1.000000 | 0.916667 | 0.956522 |
+| Money | 1.000000 | 0.846154 | 0.916667 |
+| URL | 1.000000 | 0.916667 | 0.956522 |
+| Micro | 1.000000 | 0.904762 | 0.950000 |
 
-통계, 데이터 독립성, 한계는 [M2 최종 결과](docs/evaluation/engine-m2-final.md), 전체 자료의
-역할은 [문서 안내](docs/README.md)에서 확인할 수 있다.
+전체 TP 57, FP 0, FN 6이다. 감성은 같은 100문장을 두 설정으로 비교한다. Accuracy는 정답 비율, Macro F1은 **정답에 등장한 클래스별 F1의 평균**이다. 이 데이터에는 중립 정답이 없으므로 긍정·부정 F1을 평균하고, 중립으로 잘못 예측한 8건은 해당 정답 클래스의 FN과 Accuracy 오답에 포함한다. 중립 정답 데이터가 입력되면 중립 F1도 평균에 포함한다.
 
-## 한계
+| Setting | Accuracy | Macro F1 |
+| --- | ---: | ---: |
+| modifiers off | 0.700000 | 0.725490 |
+| modifiers on | 0.880000 | 0.913725 |
 
-- 명시하지 않은 추출 형식은 놓칠 수 있다.
-- 사전 밖 표현, 비꼼, 상태 변화, 복합 문맥에는 취약하다.
-- 분석기 실행에는 JVM이 필요하고 프로세스 메모리 비용이 발생한다.
-- 외부 benchmark 결과를 운영 환경의 품질 보증으로 사용할 수 없다.
-- 현재 저장소에는 별도 라이선스가 없다. 공개 열람이 재사용·배포 허가를 뜻하지 않는다.
+Accuracy는 18%p 증가했다. 이 비교는 부정과 강조를 함께 켠 효과이며, 각각의 독립적 기여를 측정한 실험은 아니다. 강조는 점수 크기를 바꾸므로 단일 감성 단어 문장에서는 label이 그대로일 수 있다.
 
-## 문서
+전체 자동 테스트: **104 passed**. 지원 추출 예제, 잘못된 입력, 감성 계산, 데이터 최소 수량, 손으로 계산한 평가 지표, CLI 분석·평가를 검사한다. 평가 데이터의 실제 오분류는 규칙의 한계로 보고하며, 모든 문장을 맞혀야 테스트가 통과하도록 만들지는 않았다.
 
-평가 보고서, 프로토콜, 개발 기록과 기계 판독 산출물은
-[docs/README.md](docs/README.md)에 현재/과거 단계별로 정리했다.
+## 실패 사례
+
+아래는 실제 평가 출력의 `errors`에 있는 사례다. 전체 기록은 `--evaluate all` 출력으로 확인한다.
+
+| 추출 ID | 원문 | 실패 원인 |
+| --- | --- | --- |
+| phone-011 | `+82-10-1234-5678` | 국제번호 표기 미지원, 누락 |
+| phone-012 | `공일공-일이삼사-오육칠팔` | 한글 숫자 미지원, 누락 |
+| date-011 | `2024.01.15` | 점 구분 날짜 미지원, 누락 |
+| money-011 | `백만원` | 한글 수사 미지원, 누락 |
+| money-012 | `USD 100` | 통화 코드 접두사 미지원, 누락 |
+| url-011 | `www.example.com/path` | scheme 없는 URL 미지원, 누락 |
+
+수식어 적용 후 오분류 12건이다. 아래 ID는 `sentiment-` 접두사를 생략했다.
+
+| 감성 ID | 원문 | 정답 → 예측 | 원인 |
+| --- | --- | --- | --- |
+| 070 | 도움이 안 된다 | negative → positive | 명사와 뒤 동사에 걸친 부정 범위 미지원 |
+| 075 | 추천하지 않을 이유가 없다 | positive → negative | 이유절을 통한 이중부정 미지원 |
+| 091 | 참 잘도 처리했네요 | negative → neutral | 반어와 미등록 표현 |
+| 092 | 최고네요, 벌써 세 번째 고장이에요 | negative → positive | 반복 고장 문맥과 `고장이에요` 표기를 처리하지 못함 |
+| 093 | 배송이 빛의 속도네요, 일주일밖에 안 걸렸어요 | negative → neutral | 비유·반어 미지원 |
+| 094 | 웃음밖에 안 나와요 | negative → neutral | 문맥에 따른 불만 표현 미등록 |
+| 095 | 칭찬할 말이 없네요 | negative → neutral | 구 단위 감성·부정 미지원 |
+| 096 | 다시 사고 싶지는 않아요 | negative → neutral | 재구매 의사 표현 미등록 |
+| 097 | 이 정도면 괜찮다고 해야 하나요 | negative → neutral | 인용 활용과 의문형 판단 미지원 |
+| 098 | 기대를 안 했는데 역시나네요 | negative → neutral | 문맥 의존 표현 미지원 |
+| 099 | 돈이 아깝지 않을 수가 없어요 | negative → positive | 가능성 구문을 통한 이중부정 미지원 |
+| 100 | 설명과 다른데 우연이겠죠 | negative → neutral | 간접 불만 표현 미등록 |
+
+## 규칙 기반 NLP의 장단점과 통계 방식 비교
+
+| 관점 | 이 프로젝트의 규칙 기반 방식 | TF-IDF 기반 접근 |
+| --- | --- | --- |
+| 표현 | 사람이 정한 패턴과 감성 점수 | 문서 내 빈도와 문서 집합 내 희소성으로 단어 가중치 계산 |
+| 분류 | 명시적인 점수 합산·부정 규칙 | TF-IDF 벡터와 별도의 분류기 등을 조합 |
+| 데이터 | 학습 없이 사전·규칙으로 실행 | IDF를 계산할 문서 집합, 지도 분류라면 레이블 데이터 필요 |
+| 장점 | 판단 근거가 명확하고 형식이 정해진 정보에 효과적 | 문서 집합의 다양한 단어 분포를 활용 가능 |
+| 단점 | 새 표현·오타·문맥마다 규칙 관리 필요 | 단순 단어 벡터는 어순·부정·반어를 충분히 표현하지 못함 |
+
+TF-IDF 자체는 감성 분류기가 아니다. 이 저장소에는 TF-IDF나 학습 모델을 구현하지 않았다.
+
+## 한계 및 개선 방향
+
+regex 토큰화는 형태소 분석보다 활용형·붙여쓰기 처리에 약하고, 가까운 수식어 규칙은 복잡한 부정 범위를 놓친다. 반어, aspect-based sentiment, 담화 문맥 처리는 구현하지 않았다. 개선한다면 오류가 반복되는 표기를 사전에 추가하고, 별도의 중립·미등록 문장으로 평가한 뒤 필요한 범위만 형태소 분석이나 통계 분류기와 비교할 수 있다.
+
+이번 제출에서는 외부 벤치마크, M/M2 개발 실험, exposure/workset, profiling, release 파이프라인, 컴파일 사전과 모델·환경 해시 검증, 과거 실험 문서·테스트를 제거했다. 핵심 미션 로직과 데이터, 재계산 가능한 평가만 남겼다.

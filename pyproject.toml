@@ -5,19 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "information-extraction-sentiment-engine"
 version = "0.1.0"
-description = "Rule-based Korean information extraction and sentiment analysis engine"
-readme = "README.md"
+description = "NLP Mission 2: rule-based extraction and sentiment analysis"
 requires-python = ">=3.10"
-dependencies = [
-    "konlpy==0.6.0",
-    "JPype1==1.6.0",
-    "numpy==2.2.6",
-    "lxml==6.0.2",
-    "packaging==25.0",
-]
-
-[project.optional-dependencies]
-test = ["pytest>=8,<9", "datasketch==1.6.5", "scipy==1.15.3"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
