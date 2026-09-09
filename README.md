@@ -1,5 +1,7 @@
 # Information Extraction & Sentiment Engine
 
+[![CI](https://github.com/shannonlee-dev/information-extraction-sentiment-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/shannonlee-dev/information-extraction-sentiment-engine/actions/workflows/ci.yml)
+
 ## 프로젝트 소개
 
 NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내장 `re`로 이메일·전화번호·날짜·금액·URL을 추출하고, 감성 사전 점수에 강조어와 부정어를 적용한다. 기존 추출 규칙, 감성 사전, 정답 데이터와 평가 공식을 재사용했다.
@@ -16,6 +18,7 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 
 ```text
 .
+├── .github/workflows/ci.yml
 ├── README.md
 ├── main.py
 ├── requirements.txt
@@ -53,6 +56,10 @@ pip install -r requirements.txt
 ```
 
 Windows에서는 `python -m venv .venv` 실행 후 `.venv\Scripts\activate`로 활성화한다. `requirements.txt`는 현재 소스를 editable 방식으로 설치하고 테스트용 pytest를 설치한다. 설치 후에도 `data/`와 `tests/fixtures/`가 있는 이 저장소를 유지한다.
+
+## CI
+
+GitHub Actions는 모든 push와 pull request에서 Python 3.10·3.12 환경을 각각 준비하고 `python -m pytest -q`를 실행한다. 상태는 문서 상단의 CI 배지와 `.github/workflows/ci.yml`에서 확인할 수 있다.
 
 ## 실행 방법
 
