@@ -7,6 +7,7 @@ name = "information-extraction-sentiment-engine"
 version = "0.1.0"
 description = "NLP Mission 2: rule-based extraction and sentiment analysis"
 requires-python = ">=3.10"
+dependencies = ["matplotlib>=3.7,<4"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9"]

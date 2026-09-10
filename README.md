@@ -12,7 +12,7 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 - 감성 단어 613개(고객지원 도메인 91개), regex 토큰화, 점수 합산
 - 부정·강조·대표 이중부정 처리 및 `positive / negative / neutral` 판정
 - 추출 65문장, 감성 100문장 평가와 실제 실패 사례 출력
-- 분석은 Python 표준 라이브러리만 사용한다. Java, KoNLPy, 모델 다운로드는 필요 없다.
+- 분석 로직은 Python 표준 라이브러리를 사용하고, 평가 그래프 생성에는 Matplotlib을 사용한다. Java, KoNLPy, 모델 다운로드는 필요 없다.
 
 ## 아키텍처
 
@@ -33,6 +33,11 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 │   ├── cli.py
 │   ├── analysis.py
 │   ├── models.py
+│   ├── reporting/             # 출력과 보고서 생성
+│   │   ├── __init__.py
+│   │   ├── artifacts.py        # 실행별 JSON·보고서 저장
+│   │   ├── comparison.py       # 터미널·CSV 비교표
+│   │   └── charts.py           # PNG 그래프
 │   ├── data/                  # 설치 파일에 포함되는 데이터
 │   │   ├── __init__.py        # 패키지 리소스 위치
 │   │   ├── lexicons/          # 분석에 사용하는 사전과 수식어
@@ -64,7 +69,8 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
     │   ├── test_evaluation.py
     │   └── test_module_boundaries.py
     └── integration/          # 프로세스 실행·인자 처리·JSON 출력
-        └── test_cli.py
+        ├── test_cli.py
+        └── test_artifacts.py
 ```
 
 `main.py`와 `__main__.py`는 `cli.py`의 진입점을 호출한다. `cli.py`는 인자 처리와 JSON 출력을, `analysis.py`의 `analyze_text(text)`는 통합 분석을 담당한다. `models.py`는 결과 dataclass와 `to_dict()` 직렬화를 정의한다. `pyproject.toml`에서 패키지 데이터, 개발 의존성, 테스트 경로를 설정한다.
@@ -76,6 +82,7 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 - 추출 형식 추가·수정은 `extraction/`의 해당 유형 파일에서 한다. 정규식·유효성 검사·정규화는 함께 유지한다. 새로운 유형을 도입할 때만 `pipeline.py`의 실행 목록과 결과 타입·평가 유형을 함께 갱신한다.
 - 토큰 규칙은 `sentiment/tokenization.py`에서 수정한다. 사전 표기와 입력 문장이 같은 토큰화 함수를 사용한다. 활용 확장·긴 표현 우선순위는 `lexicon.py`, 부정 범위·강조 계산은 `modifiers.py`에서 수정한다.
 - 평가 데이터 위치는 `evaluation/datasets.py`, 공통 지표 공식은 `metrics.py`, 영역별 정답 비교와 오류 보고는 각 평가기에서 수정한다.
+- 결과 저장 정책은 `reporting/artifacts.py`, 비교표 형식은 `comparison.py`, 그래프는 `charts.py`에서 수정한다. 분석·평가 함수는 파일을 쓰지 않고, CLI가 출력 계층을 호출한다.
 - 외부 호출부는 기존처럼 `from sentiment_engine.extraction import extract_information`, `from sentiment_engine.sentiment import analyze_sentiment`, `from sentiment_engine.evaluation import evaluate_extraction`을 사용한다. 각 패키지의 `__init__.py`가 공개 API를 명시한다.
 
 ## 설치 방법
@@ -106,7 +113,34 @@ python -m pytest -q
 
 저장소에서 기존 `python main.py ...` 명령도 사용할 수 있다. 테스트를 나눠 실행하려면 `python -m pytest tests/unit -q` 또는 `python -m pytest tests/integration -q`를 사용한다.
 
-모든 CLI 출력은 JSON이다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 응답에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
+CLI의 표준 출력(stdout)은 JSON이다. 비교표와 저장 경로는 표준 오류(stderr)에 표시하므로 JSON을 다른 프로그램으로 전달할 수 있다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 응답에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
+
+### 결과 파일과 성능 비교 보고서
+
+기본 실행은 현재 작업 디렉터리의 `artifacts/` 아래에 결과를 자동 저장한다. 실행마다 UTC 시각과 고유 접미사가 붙은 새 디렉터리를 만들므로 이전 결과를 덮어쓰지 않는다. 실행이 끝나면 터미널에 실제 저장 경로와 파일 목록이 표시된다.
+
+```text
+artifacts/
+├── analysis-<실행 ID>/
+│   └── result.json         # 원문·추출 결과·진단·감성 분석
+└── evaluation-<실행 ID>/
+    ├── result.json         # 지표·혼동행렬·오류 사례
+    ├── comparison.csv      # 스프레드시트용 비교표
+    └── comparison.png      # 공유용 막대그래프
+```
+
+`--evaluate sentiment`와 `--evaluate all`은 Accuracy·Macro F1 비교표와 그래프를 함께 생성한다. `--evaluate extraction`은 추출 평가 JSON을 저장한다. 비교표와 그래프는 실행 시 계산한 평가 결과를 사용하며, 사용 문장 수와 합성 데이터라는 점을 표시한다. ON은 강조·부정을 모두 적용하고 OFF는 둘 다 끈다. 표의 값과 증감은 0–1 척도이며 Accuracy `+0.18`은 `+18%p`다.
+
+```bash
+# 터미널 출력만 사용 (파일 생성 없음)
+python -m sentiment_engine --text "정말 좋지 않아요" --no-save
+python -m sentiment_engine --evaluate sentiment --no-save
+
+# 저장할 상위 디렉터리 지정
+python -m sentiment_engine --evaluate all --output-dir artifacts/reports
+```
+
+`--no-save`와 `--output-dir`는 함께 사용할 수 없다. 저장에 실패하면 JSON은 터미널에 출력하고 오류 메시지와 종료 코드 1을 반환한다. 보고서 일부가 생성된 후 실패하면 해당 파일은 남을 수 있다. 생성 결과는 `.gitignore`의 `artifacts/` 규칙으로 커밋에서 제외된다. 별도 저장 경로를 선택하면 그 경로의 Git 포함 여부는 직접 관리한다.
 
 ## 정보 추출 규칙
 
@@ -187,7 +221,7 @@ python -m pytest -q
 
 Accuracy는 18%p 증가했다. 이 비교는 부정과 강조를 함께 켠 효과이며, 각각의 독립적 기여를 측정한 실험은 아니다. 강조는 점수 크기를 바꾸므로 단일 감성 단어 문장에서는 label이 그대로일 수 있다.
 
-전체 자동 테스트: **125 passed**. 지원 추출 예제, 잘못된 입력, 감성 계산, 데이터 최소 수량, 손으로 계산한 평가 지표, CLI 분석·평가를 검사한다. 평가 데이터의 실제 오분류는 규칙의 한계로 보고하며, 모든 문장을 맞혀야 테스트가 통과하도록 만들지는 않았다.
+전체 자동 테스트: **130 passed**. 지원 추출 예제, 잘못된 입력, 감성 계산, 데이터 최소 수량, 손으로 계산한 평가 지표, CLI 분석·평가, JSON 자동 저장과 성능 비교 보고서 생성을 검사한다. 평가 데이터의 실제 오분류는 규칙의 한계로 보고하며, 모든 문장을 맞혀야 테스트가 통과하도록 만들지는 않았다.
 
 ## 실패 사례
 
