@@ -11,7 +11,7 @@ DATA = Path(__file__).resolve().parents[2] / 'data'
 TOKEN_PATTERN = re.compile(r'[가-힣A-Za-z0-9]+|[^\w\s]|[\r\n]')
 
 
-def _load_lexicon():
+def _load_lexicon() -> dict:
     entries = json.loads((DATA / 'sentiment_lexicon.json').read_text(encoding='utf-8'))
     lookup = {}
     for entry in entries:
@@ -35,7 +35,7 @@ MAX_WORDS = max(len(words) for words in LEXICON)
 MODIFIERS = json.loads((DATA / 'modifiers.json').read_text(encoding='utf-8'))
 
 
-def _find_match(tokens, start):
+def _find_match(tokens: list[str], start: int) -> tuple[dict | None, int]:
     # 같은 위치에서는 가장 긴 등록 표현부터 검사한다. 단어 내부 부분 문자열은 매칭하지 않는다.
     for end in range(min(len(tokens), start + MAX_WORDS), start, -1):
         entry = LEXICON.get(tuple(tokens[start:end]))
