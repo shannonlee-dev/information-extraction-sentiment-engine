@@ -37,11 +37,8 @@ def test_sentiment_evaluation_saves_table_and_charts(tmp_path):
     assert float(rows[0]['off']) == 0.7
     assert float(rows[0]['on']) == 0.88
     assert float(rows[0]['delta']) == 0.18
-    table = run.stderr
-    assert '| Accuracy | 0.700000 | 0.880000 | +0.180000 |' in table
-    assert '100' in table
-    assert 'synthetic' in table.lower()
-    assert 'Accuracy' in run.stderr
+    assert '저장 완료' in run.stderr
+    assert 'Accuracy' not in run.stderr
     assert (folder / 'comparison.png').read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
     assert {path.name for path in folder.iterdir()} == {
         'result.json', 'comparison.csv', 'comparison.png',
@@ -52,7 +49,7 @@ def test_no_save_keeps_terminal_evaluation_without_creating_files(tmp_path):
     run = run_cli(tmp_path, '--evaluate', 'all', '--no-save')
     assert run.returncode == 0, run.stderr
     assert 'extraction' in json.loads(run.stdout)
-    assert 'Macro F1' in run.stderr
+    assert run.stderr == ''
     assert list(tmp_path.iterdir()) == []
 
 
@@ -68,5 +65,5 @@ def test_invalid_output_directory_reports_failure_without_losing_stdout(tmp_path
     run = run_cli(tmp_path, '--text', '좋다', '--output-dir', 'blocked')
     assert run.returncode != 0
     assert json.loads(run.stdout)['sentiment']['score'] == 2
-    assert 'Could not save artifacts' in run.stderr
+    assert '저장 실패' in run.stderr
     assert (tmp_path / 'blocked').read_text() == 'keep me'

@@ -114,7 +114,12 @@ python -m pytest -q
 
 저장소에서 기존 `python main.py ...` 명령도 사용할 수 있다. 테스트를 나눠 실행하려면 `python -m pytest tests/unit -q` 또는 `python -m pytest tests/integration -q`를 사용한다.
 
-CLI의 표준 출력(stdout)은 JSON이다. 비교표와 저장 경로는 표준 오류(stderr)에 표시하므로 JSON을 다른 프로그램으로 전달할 수 있다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 응답에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
+터미널에서는 분석 요약과 정렬된 평가표를 출력한다. 파이프나 파일 리다이렉션에서는 자동으로 전체 JSON을 출력한다. `--format text` 또는 `--format json`으로 형식을 지정할 수도 있다. 저장 경로와 오류는 표준 오류(stderr)에 표시한다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 JSON에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
+
+```bash
+python -m sentiment_engine --evaluate all --format text --no-save
+python -m sentiment_engine --evaluate all --format json --no-save > result.json
+```
 
 ### 결과 파일과 성능 비교 보고서
 
@@ -141,7 +146,7 @@ python -m sentiment_engine --evaluate sentiment --no-save
 python -m sentiment_engine --evaluate all --output-dir artifacts/reports
 ```
 
-`--no-save`와 `--output-dir`는 함께 사용할 수 없다. 저장에 실패하면 JSON은 터미널에 출력하고 오류 메시지와 종료 코드 1을 반환한다. 보고서 일부가 생성된 후 실패하면 해당 파일은 남을 수 있다. 생성 결과는 `.gitignore`의 `artifacts/` 규칙으로 커밋에서 제외된다. 별도 저장 경로를 선택하면 그 경로의 Git 포함 여부는 직접 관리한다.
+`--no-save`와 `--output-dir`는 함께 사용할 수 없다. 저장에 실패해도 선택한 형식의 결과는 출력하며, 오류 메시지와 종료 코드 1을 반환한다. Matplotlib이 없으면 설치 명령을 안내한다. 보고서 일부가 생성된 후 실패하면 해당 파일은 남을 수 있다. 생성 결과는 `.gitignore`의 `artifacts/` 규칙으로 커밋에서 제외된다. 별도 저장 경로를 선택하면 그 경로의 Git 포함 여부는 직접 관리한다.
 
 ## 정보 추출 규칙
 
