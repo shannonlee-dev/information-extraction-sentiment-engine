@@ -30,6 +30,8 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 │   └── modifiers.json
 ├── src/sentiment_engine/
 │   ├── __init__.py
+│   ├── cli.py
+│   ├── analysis.py
 │   ├── extraction.py
 │   ├── sentiment.py
 │   ├── models.py
@@ -43,7 +45,7 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
     └── test_evaluation.py
 ```
 
-`main.py`가 두 분석 함수를 호출한다. `models.py`는 추출 값·거부 사유·감성 계산 내역을 담는 dataclass만 정의한다. `pyproject.toml`은 `src` 패키지 설치와 테스트 경로 설정에 사용한다. 평가·CLI 검증은 `test_evaluation.py`에 모았다.
+`main.py`는 `cli.py`의 진입점만 호출한다. `cli.py`는 인자 처리와 JSON 출력을, `analysis.py`의 `analyze_text(text)`는 통합 분석을 담당한다. `models.py`는 결과 dataclass와 `to_dict()` 직렬화를 정의하므로 호출부에서 내부 필드를 순회할 필요가 없다. `pyproject.toml`은 `src` 패키지 설치와 테스트 경로 설정에 사용한다. 평가·CLI 검증은 `test_evaluation.py`에 모았다.
 
 ## 설치 방법
 

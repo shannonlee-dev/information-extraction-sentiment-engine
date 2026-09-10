@@ -1,5 +1,5 @@
 """추출 값과 감성 점수의 반환 구조."""
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Literal, TypeAlias
 
 ExtractionType: TypeAlias = Literal["email", "phone", "date", "money", "url"]
@@ -38,6 +38,12 @@ class ExtractionResult:
     items: list[ExtractionItem]
     diagnostics: list[Diagnostic]
 
+    def to_dict(self) -> dict:
+        return {
+            'extractions': [asdict(item) for item in self.items],
+            'diagnostics': [asdict(item) for item in self.diagnostics],
+        }
+
 
 @dataclass
 class SentimentMatch:
@@ -55,3 +61,6 @@ class SentimentResult:
     label: SentimentLabel
     tokens: list[str]
     matches: list[SentimentMatch]
+
+    def to_dict(self) -> dict:
+        return asdict(self)
