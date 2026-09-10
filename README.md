@@ -24,28 +24,59 @@ NLP Mission 2 제출용 규칙 기반 한국어 NLP 프로젝트다. Python 내�
 ├── requirements.txt
 ├── pyproject.toml
 ├── docs/
-│   └── legacy-engine-report.md
-├── data/
-│   ├── sentiment_lexicon.json
-│   └── modifiers.json
+│   ├── archive/               # 이전 버전 보고서
+│   │   └── legacy-engine-report.md
+│   └── plans/                 # 구현 계획과 검증 기록
 ├── src/sentiment_engine/
 │   ├── __init__.py
+│   ├── __main__.py            # python -m sentiment_engine
 │   ├── cli.py
 │   ├── analysis.py
-│   ├── extraction.py
-│   ├── sentiment.py
 │   ├── models.py
-│   └── evaluation.py
+│   ├── data/                  # 설치 파일에 포함되는 데이터
+│   │   ├── __init__.py        # 패키지 리소스 위치
+│   │   ├── lexicons/          # 분석에 사용하는 사전과 수식어
+│   │   │   ├── sentiment_lexicon.json
+│   │   │   └── modifiers.json
+│   │   └── evaluation/        # CLI와 테스트가 공유하는 정답 데이터
+│   │       ├── extraction_cases.json
+│   │       └── sentiment_cases.json
+│   ├── extraction/
+│   │   ├── __init__.py       # 공개 API
+│   │   ├── pipeline.py       # 입력 검증·실행·결과 정렬
+│   │   └── email.py / phone.py / date.py / money.py / url.py
+│   ├── sentiment/
+│   │   ├── __init__.py       # 공개 API
+│   │   ├── analyzer.py       # 점수 합산·결과 생성
+│   │   ├── tokenization.py   # 공통 토큰화
+│   │   ├── lexicon.py        # 사전 로딩·활용 확장·최장 매칭
+│   │   └── modifiers.py      # 강조·부정 계산
+│   └── evaluation/
+│       ├── __init__.py       # 공개 API
+│       ├── datasets.py       # 정답 데이터 로딩
+│       ├── metrics.py        # 공통 지표 계산
+│       ├── extraction.py     # 추출 평가
+│       └── sentiment.py      # 감성 평가·수식어 전후 비교
 └── tests/
-    ├── fixtures/
-    │   ├── extraction_cases.json
-    │   └── sentiment_cases.json
-    ├── test_extraction.py
-    ├── test_sentiment.py
-    └── test_evaluation.py
+    ├── unit/                 # 분석 규칙·평가 지표·모듈 계약
+    │   ├── test_extraction.py
+    │   ├── test_sentiment.py
+    │   ├── test_evaluation.py
+    │   └── test_module_boundaries.py
+    └── integration/          # 프로세스 실행·인자 처리·JSON 출력
+        └── test_cli.py
 ```
 
-`main.py`는 `cli.py`의 진입점만 호출한다. `cli.py`는 인자 처리와 JSON 출력을, `analysis.py`의 `analyze_text(text)`는 통합 분석을 담당한다. `models.py`는 결과 dataclass와 `to_dict()` 직렬화를 정의하므로 호출부에서 내부 필드를 순회할 필요가 없다. `pyproject.toml`은 `src` 패키지 설치와 테스트 경로 설정에 사용한다. 평가·CLI 검증은 `test_evaluation.py`에 모았다.
+`main.py`와 `__main__.py`는 `cli.py`의 진입점을 호출한다. `cli.py`는 인자 처리와 JSON 출력을, `analysis.py`의 `analyze_text(text)`는 통합 분석을 담당한다. `models.py`는 결과 dataclass와 `to_dict()` 직렬화를 정의한다. `pyproject.toml`에서 패키지 데이터, 개발 의존성, 테스트 경로를 설정한다.
+
+패키지 내부의 `data/lexicons/`는 분석 규칙이 사용하는 데이터이고, `data/evaluation/`은 평가기의 정답 데이터다. 둘 다 패키지에 포함되며 `importlib.resources`로 읽는다. 애플리케이션이 `tests/`나 저장소 루트 위치에 의존하지 않으므로, wheel만 설치해도 분석과 평가를 실행할 수 있다. `tests/fixtures/`는 향후 테스트에서만 필요한 샘플이 생길 때 사용한다.
+
+### 모듈 수정 기준
+
+- 추출 형식 추가·수정은 `extraction/`의 해당 유형 파일에서 한다. 정규식·유효성 검사·정규화는 함께 유지한다. 새로운 유형을 도입할 때만 `pipeline.py`의 실행 목록과 결과 타입·평가 유형을 함께 갱신한다.
+- 토큰 규칙은 `sentiment/tokenization.py`에서 수정한다. 사전 표기와 입력 문장이 같은 토큰화 함수를 사용한다. 활용 확장·긴 표현 우선순위는 `lexicon.py`, 부정 범위·강조 계산은 `modifiers.py`에서 수정한다.
+- 평가 데이터 위치는 `evaluation/datasets.py`, 공통 지표 공식은 `metrics.py`, 영역별 정답 비교와 오류 보고는 각 평가기에서 수정한다.
+- 외부 호출부는 기존처럼 `from sentiment_engine.extraction import extract_information`, `from sentiment_engine.sentiment import analyze_sentiment`, `from sentiment_engine.evaluation import evaluate_extraction`을 사용한다. 각 패키지의 `__init__.py`가 공개 API를 명시한다.
 
 ## 설치 방법
 
@@ -57,21 +88,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Windows에서는 `python -m venv .venv` 실행 후 `.venv\Scripts\activate`로 활성화한다. `requirements.txt`는 현재 소스를 editable 방식으로 설치하고 테스트용 pytest를 설치한다. 설치 후에도 `data/`와 `tests/fixtures/`가 있는 이 저장소를 유지한다.
+Windows에서는 `python -m venv .venv` 실행 후 `.venv\Scripts\activate`로 활성화한다. `requirements.txt`는 `pyproject.toml`의 `dev` 의존성을 포함해 현재 소스를 editable 방식으로 설치한다. 실행만 필요하면 `pip install .`로 일반 설치할 수 있으며, 사전과 평가 데이터도 함께 설치된다.
 
 ## CI
 
-GitHub Actions는 모든 push와 pull request에서 Python 3.10·3.12 환경을 각각 준비하고 `python -m pytest -q`를 실행한다. 상태는 문서 상단의 CI 배지와 `.github/workflows/ci.yml`에서 확인할 수 있다.
+GitHub Actions는 모든 push와 pull request에서 Python 3.10·3.12 환경을 각각 준비한다. `pip install ".[dev]"`로 패키지와 데이터를 일반 설치한 뒤 `python -m pytest -q`를 실행하므로, 설치 파일의 데이터 누락도 검증한다. 상태는 문서 상단의 CI 배지와 `.github/workflows/ci.yml`에서 확인할 수 있다.
 
 ## 실행 방법
 
 ```bash
-python main.py --text "문의: test@example.com, 결제 금액은 50,000원입니다. 정말 좋지 않아요."
-python main.py --evaluate extraction
-python main.py --evaluate sentiment
-python main.py --evaluate all
+python -m sentiment_engine --text "문의: test@example.com, 결제 금액은 50,000원입니다. 정말 좋지 않아요."
+python -m sentiment_engine --evaluate extraction
+python -m sentiment_engine --evaluate sentiment
+python -m sentiment_engine --evaluate all
 python -m pytest -q
 ```
+
+저장소에서 기존 `python main.py ...` 명령도 사용할 수 있다. 테스트를 나눠 실행하려면 `python -m pytest tests/unit -q` 또는 `python -m pytest tests/integration -q`를 사용한다.
 
 모든 CLI 출력은 JSON이다. 위 분석 예제는 이메일 `test@example.com`, 금액 `{"amount": 50000, "currency": "KRW"}`, 감성 `{"score": -3.0, "label": "negative"}`를 반환한다. 전체 응답에는 원문, 추출 위치, 토큰과 단어별 계산 내역도 포함한다. 빈 문장은 오류로 처리한다.
 
@@ -93,7 +126,7 @@ python -m pytest -q
 
 ## 감성 분석 규칙
 
-`sentiment.py` 하나에서 다음 흐름을 읽을 수 있다.
+`sentiment/analyzer.py`가 다음 흐름을 조율한다. 토큰화는 `tokenization.py`, 사전과 표현 매칭은 `lexicon.py`, 강조·부정 계산은 `modifiers.py`가 담당한다.
 
 ```text
 문장 → 어절·문장부호 토큰 → 사전 표현 매칭 → 기본 점수
@@ -121,10 +154,10 @@ python -m pytest -q
 
 | 파일 | 구성 |
 | --- | --- |
-| `data/sentiment_lexicon.json` | 기존 프로젝트 작성 사전 613개. `term`, `variants`, `score`, 선택적 `domain` |
-| `data/modifiers.json` | 앞/뒤 부정어 표기와 강조 배율 |
-| `tests/fixtures/extraction_cases.json` | 기존 65문장, 정답 개체 63개. 미지원 변형 6문장과 정답이 빈 7문장 포함 |
-| `tests/fixtures/sentiment_cases.json` | 기존 100문장, 긍정 50·부정 50. 단순 감성·강조·부정·이중부정·혼합 감성·난제 포함 |
+| `src/sentiment_engine/data/lexicons/sentiment_lexicon.json` | 기존 프로젝트 작성 사전 613개. `term`, `variants`, `score`, 선택적 `domain` |
+| `src/sentiment_engine/data/lexicons/modifiers.json` | 앞/뒤 부정어 표기와 강조 배율 |
+| `src/sentiment_engine/data/evaluation/extraction_cases.json` | 기존 65문장, 정답 개체 63개. 미지원 변형 6문장과 정답이 빈 7문장 포함 |
+| `src/sentiment_engine/data/evaluation/sentiment_cases.json` | 기존 100문장, 긍정 50·부정 50. 단순 감성·강조·부정·이중부정·혼합 감성·난제 포함 |
 
 도메인은 고객지원(`customer_support`)이며 `친절하다`, `불친절하다`, `정확하다` 등 91개 항목이다. 표기 변형을 별개 단어 수로 세지 않는다.
 
@@ -154,7 +187,7 @@ python -m pytest -q
 
 Accuracy는 18%p 증가했다. 이 비교는 부정과 강조를 함께 켠 효과이며, 각각의 독립적 기여를 측정한 실험은 아니다. 강조는 점수 크기를 바꾸므로 단일 감성 단어 문장에서는 label이 그대로일 수 있다.
 
-전체 자동 테스트: **104 passed**. 지원 추출 예제, 잘못된 입력, 감성 계산, 데이터 최소 수량, 손으로 계산한 평가 지표, CLI 분석·평가를 검사한다. 평가 데이터의 실제 오분류는 규칙의 한계로 보고하며, 모든 문장을 맞혀야 테스트가 통과하도록 만들지는 않았다.
+전체 자동 테스트: **125 passed**. 지원 추출 예제, 잘못된 입력, 감성 계산, 데이터 최소 수량, 손으로 계산한 평가 지표, CLI 분석·평가를 검사한다. 평가 데이터의 실제 오분류는 규칙의 한계로 보고하며, 모든 문장을 맞혀야 테스트가 통과하도록 만들지는 않았다.
 
 ## 실패 사례
 
@@ -204,4 +237,4 @@ regex 토큰화는 형태소 분석보다 활용형·붙여쓰기 처리에 약�
 
 이번 제출에서는 외부 벤치마크, M/M2 개발 실험, exposure/workset, profiling, release 파이프라인, 컴파일 사전과 모델·환경 해시 검증, 과거 실험 문서·테스트를 제거했다. 핵심 미션 로직과 데이터, 재계산 가능한 평가만 남겼다.
 
-리팩터링 이전 엔진의 분석 방식과 외부 평가 기록은 [이전 엔진 분석 및 평가 보고서](docs/legacy-engine-report.md)에 보존했다. 해당 보고서의 구현 설명과 수치는 이전 버전을 기준으로 한다.
+리팩터링 이전 엔진의 분석 방식과 외부 평가 기록은 [이전 엔진 분석 및 평가 보고서](docs/archive/legacy-engine-report.md)에 보존했다. 해당 보고서의 구현 설명과 수치는 이전 버전을 기준으로 한다.

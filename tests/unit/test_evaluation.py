@@ -1,9 +1,5 @@
-"""데이터 구성, 손으로 계산한 지표, CLI 실행을 검증한다."""
-import json
-import subprocess
-import sys
+"""데이터 구성과 손으로 계산한 지표를 검증한다."""
 from dataclasses import asdict
-from pathlib import Path
 
 import pytest
 
@@ -12,9 +8,6 @@ from sentiment_engine.evaluation import (
     load_extraction_cases, load_sentiment_cases,
 )
 from sentiment_engine.extraction import extract_information
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 def test_fixture_coverage_and_gold_spans():
     extraction = load_extraction_cases()
@@ -82,24 +75,3 @@ def test_full_fixture_evaluation():
     # 실패를 일부러 만들지는 않는다. 오류 보고 항목이 실제 오분류인지 확인한다.
     for error in sentiment['with_modifiers']['errors']:
         assert error['expected'] != error['predicted']
-
-
-def test_cli_analysis_and_evaluation(tmp_path):
-    text = '문의: test@example.com, 결제 금액은 50,000원입니다. 정말 좋지 않아요.'
-    run = subprocess.run([sys.executable, str(ROOT / 'main.py'), '--text', text],
-                         cwd=tmp_path, capture_output=True, text=True, check=True)
-    result = json.loads(run.stdout)
-    assert [item['type'] for item in result['extractions']] == ['email', 'money']
-    assert result['sentiment']['score'] == -3
-    run = subprocess.run([sys.executable, str(ROOT / 'main.py'), '--evaluate', 'all'],
-                         cwd=tmp_path, capture_output=True, text=True, check=True)
-    report = json.loads(run.stdout)
-    assert 'per_type' in report['extraction']
-    assert 'with_modifiers' in report['sentiment']
-
-
-def test_cli_rejects_blank_input():
-    run = subprocess.run([sys.executable, str(ROOT / 'main.py'), '--text', ' '],
-                         capture_output=True, text=True)
-    assert run.returncode == 2
-    assert 'blank' in run.stderr

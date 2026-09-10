@@ -8,8 +8,15 @@ version = "0.1.0"
 description = "NLP Mission 2: rule-based extraction and sentiment analysis"
 requires-python = ">=3.10"
 
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"sentiment_engine.data" = ["lexicons/*.json", "evaluation/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

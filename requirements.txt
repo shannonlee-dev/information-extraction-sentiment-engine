@@ -1,3 +1,2 @@
 # 소스 저장소를 editable 설치한다. 분석에는 Python 표준 라이브러리만 사용한다.
--e .
-pytest>=8,<9
+-e .[dev]

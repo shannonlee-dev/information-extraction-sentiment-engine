@@ -1,12 +1,10 @@
 """미션의 점수 계산과 사전 수량을 검증한다."""
 import json
-from pathlib import Path
 
 import pytest
 
 from sentiment_engine.sentiment import analyze_sentiment
-
-ROOT = Path(__file__).resolve().parents[1]
+from sentiment_engine.data import LEXICONS
 
 
 @pytest.mark.parametrize('text, score, label', [
@@ -45,7 +43,7 @@ def test_modifiers_can_be_disabled_and_calculation_is_visible():
 
 
 def test_dictionary_has_required_words():
-    lexicon = json.loads((ROOT / 'data/sentiment_lexicon.json').read_text(encoding='utf-8'))
+    lexicon = json.loads(LEXICONS.joinpath('sentiment_lexicon.json').read_text(encoding='utf-8'))
     assert len({entry['term'] for entry in lexicon}) >= 200
     assert sum(entry.get('domain') == 'customer_support' for entry in lexicon) >= 30
     assert all(entry['score'] in (-3, -2, -1, 1, 2, 3) for entry in lexicon)
