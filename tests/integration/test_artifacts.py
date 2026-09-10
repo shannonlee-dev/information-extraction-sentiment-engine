@@ -20,6 +20,7 @@ def test_analysis_is_saved_without_overwriting_previous_runs(tmp_path):
         saved = list((tmp_path / 'artifacts').glob('analysis-*/result.json'))
         assert any(json.loads(path.read_text()) == result for path in saved)
         assert 'result.json' in run.stderr
+        assert 'summary.md' in run.stderr
     assert len(saved) == 2
 
 
@@ -41,8 +42,13 @@ def test_sentiment_evaluation_saves_table_and_charts(tmp_path):
     assert 'Accuracy' not in run.stderr
     assert (folder / 'comparison.png').read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
     assert {path.name for path in folder.iterdir()} == {
-        'result.json', 'comparison.csv', 'comparison.png',
+        'result.json', 'comparison.csv', 'comparison.png', 'summary.md',
     }
+    summary = (folder / 'summary.md').read_text(encoding='utf-8')
+    assert '100문장 중 88문장 정답' in summary
+    assert '| 정확도 | 70.0% | 88.0% | +18.0%p |' in summary
+    assert '(comparison.png)' in summary
+    assert '오분류 12건' in summary
 
 
 def test_no_save_keeps_terminal_evaluation_without_creating_files(tmp_path):
@@ -53,11 +59,46 @@ def test_no_save_keeps_terminal_evaluation_without_creating_files(tmp_path):
     assert list(tmp_path.iterdir()) == []
 
 
-def test_extraction_evaluation_only_saves_json(tmp_path):
+def test_extraction_evaluation_saves_json_and_summary(tmp_path):
     run = run_cli(tmp_path, '--evaluate', 'extraction')
     assert run.returncode == 0, run.stderr
     folder, = (tmp_path / 'artifacts').iterdir()
-    assert [p.name for p in folder.iterdir()] == ['result.json']
+    assert {p.name for p in folder.iterdir()} == {'result.json', 'summary.md'}
+    summary = (folder / 'summary.md').read_text(encoding='utf-8')
+    assert '종합 F1 0.9500' in summary
+    assert '정확히 추출 57건 / 추가 추출 0건 / 누락 6건' in summary
+    assert 'comparison.png' not in summary
+
+
+def test_summary_survives_missing_chart_dependency(tmp_path, monkeypatch):
+    from sentiment_engine.evaluation import compare_sentiment
+    from sentiment_engine.reporting import save_artifacts
+    from sentiment_engine.reporting import charts
+    import pytest
+
+    def missing(*args):
+        raise ModuleNotFoundError(name='matplotlib')
+
+    monkeypatch.setattr(charts, 'save_comparison_charts', missing)
+    with pytest.raises(ModuleNotFoundError):
+        save_artifacts({'sentiment': compare_sentiment([])}, tmp_path, evaluation=True)
+    folder, = tmp_path.iterdir()
+    summary = (folder / 'summary.md').read_text(encoding='utf-8')
+    assert '0문장 중 0문장 정답' in summary
+    assert '오류 사례가 없습니다.' in summary
+    assert 'comparison.png' not in summary
+
+
+def test_analysis_summary_escapes_input():
+    from sentiment_engine.analysis import analyze_text
+    from sentiment_engine.reporting.summary import summary_markdown
+
+    summary = summary_markdown(analyze_text('<script>alert(1)</script> | [링크](x) 좋다'),
+                               evaluation=False)
+    assert '<script>' not in summary
+    assert '[링크](x)' not in summary
+    assert '긍정 · 점수 +2' in summary
+    assert '추출된 정보가 없습니다.' in summary
 
 
 def test_invalid_output_directory_reports_failure_without_losing_stdout(tmp_path):

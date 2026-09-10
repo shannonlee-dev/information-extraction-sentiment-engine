@@ -128,14 +128,18 @@ python -m sentiment_engine --evaluate all --format json --no-save > result.json
 ```text
 artifacts/
 ├── analysis-<실행 ID>/
+│   ├── summary.md          # 감성 판단·추출 정보 요약
 │   └── result.json         # 원문·추출 결과·진단·감성 분석
 └── evaluation-<실행 ID>/
+    ├── summary.md          # 핵심 지표·그래프·오류 사례 요약
     ├── result.json         # 지표·혼동행렬·오류 사례
     ├── comparison.csv      # 스프레드시트용 비교표
     └── comparison.png      # 공유용 막대그래프
 ```
 
-`--evaluate sentiment`와 `--evaluate all`은 Accuracy·Macro F1 비교표와 그래프를 함께 생성한다. `--evaluate extraction`은 추출 평가 JSON을 저장한다. 비교표와 그래프는 실행 시 계산한 평가 결과를 사용하며, 사용 문장 수와 합성 데이터라는 점을 표시한다. ON은 강조·부정을 모두 적용하고 OFF는 둘 다 끈다. 표의 값과 증감은 0–1 척도이며 Accuracy `+0.18`은 `+18%p`다.
+모든 저장 실행은 `result.json`과 함께 `summary.md`를 생성한다. Markdown 미리보기에서 핵심 지표, 전후 변화, 오류 사례 최대 3건을 확인할 수 있다. 감성 평가 요약은 같은 폴더의 `comparison.png`를 표시한다. 요약의 정확도는 백분율, 정확도 변화는 %p로 표시하고 F1은 0–1 척도를 사용한다.
+
+`--evaluate sentiment`와 `--evaluate all`은 Accuracy·Macro F1 비교표와 그래프를 함께 생성한다. `--evaluate extraction`은 추출 평가 JSON과 요약을 저장한다. 비교표와 그래프는 실행 시 계산한 평가 결과를 사용하며, 사용 문장 수와 합성 데이터라는 점을 표시한다. ON은 강조·부정을 모두 적용하고 OFF는 둘 다 끈다. CSV와 그래프의 값과 증감은 0–1 척도이며 Accuracy `+0.18`은 `+18%p`다.
 
 ```bash
 # 터미널 출력만 사용 (파일 생성 없음)
