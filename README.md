@@ -123,18 +123,21 @@ python -m sentiment_engine --evaluate all --format json --no-save > result.json
 
 ### 결과 파일과 성능 비교 보고서
 
-기본 실행은 현재 작업 디렉터리의 `artifacts/` 아래에 결과를 자동 저장한다. 실행마다 UTC 시각과 고유 접미사가 붙은 새 디렉터리를 만들므로 이전 결과를 덮어쓰지 않는다. 실행이 끝나면 터미널에 실제 저장 경로와 파일 목록이 표시된다.
+기본 실행은 현재 작업 디렉터리의 `artifacts/` 아래에 결과를 자동 저장한다. 일반 분석은 UTC 시각과 고유 접미사가 붙은 실행별 폴더에 보관한다. 평가는 `evaluation/all`, `evaluation/sentiment`, `evaluation/extraction`에 종류별 최신 결과를 덮어쓴다. 기존 시각별 평가 폴더는 자동 삭제하지 않는다. 실행이 끝나면 터미널에 실제 저장 경로와 파일 목록이 표시된다.
 
 ```text
 artifacts/
 ├── analysis-<실행 ID>/
 │   ├── summary.md          # 감성 판단·추출 정보 요약
 │   └── result.json         # 원문·추출 결과·진단·감성 분석
-└── evaluation-<실행 ID>/
-    ├── summary.md          # 핵심 지표·그래프·오류 사례 요약
-    ├── result.json         # 지표·혼동행렬·오류 사례
-    ├── comparison.csv      # 스프레드시트용 비교표
-    └── comparison.png      # 공유용 막대그래프
+└── evaluation/
+    ├── all/                # 전체 평가 최신 결과
+    │   ├── summary.md      # 핵심 지표·그래프·오류 사례 요약
+    │   ├── result.json     # 지표·혼동행렬·오류 사례
+    │   ├── comparison.csv  # 스프레드시트용 비교표
+    │   └── comparison.png  # 공유용 막대그래프
+    ├── sentiment/          # 감성 평가: 위와 같은 4개 파일
+    └── extraction/         # 추출 평가: summary.md, result.json
 ```
 
 모든 저장 실행은 `result.json`과 함께 `summary.md`를 생성한다. Markdown 미리보기에서 핵심 지표, 전후 변화, 오류 사례 최대 3건을 확인할 수 있다. 감성 평가 요약은 같은 폴더의 `comparison.png`를 표시한다. 요약의 정확도는 백분율, 정확도 변화는 %p로 표시하고 F1은 0–1 척도를 사용한다.

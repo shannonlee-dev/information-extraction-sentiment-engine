@@ -27,9 +27,7 @@ def test_analysis_is_saved_without_overwriting_previous_runs(tmp_path):
 def test_sentiment_evaluation_saves_table_and_charts(tmp_path):
     run = run_cli(tmp_path, '--evaluate', 'sentiment', '--output-dir', 'reports')
     assert run.returncode == 0, run.stderr
-    folders = list((tmp_path / 'reports').glob('evaluation-*'))
-    assert len(folders) == 1
-    folder = folders[0]
+    folder = tmp_path / 'reports' / 'evaluation' / 'sentiment'
     result = json.loads(run.stdout)
     assert json.loads((folder / 'result.json').read_text()) == result
     with (folder / 'comparison.csv').open(newline='') as stream:
@@ -62,7 +60,7 @@ def test_no_save_keeps_terminal_evaluation_without_creating_files(tmp_path):
 def test_extraction_evaluation_saves_json_and_summary(tmp_path):
     run = run_cli(tmp_path, '--evaluate', 'extraction')
     assert run.returncode == 0, run.stderr
-    folder, = (tmp_path / 'artifacts').iterdir()
+    folder = tmp_path / 'artifacts' / 'evaluation' / 'extraction'
     assert {p.name for p in folder.iterdir()} == {'result.json', 'summary.md'}
     summary = (folder / 'summary.md').read_text(encoding='utf-8')
     assert '종합 F1 0.9500' in summary
@@ -79,14 +77,40 @@ def test_summary_survives_missing_chart_dependency(tmp_path, monkeypatch):
     def missing(*args):
         raise ModuleNotFoundError(name='matplotlib')
 
+    folder = tmp_path / 'evaluation' / 'sentiment'
+    folder.mkdir(parents=True)
+    (folder / 'comparison.png').write_bytes(b'old chart')
     monkeypatch.setattr(charts, 'save_comparison_charts', missing)
     with pytest.raises(ModuleNotFoundError):
         save_artifacts({'sentiment': compare_sentiment([])}, tmp_path, evaluation=True)
-    folder, = tmp_path.iterdir()
+    assert not (folder / 'comparison.png').exists()
     summary = (folder / 'summary.md').read_text(encoding='utf-8')
     assert '0문장 중 0문장 정답' in summary
     assert '오류 사례가 없습니다.' in summary
     assert 'comparison.png' not in summary
+
+
+def test_evaluations_reuse_paths_and_keep_modes_separate(tmp_path):
+    from sentiment_engine.evaluation import compare_sentiment, evaluate_extraction
+    from sentiment_engine.reporting import save_artifacts
+
+    extraction = evaluate_extraction([])
+    sentiment = compare_sentiment([])
+    for mode, result in (
+        ('all', {'extraction': extraction, 'sentiment': sentiment}),
+        ('sentiment', {'sentiment': sentiment}),
+        ('extraction', {'extraction': extraction}),
+    ):
+        folder = save_artifacts(result, tmp_path, evaluation=True)
+        assert folder == tmp_path / 'evaluation' / mode
+        (folder / 'result.json').write_text('old result')
+        assert save_artifacts(result, tmp_path, evaluation=True) == folder
+        assert json.loads((folder / 'result.json').read_text()) == result
+    assert {p.name for p in tmp_path.iterdir()} == {'evaluation'}
+    assert {p.name for p in (tmp_path / 'evaluation').iterdir()} == {
+        'all', 'sentiment', 'extraction',
+    }
+    assert not (tmp_path / 'evaluation' / 'extraction' / 'comparison.png').exists()
 
 
 def test_analysis_summary_escapes_input():
