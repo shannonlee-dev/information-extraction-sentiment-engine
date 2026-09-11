@@ -1,11 +1,16 @@
 """추출 입력 검증, 유형별 실행 및 결과 정렬."""
-from sentiment_engine.models import ExtractionResult
+
+from sentiment_engine.models import Diagnostic, ExtractionItem, ExtractionResult
 
 from .email import extract_emails
 from .phone import extract_phones
 from .date import extract_dates
 from .money import extract_money
 from .url import extract_urls
+
+
+def _source_position(item: ExtractionItem | Diagnostic) -> tuple[int, int, str]:
+    return item.start, item.end, item.type
 
 
 def extract_information(text: str) -> ExtractionResult:
@@ -21,9 +26,11 @@ def extract_information(text: str) -> ExtractionResult:
         extract_money(text),
         extract_urls(text),
     )
-    items = [item for extracted_items, _ in extracted for item in extracted_items]
-    diagnostics = [diagnostic for _, extracted_diagnostics in extracted for diagnostic in extracted_diagnostics]
-    return ExtractionResult(
-        items=sorted(items, key=lambda item: (item.start, item.end, item.type)),
-        diagnostics=sorted(diagnostics, key=lambda item: (item.start, item.end, item.type)),
-    )
+    items = []
+    diagnostics = []
+    for extracted_items, extracted_diagnostics in extracted:
+        items.extend(extracted_items)
+        diagnostics.extend(extracted_diagnostics)
+    sorted_items = sorted(items, key=_source_position)
+    sorted_diagnostics = sorted(diagnostics, key=_source_position)
+    return ExtractionResult(items=sorted_items, diagnostics=sorted_diagnostics)

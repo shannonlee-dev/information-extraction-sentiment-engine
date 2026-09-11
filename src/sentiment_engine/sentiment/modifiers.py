@@ -1,4 +1,5 @@
 """인접 강조어와 부정어에 따른 배율 및 반전 횟수 계산."""
+
 import json
 
 from sentiment_engine.data import LEXICONS
@@ -13,19 +14,22 @@ def modifier_effect(tokens: list[str], start: int, end: int) -> tuple[float, int
     before = start - 1
     while before >= 0:
         word = tokens[before]
-        if word in MODIFIERS['emphasizers']:
-            multiplier *= MODIFIERS['emphasizers'][word]
-        elif word in MODIFIERS['before_negations']:
+        if word in MODIFIERS["emphasizers"]:
+            multiplier *= MODIFIERS["emphasizers"][word]
+        elif word in MODIFIERS["before_negations"]:
             negations += 1
         else:
             break
         before -= 1
 
     # '좋지 않다', '불만이 없다'처럼 바로 뒤에 오는 부정어를 처리한다.
-    if end < len(tokens) and tokens[end] in MODIFIERS['after_negations']:
+    if end < len(tokens) and tokens[end] in MODIFIERS["after_negations"]:
         negations += 1
         # 대표 이중부정: '좋지 않은 것은 아니다' → 두 번 반전.
-        if tokens[end] in ('않은', '않는') and tokens[end + 1:end + 3] == ['것은', '아니다']:
+        following_start = end + 1
+        following_end = following_start + 2
+        following_words = tokens[following_start:following_end]
+        if tokens[end] in ("않은", "않는") and following_words == ["것은", "아니다"]:
             negations += 1
 
     return multiplier, negations

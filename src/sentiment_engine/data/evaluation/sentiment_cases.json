@@ -1,7 +1,7 @@
 {
   "metadata": {
     "provenance": "Project-authored Korean sentences; positive/negative gold labels assigned manually from intended overall sentiment independently of analyzer predictions.",
-    "sampling": "100 fixed examples, 50 positive and 50 negative. Feature groups are explicit; no random runtime sampling.",
+    "sampling": "100 fixed examples, 50 positive and 50 negative; no random runtime sampling.",
     "challenge_policy": "Challenge sentences are annotated as negative in a dissatisfied customer context; sarcasm and context-dependent language may be ambiguous outside that context.",
     "negation_policy": "Single negation reverses one expression; double negation uses two explicit grammatical negations. Mixed-polarity labels reflect the overall expressed judgment."
   },
@@ -9,742 +9,502 @@
     {
       "id": "sentiment-001",
       "text": "상품이 좋다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-002",
       "text": "응대가 친절하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-003",
       "text": "결과에 만족한다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-004",
       "text": "배송이 빠르다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-005",
       "text": "디자인이 예쁘다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-006",
       "text": "품질이 훌륭하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-007",
       "text": "사용하기 편리하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-008",
       "text": "이 제품을 추천한다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-009",
       "text": "포장이 깔끔하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-010",
       "text": "성능이 뛰어나다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-011",
       "text": "설명이 명확하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-012",
       "text": "상담사가 믿음직하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-013",
       "text": "절차가 간편하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-014",
       "text": "가격이 합리적이다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-015",
       "text": "도움이 되었다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-016",
       "text": "기분이 좋았다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-017",
       "text": "답변이 정확하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-018",
       "text": "직원이 성실하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-019",
       "text": "서비스에 감사하다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-020",
       "text": "문제가 해결되었다",
-      "label": "positive",
-      "features": []
+      "label": "positive"
     },
     {
       "id": "sentiment-021",
       "text": "상품이 나쁘다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-022",
       "text": "응대가 불친절하다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-023",
       "text": "결과에 불만이다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-024",
       "text": "배송이 느리다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-025",
       "text": "품질이 형편없다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-026",
       "text": "사용하기 불편하다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-027",
       "text": "제품에 실망했다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-028",
       "text": "가격이 비싸다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-029",
       "text": "오류가 발생했다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-030",
       "text": "처리가 엉망이다",
-      "label": "negative",
-      "features": []
+      "label": "negative"
     },
     {
       "id": "sentiment-031",
       "text": "정말 좋다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-032",
       "text": "아주 만족한다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-033",
       "text": "매우 친절하다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-034",
       "text": "너무 편리하다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-035",
       "text": "정말 훌륭하다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-036",
       "text": "아주 깔끔하다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-037",
       "text": "매우 빠르다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-038",
       "text": "정말 추천한다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-039",
       "text": "너무 예쁘다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-040",
       "text": "아주 뛰어나다",
-      "label": "positive",
-      "features": [
-        "emphasis"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-041",
       "text": "정말 나쁘다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-042",
       "text": "아주 불편하다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-043",
       "text": "매우 불친절하다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-044",
       "text": "너무 느리다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-045",
       "text": "정말 실망했다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-046",
       "text": "아주 형편없다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-047",
       "text": "매우 비싸다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-048",
       "text": "정말 엉망이다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-049",
       "text": "너무 답답하다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-050",
       "text": "아주 불만이다",
-      "label": "negative",
-      "features": [
-        "emphasis"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-051",
       "text": "나쁘지 않다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-052",
       "text": "불편하지 않다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-053",
       "text": "불친절하지 않다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-054",
       "text": "느리지 않다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-055",
       "text": "비싸지 않다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-056",
       "text": "불만이 없다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-057",
       "text": "실망하지 않았다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-058",
       "text": "걱정이 없다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-059",
       "text": "문제가 없다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-060",
       "text": "후회하지 않는다",
-      "label": "positive",
-      "features": [
-        "single-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-061",
       "text": "좋지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-062",
       "text": "만족하지 않는다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-063",
       "text": "친절하지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-064",
       "text": "편리하지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-065",
       "text": "빠르지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-066",
       "text": "추천하지 않는다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-067",
       "text": "예쁘지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-068",
       "text": "훌륭하지 않다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-069",
       "text": "믿음이 없다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-070",
       "text": "도움이 안 된다",
-      "label": "negative",
-      "features": [
-        "single-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-071",
       "text": "좋지 않은 것은 아니다",
-      "label": "positive",
-      "features": [
-        "double-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-072",
       "text": "만족하지 않는 것은 아니다",
-      "label": "positive",
-      "features": [
-        "double-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-073",
       "text": "친절하지 않은 것은 아니다",
-      "label": "positive",
-      "features": [
-        "double-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-074",
       "text": "편리하지 않은 것은 아니다",
-      "label": "positive",
-      "features": [
-        "double-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-075",
       "text": "추천하지 않을 이유가 없다",
-      "label": "positive",
-      "features": [
-        "double-negation"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-076",
       "text": "불편하지 않은 것은 아니다",
-      "label": "negative",
-      "features": [
-        "double-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-077",
       "text": "불만이 없지는 않다",
-      "label": "negative",
-      "features": [
-        "double-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-078",
       "text": "실망하지 않은 것은 아니다",
-      "label": "negative",
-      "features": [
-        "double-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-079",
       "text": "문제가 없지 않다",
-      "label": "negative",
-      "features": [
-        "double-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-080",
       "text": "나쁘지 않다고 할 수는 없다",
-      "label": "negative",
-      "features": [
-        "double-negation"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-081",
       "text": "가격은 비싸다. 그래도 품질이 훌륭하고 만족한다",
-      "label": "positive",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-082",
       "text": "배송은 느리다. 하지만 제품이 좋고 편리하다",
-      "label": "positive",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-083",
       "text": "포장은 엉망이다. 그래도 성능은 뛰어나고 추천한다",
-      "label": "positive",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-084",
       "text": "설명은 불편하다. 하지만 결과가 좋고 만족스럽다",
-      "label": "positive",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-085",
       "text": "응대는 불친절하다. 그래도 제품은 예쁘고 훌륭하다",
-      "label": "positive",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "positive"
     },
     {
       "id": "sentiment-086",
       "text": "디자인은 예쁘다. 하지만 품질이 나쁘고 실망했다",
-      "label": "negative",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-087",
       "text": "배송은 빠르다. 하지만 고장 때문에 불편하고 후회한다",
-      "label": "negative",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-088",
       "text": "직원은 친절하다. 하지만 처리가 느리고 답답하다",
-      "label": "negative",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-089",
       "text": "가격은 합리적이다. 하지만 성능이 형편없고 불만이다",
-      "label": "negative",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-090",
       "text": "포장은 깔끔하다. 하지만 상품이 나쁘고 추천하지 않는다",
-      "label": "negative",
-      "features": [
-        "mixed-polarity"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-091",
       "text": "참 잘도 처리했네요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-092",
       "text": "최고네요, 벌써 세 번째 고장이에요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-093",
       "text": "배송이 빛의 속도네요, 일주일밖에 안 걸렸어요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-094",
       "text": "웃음밖에 안 나와요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-095",
       "text": "칭찬할 말이 없네요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-096",
       "text": "다시 사고 싶지는 않아요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-097",
       "text": "이 정도면 괜찮다고 해야 하나요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-098",
       "text": "기대를 안 했는데 역시나네요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-099",
       "text": "돈이 아깝지 않을 수가 없어요",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     },
     {
       "id": "sentiment-100",
       "text": "설명과 다른데 우연이겠죠",
-      "label": "negative",
-      "features": [
-        "challenge"
-      ]
+      "label": "negative"
     }
   ]
 }

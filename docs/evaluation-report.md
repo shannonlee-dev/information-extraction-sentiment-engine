@@ -6,12 +6,10 @@
 
 | 파일 | 구성 |
 | --- | --- |
-| `src/sentiment_engine/data/lexicons/sentiment_lexicon.json` | 기존 프로젝트 작성 사전 613개. `term`, `variants`, `score`, 선택적 `domain` |
+| `src/sentiment_engine/data/lexicons/sentiment_lexicon.json` | 기존 프로젝트 작성 사전 613개. `term`, `variants`, `score` |
 | `src/sentiment_engine/data/lexicons/modifiers.json` | 앞/뒤 부정어 표기와 강조 배율 |
 | `src/sentiment_engine/data/evaluation/extraction_cases.json` | 기존 65문장, 정답 개체 63개. 미지원 변형 6문장과 정답이 빈 7문장 포함 |
 | `src/sentiment_engine/data/evaluation/sentiment_cases.json` | 기존 100문장, 긍정 50·부정 50. 단순 감성·강조·부정·이중부정·혼합 감성·난제 포함 |
-
-도메인은 고객지원(`customer_support`)이며 `친절하다`, `불친절하다`, `정확하다` 등 91개 항목이다. 표기 변형을 별개 단어 수로 세지 않는다.
 
 사전과 정답 예제는 기존 프로젝트에서 AI 도움을 받아 작성했으며 독립적인 사람의 검수를 거치지 않았다. 이번 리팩터링에서 정답은 변경하지 않았다. 각 추출 유형은 미지원 사례를 제외하고도 10문장 이상, 3가지 이상 변형을 포함한다. 사전과 규칙 개발에 이미 사용한 교육용 예제이므로 이 리포트의 수치를 독립적인 실서비스 성능으로 해석하면 안 된다. 감성의 난제는 불만 고객의 문맥으로 레이블링되었다.
 

@@ -1,8 +1,8 @@
 """phone 후보 탐색, 검증 및 정규화."""
+
 import re
 
 from sentiment_engine.models import Diagnostic, ExtractionItem
-
 
 # 전화번호: 0으로 시작하며 하이픈, 공백, 구분자 없는 형식을 허용한다.
 # 앞뒤 숫자 경계로 긴 숫자의 일부를 피하고, 지역번호와 자릿수는 아래에서 검사한다.
@@ -19,8 +19,24 @@ PHONE_CANDIDATE_PATTERN = re.compile(
     re.VERBOSE,
 )
 AREA_CODES = (
-    "010", "02", "031", "032", "033", "041", "042", "043", "044",
-    "051", "052", "053", "054", "055", "061", "062", "063", "064",
+    "010",
+    "02",
+    "031",
+    "032",
+    "033",
+    "041",
+    "042",
+    "043",
+    "044",
+    "051",
+    "052",
+    "053",
+    "054",
+    "055",
+    "061",
+    "062",
+    "063",
+    "064",
 )
 
 
@@ -35,7 +51,10 @@ def extract_phones(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
         second_separator = match["second_separator"]
         raw = match.group()
         if not first_separator and not second_separator:
-            area = next((code for code in AREA_CODES if raw.startswith(code)), area)
+            for code in AREA_CODES:
+                if raw.startswith(code):
+                    area = code
+                    break
             exchange = raw[len(area) : -4]
             subscriber = raw[-4:]
         if area not in AREA_CODES:
@@ -45,7 +64,11 @@ def extract_phones(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
         else:
             items.append(
                 ExtractionItem(
-                    "phone", raw, f"{area}-{exchange}-{subscriber}", match.start(), match.end()
+                    "phone",
+                    raw,
+                    f"{area}-{exchange}-{subscriber}",
+                    match.start(),
+                    match.end(),
                 )
             )
             continue

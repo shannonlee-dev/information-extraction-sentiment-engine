@@ -1,8 +1,8 @@
 """email 후보 탐색, 검증 및 정규화."""
+
 import re
 
 from sentiment_engine.models import Diagnostic, ExtractionItem
-
 
 # 이메일: 영문/숫자와 흔한 특수문자를 포함한 로컬 부분, 점으로 나뉜 도메인.
 # 연속된 점이나 잘못된 도메인은 후보 전체를 잡은 뒤 유효성 검사에서 거른다.
@@ -42,16 +42,18 @@ def extract_emails(text: str) -> tuple[list[ExtractionItem], list[Diagnostic]]:
     return items, diagnostics
 
 
-
 def _invalid_email_reason(local: str, domain: str) -> str | None:
     if local.startswith(".") or local.endswith(".") or ".." in local:
         return "invalid_email_local"
     labels = domain.split(".")
-    if (
-        len(labels) < 2
-        or any(not label or label.startswith("-") or label.endswith("-") for label in labels)
-        or not 2 <= len(labels[-1]) <= 63
-        or not labels[-1].isalpha()
-    ):
+    if len(labels) < 2:
+        return "invalid_email_domain"
+    for label in labels:
+        if not label or label.startswith("-") or label.endswith("-"):
+            return "invalid_email_domain"
+    top_level_domain = labels[-1]
+    if len(top_level_domain) < 2 or len(top_level_domain) > 63:
+        return "invalid_email_domain"
+    if not top_level_domain.isalpha():
         return "invalid_email_domain"
     return None
