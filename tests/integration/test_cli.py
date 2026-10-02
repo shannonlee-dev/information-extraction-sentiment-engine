@@ -1,13 +1,11 @@
 """명령행 분석·평가와 오류 응답을 검증한다."""
 
 import json
+import shutil
 import subprocess
 import sys
-from pathlib import Path
 
 import pytest
-
-ROOT = Path(__file__).resolve().parents[2]
 
 
 @pytest.mark.parametrize(
@@ -19,12 +17,13 @@ ROOT = Path(__file__).resolve().parents[2]
         (["--evaluate", "all", "--no-save", "--format", "json"], 0, '"micro"'),
     ],
 )
-def test_script_runs_without_installed_package(
+@pytest.mark.smoke
+def test_installed_module_runs_from_external_workdir(
     tmp_path, arguments, expected_code, expected_output
 ):
-    # 설치된 패키지와 PYTHONPATH를 차단해 소스만 있는 환경을 재현한다.
+    # 현재 디렉토리와 PYTHONPATH에 의존하지 않고 설치된 패키지를 실행한다.
     run = subprocess.run(
-        [sys.executable, "-I", "-S", str(ROOT / "main.py"), *arguments],
+        [sys.executable, "-I", "-m", "sentiment_engine", *arguments],
         cwd=tmp_path,
         capture_output=True,
         text=True,
@@ -35,10 +34,12 @@ def test_script_runs_without_installed_package(
     assert list(tmp_path.iterdir()) == []
 
 
-@pytest.fixture(params=["script", "module"])
+@pytest.fixture(params=["console", "module"])
 def command(request):
-    if request.param == "script":
-        return [sys.executable, str(ROOT / "main.py")]
+    if request.param == "console":
+        executable = shutil.which("sentiment-engine")
+        assert executable is not None
+        return [executable]
     return [sys.executable, "-m", "sentiment_engine"]
 
 
@@ -139,5 +140,5 @@ def test_missing_matplotlib_guidance(monkeypatch, capsys):
     output = capsys.readouterr()
     assert error.value.code == 1
     assert "sentiment" in json.loads(output.out)
-    assert "python -m pip install" in output.err
+    assert "uv sync --frozen" in output.err
     assert "--no-save" in output.err

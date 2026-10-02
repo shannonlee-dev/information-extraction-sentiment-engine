@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from sentiment_engine.sentiment import analyze_sentiment
 from sentiment_engine.data import LEXICONS
+from sentiment_engine.sentiment import analyze_sentiment
 
 
 @pytest.mark.parametrize(

@@ -5,6 +5,7 @@ from dataclasses import asdict
 from typing import Any
 
 from sentiment_engine.extraction import extract_information
+
 from .metrics import metrics
 
 _TYPES = ("email", "phone", "date", "money", "url")

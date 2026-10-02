@@ -64,8 +64,7 @@ def main(argv: list[str] | None = None):
             print(f"\n저장 실패: {error}", file=sys.stderr)
             if isinstance(error, ModuleNotFoundError) and error.name == "matplotlib":
                 print(
-                    "해결: 실행 중인 Python 환경에 설치하세요: "
-                    'python -m pip install "matplotlib>=3.7,<4"',
+                    "해결: 저장소 루트에서 잠금 파일로 설치하세요: uv sync --frozen",
                     file=sys.stderr,
                 )
             print(

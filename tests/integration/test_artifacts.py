@@ -75,10 +75,10 @@ def test_extraction_evaluation_saves_json_and_summary(tmp_path):
 
 
 def test_summary_survives_missing_chart_dependency(tmp_path, monkeypatch):
-    from sentiment_engine.evaluation import compare_sentiment
-    from sentiment_engine.reporting import save_artifacts
-    from sentiment_engine.reporting import charts
     import pytest
+
+    from sentiment_engine.evaluation import compare_sentiment
+    from sentiment_engine.reporting import charts, save_artifacts
 
     def missing(*args):
         raise ModuleNotFoundError(name="matplotlib")

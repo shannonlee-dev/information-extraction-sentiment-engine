@@ -4,8 +4,8 @@ from dataclasses import asdict
 
 import pytest
 
-from sentiment_engine.extraction import extract_information
 from sentiment_engine.evaluation import load_extraction_cases
+from sentiment_engine.extraction import extract_information
 
 CASES = load_extraction_cases()
 SUPPORTED_CASES = [case for case in CASES if case["variant"] != "challenge-unsupported"]

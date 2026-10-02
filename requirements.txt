@@ -1,2 +1,0 @@
-# 소스와 그래프 생성 의존성, 개발용 pytest를 editable 설치한다.
--e .[dev]

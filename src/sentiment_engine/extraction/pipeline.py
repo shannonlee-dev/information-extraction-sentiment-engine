@@ -2,10 +2,10 @@
 
 from sentiment_engine.models import Diagnostic, ExtractionItem, ExtractionResult
 
-from .email import extract_emails
-from .phone import extract_phones
 from .date import extract_dates
+from .email import extract_emails
 from .money import extract_money
+from .phone import extract_phones
 from .url import extract_urls
 
 

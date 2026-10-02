@@ -4,6 +4,7 @@ from dataclasses import asdict
 from typing import Any
 
 from sentiment_engine.sentiment import analyze_sentiment
+
 from .metrics import metrics, scores
 
 _LABELS = ("positive", "negative", "neutral")

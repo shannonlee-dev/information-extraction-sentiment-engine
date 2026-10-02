@@ -15,7 +15,7 @@
 
 ## 평가 결과
 
-`python main.py --evaluate all`로 재계산한다. 추출은 유형·시작/끝 위치·정규화 값이 모두 일치해야 TP이며, 누락은 FN, 추가 추출은 FP다. 정규화가 틀리면 FP와 FN이 하나씩 생긴다.
+`uv run --frozen sentiment-engine --evaluate all`로 재계산한다. 추출은 유형·시작/끝 위치·정규화 값이 모두 일치해야 TP이며, 누락은 FN, 추가 추출은 FP다. 정규화가 틀리면 FP와 FN이 하나씩 생긴다.
 
 `Precision = TP/(TP+FP)`, `Recall = TP/(TP+FN)`, `F1 = 2PR/(P+R)`이며 분모가 0이면 0으로 처리한다. **미지원 6문장을 포함한 전체 65문장** 결과다.
 

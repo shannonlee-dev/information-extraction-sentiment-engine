@@ -5,12 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "information-extraction-sentiment-engine"
 version = "0.1.0"
-description = "NLP Mission 2: rule-based extraction and sentiment analysis"
+description = "규칙 기반 정보 추출과 감성 분석을 평가·시각화하는 한국어 NLP 엔진"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["matplotlib>=3.7,<4"]
 
-[project.optional-dependencies]
-dev = ["pytest>=8,<9"]
+[dependency-groups]
+dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
+
+[project.scripts]
+sentiment-engine = "sentiment_engine.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -21,7 +25,12 @@ namespaces = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--import-mode=importlib --strict-markers"
+markers = ["smoke: 외부 서비스·원본 데이터 변경 없이 주요 실행 경로 검증"]
 
-[tool.black]
+[tool.ruff]
 line-length = 88
-target-version = ["py310"]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
